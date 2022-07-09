@@ -6,8 +6,7 @@ public class ParallaxBackground : MonoBehaviour
 {
     public float Speed { get; private set; }
 
-    private float initialSpeedValue = 5f;
-    private float xPositionLimit = -14;
+    private float initialSpeedValue = 2.5f;
     private float xResetPoint = 14;
 
     public void UpdateSpeed(float newValue)
@@ -22,9 +21,7 @@ public class ParallaxBackground : MonoBehaviour
 
     private void Update()
     {
-        float xPosition = transform.position.x;
-
-        if (transform.position.x < xPositionLimit)
+        if (transform.position.x < -xResetPoint)
             transform.position = new Vector2(xResetPoint, 0);
         else
             transform.Translate(Speed, 0, 0);
