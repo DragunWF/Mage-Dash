@@ -6,7 +6,7 @@ public class ParallaxBackground : MonoBehaviour
 {
     public float Speed { get; private set; }
 
-    private float initialSpeedValue = 2.5f;
+    private float initialSpeedValue = 0.5f;
     private float xResetPoint = 14;
 
     public void UpdateSpeed(float newValue)
