@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     private int health = 3;
-    private const float jumpForce = 7.5f;
+    private const float jumpForce = 12.5f;
     private Rigidbody2D rigidBody;
 
     private void Awake()
