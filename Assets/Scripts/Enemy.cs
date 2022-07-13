@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] bool isBat = false;
+    [Header("Obstacle Stats")]
+    [SerializeField] float damage = 10f;
     [SerializeField] float speed = 5f;
 
+    [Header("Obstacle Type")]
+    [SerializeField] bool isFlying = false;
+
     private Rigidbody2D rigidBody;
+    private const float despawnPositionX = -8f;
 
     private void Awake()
     {
@@ -16,10 +21,33 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (isBat)
+        Move();
+        CheckDespawnPoint();
+    }
+
+    private void Move()
+    {
+        if (isFlying)
         {
             float deltaSpeed = -speed * Time.deltaTime;
             transform.Translate(deltaSpeed, 0, 0);
+        }
+    }
+
+    private void CheckDespawnPoint()
+    {
+        if (transform.position.x <= despawnPositionX)
+            Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        switch (other.tag)
+        {
+            case "Player":
+                break;
+            case "Fireball":
+                break;
         }
     }
 }
