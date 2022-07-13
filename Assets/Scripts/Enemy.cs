@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] bool isBat = false;
+    [SerializeField] float speed = 5f;
+
+    private Rigidbody2D rigidBody;
+
+    private void Awake()
     {
-        
+        rigidBody = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (isBat)
+        {
+            float deltaSpeed = -speed * Time.deltaTime;
+            transform.Translate(deltaSpeed, 0, 0);
+        }
     }
 }
