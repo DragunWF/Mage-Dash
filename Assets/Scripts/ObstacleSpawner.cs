@@ -15,7 +15,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     public void ScaleSpawner()
     {
-
+        UpdateSpawnIntervals();
     }
 
     private void Awake()
@@ -29,6 +29,11 @@ public class ObstacleSpawner : MonoBehaviour
     private void Start()
     {
         StartCoroutine(SpawnObstacles());
+    }
+
+    private void UpdateSpawnIntervals()
+    {
+
     }
 
     private float GetRandomSpawnInterval()
