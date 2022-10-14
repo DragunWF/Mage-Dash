@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class DifficultyScaling : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public int DifficultyLevel { get; private set; }
+    private float timeToScaleDifficulty = 10f;
+
+    private void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+
     }
 }
