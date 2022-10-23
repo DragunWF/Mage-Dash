@@ -20,8 +20,10 @@ public class ObstacleSpawner : MonoBehaviour
 
     private void Awake()
     {
-        groundObstacles = new GameObject[1] {
-            Resources.Load("Prefabs/Obstacle [Spike]") as GameObject
+        groundObstacles = new GameObject[3] {
+            Resources.Load("Prefabs/Obstacle [Spike]") as GameObject,
+            Resources.Load("Prefabs/Obstacle [Spider]") as GameObject,
+            Resources.Load("Prefabs/Obstacle [Fighter]") as GameObject
         };
         flyingObstacle = Resources.Load("Prefabs/Obstacle [Bat]") as GameObject;
 
