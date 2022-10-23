@@ -9,6 +9,11 @@ public class Player : MonoBehaviour
     private const float jumpForce = 12.5f;
     private Rigidbody2D rigidBody;
 
+    public void DamageHealth()
+    {
+        health -= 1;
+    }
+
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
