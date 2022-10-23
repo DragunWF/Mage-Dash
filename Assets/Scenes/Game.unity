@@ -1777,7 +1777,7 @@ GameObject:
   - component: {fileID: 248740863}
   - component: {fileID: 248740862}
   - component: {fileID: 248740861}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle [Spike]
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -1930,6 +1930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e767dfef2a35f046b12e386a6288b77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 25
   damage: 10
   speed: 5
   isFlying: 1
