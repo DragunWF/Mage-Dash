@@ -28,14 +28,15 @@ public class Enemy : MonoBehaviour
 
     private void Move()
     {
+        float deltaSpeed = -speed * Time.deltaTime;
         if (isFlying)
-        {
-            float deltaSpeed = -speed * Time.deltaTime;
             transform.Translate(deltaSpeed, 0, 0);
-        }
         else
         {
-            rigidBody.velocity += new Vector2(0, -speed);
+            const float groundYpos = -3f;
+            transform.Translate(deltaSpeed, 0, 0);
+            if (transform.position.y <= groundYpos)
+                transform.position = new Vector3(transform.position.x, -2f);
         }
     }
 
