@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [Header("Obstacle Stats")]
+    [SerializeField] float health = 25f;
     [SerializeField] float damage = 10f;
     [SerializeField] float speed = 5f;
 
@@ -32,6 +33,10 @@ public class Enemy : MonoBehaviour
             float deltaSpeed = -speed * Time.deltaTime;
             transform.Translate(deltaSpeed, 0, 0);
         }
+        else
+        {
+            rigidBody.velocity += new Vector2(0, -speed);
+        }
     }
 
     private void CheckDespawnPoint()
@@ -40,11 +45,17 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
     }
 
+    private void DamageHealth()
+    {
+
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         switch (other.tag)
         {
             case "Player":
+                FindObjectOfType<Player>().DamageHealth();
                 break;
             case "Fireball":
                 break;
