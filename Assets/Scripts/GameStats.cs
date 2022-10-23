@@ -9,6 +9,8 @@ public class GameStats : MonoBehaviour
     public int HighScore { get; private set; }
     public int HighestDifficultyReached { get; private set; }
 
+    public float ScoreModifier { get; private set; }
+
     private GameUI gameUI;
 
     public void IncreaseScore(int amount)
@@ -16,6 +18,7 @@ public class GameStats : MonoBehaviour
         Score += amount;
         gameUI.UpdateScore(Score);
     }
+    
     public void IncreaseDifficulty()
     {
         Difficulty++;

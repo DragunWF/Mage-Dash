@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
         const float triggerDelay = 3f;
         yield return new WaitForSeconds(triggerDelay);
 
-        const float scoreInterval = 1.5f / 2; // 1.5 is the base interval
+        float scoreInterval = 3f * gameStats.ScoreModifier / 2; // 3 is the base interval
         while (isAlive)
         {
             yield return new WaitForSeconds(scoreInterval);
