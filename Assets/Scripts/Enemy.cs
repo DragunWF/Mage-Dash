@@ -59,6 +59,7 @@ public class Enemy : MonoBehaviour
                 FindObjectOfType<Player>().DamageHealth();
                 break;
             case "Fireball":
+                DamageHealth();
                 break;
         }
     }
