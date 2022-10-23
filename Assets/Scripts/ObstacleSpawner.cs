@@ -57,7 +57,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     private GameObject GetRandomObstacle()
     {
-        int chance = Random.Range(1, 2);
+        int chance = Random.Range(1, 3);
         if (chance == 1)
             return flyingObstacle;
         return groundObstacles[Random.Range(0, groundObstacles.Length)];
@@ -65,7 +65,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     private IEnumerator SpawnObstacles()
     {
-        const float spawnDelay = 1.5f;
+        const float spawnDelay = 3.5f;
         yield return new WaitForSeconds(spawnDelay);
 
         while (spawnObstacles)
