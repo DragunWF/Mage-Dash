@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Obstacle
   - Fireball
+  - PlayerHitbox
   layers:
   - Default
   - TransparentFX
