@@ -18,7 +18,7 @@ public class GameStats : MonoBehaviour
         Score += amount;
         gameUI.UpdateScore(Score);
     }
-    
+
     public void IncreaseDifficulty()
     {
         Difficulty++;
@@ -27,6 +27,13 @@ public class GameStats : MonoBehaviour
 
     private void Awake()
     {
+        Score = 0;
+        HighScore = 0;
+        ScoreModifier = 1;
+
+        Difficulty = 1;
+        HighestDifficultyReached = 0;
+        
         gameUI = FindObjectOfType<GameUI>();
     }
 
