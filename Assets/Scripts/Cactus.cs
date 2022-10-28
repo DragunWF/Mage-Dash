@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class Cactus : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private const float despawnPositionX = -8.5f;
+    private ParallaxBackground background;
+
+    private void Awake()
     {
-        
+        background = FindObjectOfType<ParallaxBackground>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        float deltaSpeed = background.Speed * Time.deltaTime;
+        transform.Translate(-deltaSpeed, 0, 0);
+
+        if (transform.position.x <= despawnPositionX)
+        {
+            Destroy(gameObject);
+        }
     }
 }
