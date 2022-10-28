@@ -10,8 +10,8 @@ public class ObstacleSpawner : MonoBehaviour
     private GameObject[] groundObstacles;
     private GameObject flyingObstacle;
 
-    private Transform flyingObstacleSpawnPoint;
-    private Transform groundObstacleSpawnPoint;
+    private Transform flyingSpawnPoint;
+    private Transform groundSpawnPoint;
 
     public void ScaleSpawner()
     {
@@ -27,8 +27,8 @@ public class ObstacleSpawner : MonoBehaviour
         };
         flyingObstacle = Resources.Load("Prefabs/Obstacle [Bat]") as GameObject;
 
-        groundObstacleSpawnPoint = GameObject.Find("Ground Enemy Point").transform;
-        flyingObstacleSpawnPoint = GameObject.Find("Flying Enemy Point").transform;
+        groundSpawnPoint = GameObject.Find("Ground Enemy Point").transform;
+        flyingSpawnPoint = GameObject.Find("Flying Enemy Point").transform;
     }
 
     private void Start()
@@ -77,9 +77,9 @@ public class ObstacleSpawner : MonoBehaviour
             float spawnInterval = GetRandomSpawnInterval();
             GameObject obstacle = GetRandomObstacle();
             Transform spawnPosition = obstacle == flyingObstacle ?
-                flyingObstacleSpawnPoint : groundObstacleSpawnPoint;
+                flyingSpawnPoint : groundSpawnPoint;
 
-            Instantiate(obstacle, spawnPosition);
+            Instantiate(obstacle, spawnPosition, false);
             yield return new WaitForSeconds(spawnInterval);
         }
     }
