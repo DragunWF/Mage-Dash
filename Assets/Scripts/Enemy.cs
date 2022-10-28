@@ -30,20 +30,26 @@ public class Enemy : MonoBehaviour
     {
         float deltaSpeed = -speed * Time.deltaTime;
         if (isFlying)
+        {
             transform.Translate(deltaSpeed, 0, 0);
+        }
         else
         {
             const float groundYpos = -3f;
             transform.Translate(deltaSpeed, 0, 0);
             if (transform.position.y <= groundYpos)
+            {
                 transform.position = new Vector3(transform.position.x, -2f);
+            }
         }
     }
 
     private void CheckDespawnPoint()
     {
         if (transform.position.x <= despawnPositionX)
+        {
             Destroy(gameObject);
+        }
     }
 
     private void DamageHealth()

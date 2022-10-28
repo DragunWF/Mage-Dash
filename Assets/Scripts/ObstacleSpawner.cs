@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
-    private float[] spawnIntervals = new float[2] { 1.5f, 2.5f };
+    private float[] spawnIntervals = { 1.5f, 2.5f };
     private bool spawnObstacles = true;
 
     private GameObject[] groundObstacles;
@@ -61,7 +61,9 @@ public class ObstacleSpawner : MonoBehaviour
     {
         int chance = Random.Range(1, 3);
         if (chance == 1)
+        {
             return flyingObstacle;
+        }
         return groundObstacles[Random.Range(0, groundObstacles.Length)];
     }
 
