@@ -6,8 +6,8 @@ public class ParallaxBackground : MonoBehaviour
 {
     public float Speed { get; private set; }
 
-    private float initialSpeedValue = 1.5f;
-    private float xResetPoint = 14;
+    private const float initialSpeedValue = 1.5f;
+    private const float xResetPoint = 14;
 
     public void UpdateSpeed(float newValue)
     {
