@@ -8,6 +8,8 @@ public class GameUI : MonoBehaviour
 {
     private TextMeshProUGUI scoreText;
     private TextMeshProUGUI difficultyText;
+    private Slider healthSlider;
+    private Slider manaSlider;
 
     public void UpdateScore(int newScore)
     {
@@ -23,6 +25,8 @@ public class GameUI : MonoBehaviour
     {
         scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
         difficultyText = GameObject.Find("DifficultyText").GetComponent<TextMeshProUGUI>();
+        healthSlider = GameObject.Find("HealthSlider").GetComponent<Slider>();
+        manaSlider = GameObject.Find("ManaSlider").GetComponent<Slider>();
     }
 
     private void Start()
