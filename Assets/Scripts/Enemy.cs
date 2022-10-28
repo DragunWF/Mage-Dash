@@ -20,6 +20,11 @@ public class Enemy : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
     }
 
+    private void Start()
+    {
+        transform.localPosition = new Vector2(0, 0);
+    }
+
     private void Update()
     {
         Move();
