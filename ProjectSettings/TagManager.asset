@@ -7,6 +7,7 @@ TagManager:
   - Obstacle
   - Fireball
   - PlayerHitbox
+  - Props
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Player
   - PlayerHitbox
   - Enemy
-  - 
+  - Props
   - 
   - 
   - 
@@ -43,6 +44,9 @@ TagManager:
   m_SortingLayers:
   - name: Background
     uniqueID: 404395403
+    locked: 0
+  - name: Props
+    uniqueID: 1938830739
     locked: 0
   - name: Ground
     uniqueID: 3818501027
