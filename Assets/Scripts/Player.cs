@@ -9,11 +9,17 @@ public class Player : MonoBehaviour
     private int health;
     private int mana;
 
+    private const float spellCooldownTime = 0.25f;
+    private bool onSpellCooldown = false;
+
     private const float jumpForce = 12.5f;
     private Rigidbody2D rigidBody;
 
     private GameStats gameStats;
     private GameUI gameUI;
+
+    private GameObject fireball;
+    private Transform firePos;
 
     public void DamageHealth()
     {
@@ -22,6 +28,9 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        fireball = Resources.Load("Prefabs/Fireball") as GameObject;
+        firePos = GameObject.Find("FirePos").transform;
+
         rigidBody = GetComponent<Rigidbody2D>();
         gameStats = FindObjectOfType<GameStats>();
         gameUI = FindObjectOfType<GameUI>();
@@ -51,7 +60,19 @@ public class Player : MonoBehaviour
 
     private void OnFire()
     {
+        if (mana > 0 && !onSpellCooldown)
+        {
+            Instantiate(fireball, firePos.position, Quaternion.identity);
+            mana--;
+            gameUI.UpdateManaBar(mana);
+            onSpellCooldown = true;
+            Invoke("RestoreSpell", spellCooldownTime);
+        }
+    }
 
+    private void RestoreSpell()
+    {
+        onSpellCooldown = false;
     }
 
     private IEnumerator OnAlive()
