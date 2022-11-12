@@ -6,7 +6,9 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     private bool isAlive = true;
-    private int health = 3;
+    private int health;
+    private int mana;
+
     private const float jumpForce = 12.5f;
     private Rigidbody2D rigidBody;
 
@@ -27,6 +29,12 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        health = gameStats.MaxPlayerHealth;
+        mana = gameStats.MaxPlayerMana;
+
+        gameUI.UpdateHealthBar(health, true);
+        gameUI.UpdateManaBar(mana, true);
+
         StartCoroutine(OnAlive());
     }
 
