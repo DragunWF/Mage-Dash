@@ -11,6 +11,24 @@ public class GameUI : MonoBehaviour
     private Slider healthSlider;
     private Slider manaSlider;
 
+    public void UpdateHealthBar(int newValue, bool updateMaxHealth = false)
+    {
+        if (updateMaxHealth)
+        {
+            healthSlider.maxValue = newValue;
+        }
+        healthSlider.value = newValue;
+    }
+
+    public void UpdateManaBar(int newValue, bool updateMaxMana = false)
+    {
+        if (updateMaxMana)
+        {
+            manaSlider.maxValue = newValue;
+        }
+        manaSlider.value = newValue;
+    }
+
     public void UpdateScore(int newScore)
     {
         scoreText.text = string.Format("Score: {0}", newScore);
