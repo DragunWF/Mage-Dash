@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     private int mana;
 
     private const float spellCooldownTime = 0.25f;
+    private const float manaRegenTime = 3.5f; // change in the future
     private bool onSpellCooldown = false;
 
     private const float jumpForce = 12.5f;
@@ -45,6 +46,7 @@ public class Player : MonoBehaviour
         gameUI.UpdateManaBar(mana, true);
 
         StartCoroutine(OnAlive());
+        StartCoroutine(RegenMana());
     }
 
     private void Update()
@@ -73,6 +75,25 @@ public class Player : MonoBehaviour
     private void RestoreSpell()
     {
         onSpellCooldown = false;
+    }
+
+    private IEnumerator RegenMana()
+    {
+        const float interval = 1.5f;
+
+        while (true)
+        {
+            if (mana < gameStats.MaxPlayerMana)
+            {
+                yield return new WaitForSeconds(manaRegenTime);
+                mana++;
+                gameUI.UpdateManaBar(mana);
+            }
+            else
+            {
+                yield return new WaitForSeconds(interval);
+            }
+        }
     }
 
     private IEnumerator OnAlive()
