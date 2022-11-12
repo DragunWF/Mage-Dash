@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class Fireball : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private const float xLimit = 8f;
+    private const float speed = 5.5f;
+
+    private void Update()
     {
-        
+        float deltaTime = speed * Time.deltaTime;
+        transform.Translate(deltaTime, 0, 0);
+        if (transform.position.x >= xLimit)
+        {
+            Destroy(gameObject);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
+        if (other.tag == "Obstacle") 
+        {
+            // add sound effect in the future
+            Destroy(gameObject);
+        }
     }
 }
