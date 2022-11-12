@@ -6,12 +6,15 @@ public class GameStats : MonoBehaviour
 {
     public int Score { get; private set; }
     public int Difficulty { get; private set; }
+
     public int HighScore { get; private set; }
     public int HighestDifficultyReached { get; private set; }
 
-    public float ScoreModifier { get; private set; }
+    public int PlayerDamage { get; private set; }
     public int MaxPlayerHealth { get; private set; }
     public int MaxPlayerMana { get; private set; }
+
+    public float ScoreModifier { get; private set; }
 
     private GameUI gameUI;
 
@@ -29,6 +32,7 @@ public class GameStats : MonoBehaviour
 
     private void Awake()
     {
+        PlayerDamage = 15; // default
         MaxPlayerHealth = 3;
         MaxPlayerMana = 5;
 
@@ -38,7 +42,7 @@ public class GameStats : MonoBehaviour
 
         Difficulty = 1;
         HighestDifficultyReached = 0;
-        
+
         gameUI = FindObjectOfType<GameUI>();
     }
 
