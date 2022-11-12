@@ -5,7 +5,7 @@ using UnityEngine;
 public class Fireball : MonoBehaviour
 {
     private const float xLimit = 8f;
-    private const float speed = 5.5f;
+    private const float speed = 6.5f;
 
     private void Update()
     {
