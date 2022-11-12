@@ -10,6 +10,8 @@ public class GameStats : MonoBehaviour
     public int HighestDifficultyReached { get; private set; }
 
     public float ScoreModifier { get; private set; }
+    public int MaxPlayerHealth { get; private set; }
+    public int MaxPlayerMana { get; private set; }
 
     private GameUI gameUI;
 
@@ -27,6 +29,9 @@ public class GameStats : MonoBehaviour
 
     private void Awake()
     {
+        MaxPlayerHealth = 3;
+        MaxPlayerMana = 5;
+
         Score = 0;
         HighScore = 0;
         ScoreModifier = 1;
