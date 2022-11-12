@@ -12,12 +12,14 @@ public class Enemy : MonoBehaviour
     [Header("Obstacle Type")]
     [SerializeField] bool isFlying = false;
 
+    private GameStats gameStats;
     private Rigidbody2D rigidBody;
     private const float despawnPositionX = -8f;
 
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        gameStats = FindObjectOfType<GameStats>();
     }
 
     private void Start()
@@ -59,7 +61,11 @@ public class Enemy : MonoBehaviour
 
     private void DamageHealth()
     {
-
+        health -= gameStats.PlayerDamage;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
