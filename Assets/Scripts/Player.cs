@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     {
         if (!onDamageCooldown) 
         {
-            health -= 1;
+            health--;
             onDamageCooldown = true;
             gameUI.UpdateHealthBar(health);
             Invoke("RemoveInvincibility", healthCooldownTime);
