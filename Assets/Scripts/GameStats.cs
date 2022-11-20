@@ -16,11 +16,12 @@ public class GameStats : MonoBehaviour
 
     public float ScoreModifier { get; private set; }
 
+    private float scoreMultiplier = 1f; 
     private GameUI gameUI;
 
     public void IncreaseScore(int amount)
     {
-        Score += amount;
+        Score += amount * scoreMultiplier;
         gameUI.UpdateScore(Score);
     }
 
