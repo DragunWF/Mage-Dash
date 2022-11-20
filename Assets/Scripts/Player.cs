@@ -13,6 +13,9 @@ public class Player : MonoBehaviour
     private const float manaRegenTime = 3.5f; // change in the future
     private bool onSpellCooldown = false;
 
+    private const float healthCooldownTime = 4.25f;
+    private bool onDamageCooldown = false;
+
     private const float jumpForce = 12.5f;
     private Rigidbody2D rigidBody;
 
@@ -24,7 +27,13 @@ public class Player : MonoBehaviour
 
     public void DamageHealth()
     {
-        health -= 1;
+        if (!onDamageCooldown) 
+        {
+            health -= 1;
+            onDamageCooldown = true;
+            gameUI.UpdateHealthBar(health);
+            Invoke("RemoveInvincibility", healthCooldownTime);
+        }
     }
 
     private void Awake()
@@ -75,6 +84,11 @@ public class Player : MonoBehaviour
     private void RestoreSpell()
     {
         onSpellCooldown = false;
+    }
+
+    private void RemoveInvincibility() 
+    {
+        onDamageCooldown = false;
     }
 
     private IEnumerator RegenMana()
