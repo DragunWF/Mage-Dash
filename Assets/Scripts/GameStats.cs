@@ -21,7 +21,7 @@ public class GameStats : MonoBehaviour
 
     public void IncreaseScore(int amount)
     {
-        Score += amount * scoreMultiplier;
+        Score += (int)Mathf.Round(amount * scoreMultiplier);
         gameUI.UpdateScore(Score);
     }
 
