@@ -22,10 +22,9 @@ public class FlashEffect : MonoBehaviour
 
     private void Start()
     {
-        // effectDuration = isUsingPlayer ?
-        //                  GetComponent<PlayerState>().DamageCooldown :
-        //                  GetComponent<Enemy>().DamageCooldown;
-
+        effectDuration = isUsingPlayer ?
+                         GetComponent<Player>().DamageCooldown :
+                         GetComponent<Enemy>().DamageCooldown;
         originalMaterial = spriteRenderer.material;
     }
 
@@ -43,7 +42,7 @@ public class FlashEffect : MonoBehaviour
 
     private IEnumerator StartFlashEffect()
     {
-        var flashDuration = 0.25f;
+        const float flashDuration = 0.25f;
 
         while (true)
         {
