@@ -18,16 +18,20 @@ public class Enemy : MonoBehaviour
     public float DamageCooldown { get; private set; }
 
     private FlashEffect flashEffect;
-    private GameStats gameStats;
     private Rigidbody2D rigidBody;
     private const float despawnPositionX = -8f;
+
+    private GameStats gameStats;
+    private DifficultyScaling difficulty;
 
     private void Awake()
     {
         DamageCooldown = 0.25f;
-        flashEffect = GetComponent<FlashEffect>();
 
+        flashEffect = GetComponent<FlashEffect>();
         rigidBody = GetComponent<Rigidbody2D>();
+
+        difficulty = FindObjectOfType<DifficultyScaling>();
         gameStats = FindObjectOfType<GameStats>();
     }
 

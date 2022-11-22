@@ -9,6 +9,8 @@ public class ParallaxBackground : MonoBehaviour
     private const float initialSpeedValue = 1.5f;
     private const float xResetPoint = 14;
 
+    private DifficultyScaling difficulty;
+
     public void UpdateSpeed(float newValue)
     {
         Speed = newValue;
@@ -17,6 +19,7 @@ public class ParallaxBackground : MonoBehaviour
     private void Awake()
     {
         Speed = initialSpeedValue;
+        difficulty = FindObjectOfType<DifficultyScaling>();
     }
 
     private void Update()
