@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5787187594761936514}
   - component: {fileID: 5787187594761935225}
+  - component: {fileID: 23264526450860270}
   - component: {fileID: 5787187594761936517}
   - component: {fileID: 5787187594761936518}
   - component: {fileID: 5787187594761936519}
@@ -52,6 +53,19 @@ MonoBehaviour:
   damage: 10
   speed: 5
   isFlying: 0
+--- !u!114 &23264526450860270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5787187594761936515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40b9e6abbb0d2d54f9b09737de4e5da1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUsingPlayer: 0
 --- !u!212 &5787187594761936517
 SpriteRenderer:
   m_ObjectHideFlags: 0
