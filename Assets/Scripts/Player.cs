@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour
+public sealed class Player : MonoBehaviour
 {
     public float DamageCooldown { get; private set; }
 
@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        DamageCooldown = 4.25f;
+        DamageCooldown = 2.25f;
 
         fireball = Resources.Load("Prefabs/Fireball") as GameObject;
         firePos = GameObject.Find("FirePos").transform;
