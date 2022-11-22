@@ -38,8 +38,6 @@ public sealed class Player : MonoBehaviour
             gameUI.UpdateHealthBar(health);
             flashEffect.Flash();
             Invoke("RemoveInvincibility", DamageCooldown);
-
-
         }
     }
 
