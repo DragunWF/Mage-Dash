@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    public float DamageCooldown { get; private set; }
+
     private bool isAlive = true;
     private int health;
     private int mana;
@@ -12,8 +14,6 @@ public class Player : MonoBehaviour
     private const float spellCooldownTime = 0.25f;
     private const float manaRegenTime = 3.5f; // change in the future
     private bool onSpellCooldown = false;
-
-    private const float healthCooldownTime = 4.25f;
     private bool onDamageCooldown = false;
 
     private const float jumpForce = 12.5f;
@@ -24,22 +24,27 @@ public class Player : MonoBehaviour
 
     private GameObject fireball;
     private Transform firePos;
+    private FlashEffect flashEffect;
 
     public void DamageHealth()
     {
-        if (!onDamageCooldown) 
+        if (!onDamageCooldown)
         {
             health--;
             onDamageCooldown = true;
             gameUI.UpdateHealthBar(health);
-            Invoke("RemoveInvincibility", healthCooldownTime);
+            flashEffect.Flash();
+            Invoke("RemoveInvincibility", DamageCooldown);
         }
     }
 
     private void Awake()
     {
+        DamageCooldown = 4.25f;
+
         fireball = Resources.Load("Prefabs/Fireball") as GameObject;
         firePos = GameObject.Find("FirePos").transform;
+        flashEffect = GetComponent<FlashEffect>();
 
         rigidBody = GetComponent<Rigidbody2D>();
         gameStats = FindObjectOfType<GameStats>();
@@ -86,7 +91,7 @@ public class Player : MonoBehaviour
         onSpellCooldown = false;
     }
 
-    private void RemoveInvincibility() 
+    private void RemoveInvincibility()
     {
         onDamageCooldown = false;
     }
@@ -112,14 +117,15 @@ public class Player : MonoBehaviour
 
     private IEnumerator OnAlive()
     {
+        const float baseScoreIncrease = 1.25f;
         const float triggerDelay = 3f;
         yield return new WaitForSeconds(triggerDelay);
 
-        float scoreInterval = 3f * gameStats.ScoreModifier / 2; // 3 is the base interval
+        float scoreInterval = 1.5f * gameStats.ScoreModifier / 2; // 3 is the base interval
         while (isAlive)
         {
             yield return new WaitForSeconds(scoreInterval);
-            gameStats.IncreaseScore(1);
+            gameStats.IncreaseScore(baseScoreIncrease);
             yield return new WaitForSeconds(scoreInterval);
         }
     }
