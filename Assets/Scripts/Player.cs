@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     private int mana;
 
     private const float spellCooldownTime = 0.25f;
-    private const float manaRegenTime = 3.5f; // change in the future
+    private const float manaRegenTime = 3.25f; // change in the future
     private bool onSpellCooldown = false;
     private bool onDamageCooldown = false;
 
