@@ -8,6 +8,7 @@ TagManager:
   - Fireball
   - PlayerHitbox
   - Props
+  - Ground
   layers:
   - Default
   - TransparentFX
