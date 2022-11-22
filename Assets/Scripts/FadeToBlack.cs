@@ -1,17 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FadeToBlack : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Image image;
+
+    public void Fade() 
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
+    {
+        
+    }
+
+    private void Update()
     {
         
     }
