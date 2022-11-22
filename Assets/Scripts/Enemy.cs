@@ -12,6 +12,9 @@ public class Enemy : MonoBehaviour
     [Header("Obstacle Type")]
     [SerializeField] bool isFlying = false;
 
+    [Header("Misc Stats")]
+    [SerializeField] float scoreGain = 25f;
+
     public float DamageCooldown { get; private set; }
 
     private FlashEffect flashEffect;
@@ -71,6 +74,7 @@ public class Enemy : MonoBehaviour
         health -= gameStats.PlayerDamage;
         if (health <= 0)
         {
+            gameStats.IncreaseScore(scoreGain);
             Destroy(gameObject);
         }
     }
