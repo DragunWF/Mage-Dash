@@ -20,7 +20,7 @@ public class GameStats : MonoBehaviour
 
     public float ScoreModifier { get; private set; }
 
-    private float scoreMultiplier = 1f; 
+    private float scoreMultiplier = 1f;
     private GameUI gameUI;
 
     public void IncreaseScore(float amount)
@@ -41,6 +41,10 @@ public class GameStats : MonoBehaviour
         MaxPlayerHealth = 3;
         MaxPlayerMana = 5;
 
+        DamageLevel = 1;
+        ManaRegenLevel = 1;
+        AgilityLevel = 1;
+
         Score = 0;
         HighScore = 0;
         ScoreModifier = 1;
@@ -54,5 +58,20 @@ public class GameStats : MonoBehaviour
     private void Update()
     {
 
+    }
+
+    private float ComputeManaRegen()
+    {
+        const float manaLimit = 0.25f;
+        const float decrementor = 0.3f;
+        float manaRegenTime = 3.5f;
+        manaRegenTime -= ManaRegenLevel * decrementor;
+
+        if (manaRegenTime <= manaLimit)
+        {
+            manaRegenTime = manaLimit;
+        }
+
+        return manaRegenTime;
     }
 }
