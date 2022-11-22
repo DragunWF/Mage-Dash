@@ -12,12 +12,18 @@ public class Enemy : MonoBehaviour
     [Header("Obstacle Type")]
     [SerializeField] bool isFlying = false;
 
+    public float DamageCooldown { get; private set; }
+
+    private FlashEffect flashEffect;
     private GameStats gameStats;
     private Rigidbody2D rigidBody;
     private const float despawnPositionX = -8f;
 
     private void Awake()
     {
+        DamageCooldown = 0.25f;
+        flashEffect = GetComponent<FlashEffect>();
+
         rigidBody = GetComponent<Rigidbody2D>();
         gameStats = FindObjectOfType<GameStats>();
     }
@@ -61,6 +67,7 @@ public class Enemy : MonoBehaviour
 
     private void DamageHealth()
     {
+        flashEffect.Flash();
         health -= gameStats.PlayerDamage;
         if (health <= 0)
         {
