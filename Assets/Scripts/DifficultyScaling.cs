@@ -5,15 +5,32 @@ using UnityEngine;
 public class DifficultyScaling : MonoBehaviour
 {
     public int DifficultyLevel { get; private set; }
-    private float timeToScaleDifficulty = 10f;
+    private const int maxDifficultyLevel = 10;
+    private const float timeToScaleDifficulty = 15f;
+
+    private void Awake()
+    {
+        DifficultyLevel = 1;
+    }
 
     private void Start()
     {
-
+        StartCoroutine(Scale());
     }
 
-    private void Update()
+    private IEnumerator Scale()
     {
+        const float scaleDelay = 2.5f;
+        yield return new WaitForSeconds(scaleDelay);
 
+        while (true)
+        {
+            yield return new WaitForSeconds(timeToScaleDifficulty);
+            DifficultyLevel++;
+            if (DifficultyLevel >= maxDifficultyLevel)
+            {
+                break;
+            }
+        }
     }
 }
