@@ -25,6 +25,8 @@ public sealed class Player : MonoBehaviour
 
     private GameObject fireball;
     private Transform firePos;
+
+    private FadeToBlack screen;
     private FlashEffect flashEffect;
 
     public void DamageHealth()
@@ -36,6 +38,8 @@ public sealed class Player : MonoBehaviour
             gameUI.UpdateHealthBar(health);
             flashEffect.Flash();
             Invoke("RemoveInvincibility", DamageCooldown);
+
+
         }
     }
 
@@ -45,11 +49,13 @@ public sealed class Player : MonoBehaviour
 
         fireball = Resources.Load("Prefabs/Fireball") as GameObject;
         firePos = GameObject.Find("FirePos").transform;
-        flashEffect = GetComponent<FlashEffect>();
 
         rigidBody = GetComponent<Rigidbody2D>();
         gameStats = FindObjectOfType<GameStats>();
         gameUI = FindObjectOfType<GameUI>();
+
+        flashEffect = GetComponent<FlashEffect>();
+        screen = FindObjectOfType<FadeToBlack>();
     }
 
     private void Start()
@@ -99,6 +105,12 @@ public sealed class Player : MonoBehaviour
     private void RemoveInvincibility()
     {
         onDamageCooldown = false;
+    }
+
+    private void Death()
+    {
+        Debug.Log("Trigger player death");
+        // Destroy(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
