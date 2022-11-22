@@ -19,7 +19,7 @@ public class GameStats : MonoBehaviour
     private float scoreMultiplier = 1f; 
     private GameUI gameUI;
 
-    public void IncreaseScore(int amount)
+    public void IncreaseScore(float amount)
     {
         Score += (int)Mathf.Round(amount * scoreMultiplier);
         gameUI.UpdateScore(Score);
