@@ -14,6 +14,10 @@ public class GameStats : MonoBehaviour
     public int MaxPlayerHealth { get; private set; }
     public int MaxPlayerMana { get; private set; }
 
+    public int DamageLevel { get; private set; }
+    public int ManaRegenLevel { get; private set; }
+    public int AgilityLevel { get; private set; }
+
     public float ScoreModifier { get; private set; }
 
     private float scoreMultiplier = 1f; 
