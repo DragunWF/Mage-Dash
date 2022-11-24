@@ -38,6 +38,16 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         transform.localPosition = new Vector2(0, 0);
+
+        if (difficulty.DifficultyLevel > 1)
+        {
+            for (int i = 1; i < difficulty.DifficultyLevel; i++)
+            {
+                speed += 0.05f;
+                damage += 2.5f;
+                health += 5f;
+            }
+        }
     }
 
     private void Update()
