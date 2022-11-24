@@ -12,6 +12,8 @@ public class GameUI : MonoBehaviour
     private Slider healthSlider;
     private Slider manaSlider;
 
+    private DifficultyScaling difficulty;
+
     public void UpdateHealthBar(int newValue, bool updateMaxHealth = false)
     {
         if (updateMaxHealth)
@@ -36,9 +38,10 @@ public class GameUI : MonoBehaviour
         scoreText.text = string.Format("Score: {0}", formattedScore);
     }
 
-    public void UpdateDifficulty(int newDifficulty, bool maxDifficulty)
+    public void UpdateDifficulty(int newDifficulty)
     {
-        string levelDisplay = maxDifficulty ? "Max" : newDifficulty.ToString();
+        string levelDisplay = newDifficulty >= difficulty.GetMaxDifficultyLevel() ?
+                              "Max" : newDifficulty.ToString();
         difficultyText.text = string.Format("Difficulty: {0}", levelDisplay);
     }
 
@@ -48,6 +51,7 @@ public class GameUI : MonoBehaviour
         difficultyText = GameObject.Find("DifficultyText").GetComponent<TextMeshProUGUI>();
         healthSlider = GameObject.Find("HealthSlider").GetComponent<Slider>();
         manaSlider = GameObject.Find("ManaSlider").GetComponent<Slider>();
+        difficulty = FindObjectOfType<DifficultyScaling>();
     }
 
     private void Start()
