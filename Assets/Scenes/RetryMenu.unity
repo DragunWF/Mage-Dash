@@ -206,7 +206,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 393804261}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1030189837}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: LoadShopMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &393804261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -598,7 +610,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 629478075}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1030189837}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: LoadMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &629478075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1019,6 +1043,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1982920435598262815, guid: ca50509bfcebd07468a2a8cb8bb1eb45, type: 3}
   m_PrefabInstance: {fileID: 1030189835}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1030189837 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1982920435598262814, guid: ca50509bfcebd07468a2a8cb8bb1eb45, type: 3}
+  m_PrefabInstance: {fileID: 1030189835}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 812a91854fe18b24eb745b3c30115343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1077722073
 GameObject:
   m_ObjectHideFlags: 0
@@ -1930,7 +1965,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1991449103}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1030189837}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: LoadGameScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1991449103
 MonoBehaviour:
   m_ObjectHideFlags: 0
