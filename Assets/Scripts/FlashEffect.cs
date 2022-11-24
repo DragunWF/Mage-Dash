@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlashEffect : MonoBehaviour
+public sealed class FlashEffect : MonoBehaviour
 {
     [Tooltip("Flash Type")]
     [SerializeField] bool isUsingPlayer;

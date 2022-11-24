@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstacleSpawner : MonoBehaviour
+public sealed class ObstacleSpawner : MonoBehaviour
 {
     private float[] spawnIntervals = { 1.5f, 2.5f };
     private bool spawnObstacles = true;

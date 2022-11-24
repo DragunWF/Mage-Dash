@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PropSpawner : MonoBehaviour
+public sealed class PropSpawner : MonoBehaviour
 {
     private float[] spawnIntervals = { 1.5f, 3.5f, 5.5f, 7.5f, 9.5f };
     private Transform spawnPoint;

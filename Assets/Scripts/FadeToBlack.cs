@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FadeToBlack : MonoBehaviour
+public sealed class FadeToBlack : MonoBehaviour
 {
     private Image image;
 

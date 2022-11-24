@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DifficultyScaling : MonoBehaviour
+public sealed class DifficultyScaling : MonoBehaviour
 {
     public int DifficultyLevel { get; private set; }
     private const int maxDifficultyLevel = 10;

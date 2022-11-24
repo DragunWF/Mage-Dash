@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class GameUI : MonoBehaviour
+public sealed class GameUI : MonoBehaviour
 {
     private TextMeshProUGUI scoreText;
     private TextMeshProUGUI difficultyText;

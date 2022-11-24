@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cactus : MonoBehaviour
+public sealed class Cactus : MonoBehaviour
 {
     private const float despawnPositionX = -8.5f;
     private ParallaxBackground background;

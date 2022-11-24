@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParallaxBackground : MonoBehaviour
+public sealed class ParallaxBackground : MonoBehaviour
 {
     public float Speed { get; private set; }
 

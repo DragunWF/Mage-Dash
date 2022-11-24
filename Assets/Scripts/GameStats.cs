@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameStats : MonoBehaviour
+public sealed class GameStats : MonoBehaviour
 {
     public int Score { get; private set; }
     public int Difficulty { get; private set; }

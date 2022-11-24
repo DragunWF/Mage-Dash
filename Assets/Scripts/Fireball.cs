@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fireball : MonoBehaviour
+public sealed class Fireball : MonoBehaviour
 {
     private const float xLimit = 8f;
     private const float speed = 6.5f;

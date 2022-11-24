@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParticlePlayer : MonoBehaviour
+public sealed class ParticlePlayer : MonoBehaviour
 {
     private GameObject playerDeathEffect;
 
