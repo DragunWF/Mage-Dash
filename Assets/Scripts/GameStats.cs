@@ -9,6 +9,7 @@ public sealed class GameStats : MonoBehaviour
 
     public int HighScore { get; private set; }
     public int HighestDifficultyReached { get; private set; }
+    public bool NewHighScore { get; private set; }
 
     public int PlayerDamage { get; private set; }
     public int MaxPlayerHealth { get; private set; }
@@ -23,6 +24,22 @@ public sealed class GameStats : MonoBehaviour
 
     private float scoreMultiplier = 1f;
     private GameUI gameUI;
+
+    public void SaveScore()
+    {
+        if (Score > HighScore)
+        {
+            HighScore = Score;
+            NewHighScore = true;
+        }
+    }
+
+    public void OnGameReset()
+    {
+        Score = 0;
+        NewHighScore = false;
+        Difficulty = 0;
+    }
 
     public void IncreaseScore(float amount)
     {
@@ -48,6 +65,7 @@ public sealed class GameStats : MonoBehaviour
 
         Score = 0;
         HighScore = 0;
+        NewHighScore = false;
         ScoreModifier = 1;
 
         Difficulty = 1;
