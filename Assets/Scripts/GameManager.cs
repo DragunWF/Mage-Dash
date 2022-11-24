@@ -5,33 +5,35 @@ using UnityEngine.SceneManagement;
 
 public sealed class GameManager : MonoBehaviour
 {
-    private const int gameSceneIndex = -1;
-    private const int retryMenuSceneIndex = -1;
-    private const int mainMenuSceneIndex = -1;
-    private const int shopMenuSceneIndex = -1;
+    private const int mainMenuSceneIndex = 0;
+    private const int gameSceneIndex = 1;
+    private const int retryMenuSceneIndex = 2;
+    private const int shopMenuSceneIndex = 3;
 
     public void LoadGameScene()
     {
-        // load game scene
+        FindObjectOfType<GameStats>().OnGameReset();
+        LoadScene(gameSceneIndex);
     }
 
     public void LoadRetryMenu()
     {
-        // load retry menu
+        FindObjectOfType<GameStats>().SaveScore();
+        LoadScene(retryMenuSceneIndex);
     }
 
     public void LoadMainMenu()
     {
-        // load main menu
+        LoadScene(mainMenuSceneIndex);
     }
 
     public void LoadShopMenu()
     {
-        // load shop menu
+        LoadScene(shopMenuSceneIndex);
     }
 
-    private void LoadScene()
+    private void LoadScene(int sceneIndex)
     {
-        // load scene
+        SceneManager.LoadScene(sceneIndex);
     }
 }
