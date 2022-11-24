@@ -2,15 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public sealed class GameManager : MonoBehaviour
 {
-    private void Start()
+    public void LoadRetryMenu()
     {
-        
-    }
-
-    private void Update()
-    {
-        
+        // load retry menu
     }
 }
