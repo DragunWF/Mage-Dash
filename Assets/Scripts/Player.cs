@@ -106,6 +106,8 @@ public sealed class Player : MonoBehaviour
     private void Death()
     {
         Debug.Log("Trigger player death");
+        isAlive = false;
+        FindObjectOfType<FadeToBlack>().InitializeFade();
         // Destroy(gameObject);
     }
 
