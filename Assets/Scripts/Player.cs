@@ -38,8 +38,16 @@ public sealed class Player : MonoBehaviour
             gameUI.UpdateHealthBar(health);
             flashEffect.Flash();
             Invoke("RemoveInvincibility", DamageCooldown);
+
+            if (health <= 0)
+            {
+                Death();
+            }
         }
     }
+
+    private void RestoreSpell() { onSpellCooldown = false; }
+    private void RemoveInvincibility() { onDamageCooldown = false; }
 
     private void Awake()
     {
@@ -93,16 +101,6 @@ public sealed class Player : MonoBehaviour
             onSpellCooldown = true;
             Invoke("RestoreSpell", spellCooldownTime);
         }
-    }
-
-    private void RestoreSpell()
-    {
-        onSpellCooldown = false;
-    }
-
-    private void RemoveInvincibility()
-    {
-        onDamageCooldown = false;
     }
 
     private void Death()
