@@ -14,6 +14,7 @@ public class GameStats : MonoBehaviour
     public int MaxPlayerHealth { get; private set; }
     public int MaxPlayerMana { get; private set; }
 
+    public int HealthLevel { get; private set; }
     public int DamageLevel { get; private set; }
     public int ManaRegenLevel { get; private set; }
     public int AgilityLevel { get; private set; }
@@ -37,13 +38,13 @@ public class GameStats : MonoBehaviour
 
     private void Awake()
     {
-        PlayerDamage = 15; // default
+        PlayerDamage = 15; // default values
         MaxPlayerHealth = 3;
         MaxPlayerMana = 5;
 
         DamageLevel = 1;
         ManaRegenLevel = 1;
-        AgilityLevel = 1;
+        AgilityLevel = 1; // increase score multiplier
 
         Score = 0;
         HighScore = 0;
@@ -55,9 +56,17 @@ public class GameStats : MonoBehaviour
         gameUI = FindObjectOfType<GameUI>();
     }
 
-    private void Update()
+    private float ComputeScoreMultiplier()
     {
+        const float baseMultiplier = 1f;
+        const float levelIncrease = 0.25f;
+        return baseMultiplier + levelIncrease * AgilityLevel;
+    }
 
+    private int ComputeHealth()
+    {
+        const int baseHealth = 3;
+        return HealthLevel == 1 ? baseHealth : baseHealth + HealthLevel - 1;
     }
 
     private float ComputeManaRegen()
