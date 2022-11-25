@@ -14,6 +14,29 @@ public sealed class GameUI : MonoBehaviour
 
     private DifficultyScaling difficulty;
 
+    public static string FormatScore(int points)
+    {
+        if (points < 1000)
+        {
+            return points.ToString();
+        }
+
+        string formatted = "", str = points.ToString();
+        for (int i = 1, n = str.Length; i <= n; i++)
+        {
+            formatted += str[str.Length - i];
+            if (i + 1 <= n && i % 3 == 0)
+            {
+                formatted += ",";
+            }
+        }
+
+        char[] charArr = formatted.ToCharArray();
+        Array.Reverse(charArr);
+
+        return new string(charArr);
+    }
+
     public void UpdateHealthBar(int newValue, bool updateMaxHealth = false)
     {
         if (updateMaxHealth)
@@ -58,28 +81,5 @@ public sealed class GameUI : MonoBehaviour
     {
         scoreText.text = "Score: 0";
         difficultyText.text = "Difficulty: 1";
-    }
-
-    private string FormatScore(int points)
-    {
-        if (points < 1000)
-        {
-            return points.ToString();
-        }
-
-        string formatted = "", str = points.ToString();
-        for (int i = 1, n = str.Length; i <= n; i++)
-        {
-            formatted += str[str.Length - i];
-            if (i + 1 <= n && i % 3 == 0)
-            {
-                formatted += ",";
-            }
-        }
-
-        char[] charArr = formatted.ToCharArray();
-        Array.Reverse(charArr);
-
-        return new string(charArr);
     }
 }
