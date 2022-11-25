@@ -39,7 +39,7 @@ public sealed class Enemy : MonoBehaviour
     {
         transform.localPosition = new Vector2(0, 0);
 
-        if (difficulty.DifficultyLevel > 1)
+        if (difficulty != null && difficulty.DifficultyLevel > 1)
         {
             for (int i = 1; i < difficulty.DifficultyLevel; i++)
             {
