@@ -11,7 +11,7 @@ public sealed class PropSpawner : MonoBehaviour
     private void Awake()
     {
         prop = Resources.Load("Prefabs/Cactus") as GameObject;
-        spawnPoint = GameObject.Find("Ground Enemy Point").transform;
+        spawnPoint = GameObject.Find("Prop Point").transform;
     }
 
     private void Start()
