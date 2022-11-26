@@ -8,6 +8,11 @@ public sealed class PropSpawner : MonoBehaviour
     private Transform spawnPoint;
     private GameObject prop;
 
+    public void RestartSpawning()
+    {
+        StartCoroutine(SpawnProps());
+    }
+
     private void Awake()
     {
         prop = Resources.Load("Prefabs/Cactus") as GameObject;

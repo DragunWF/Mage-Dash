@@ -13,6 +13,11 @@ public sealed class ObstacleSpawner : MonoBehaviour
     private Transform flyingSpawnPoint;
     private Transform groundSpawnPoint;
 
+    public void RestartSpawning()
+    {
+        StartCoroutine(SpawnObstacles());
+    }
+
     public void ScaleSpawner()
     {
         UpdateSpawnIntervals();
