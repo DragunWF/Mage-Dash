@@ -24,7 +24,7 @@ public sealed class GameStats : MonoBehaviour
 
     private float scoreMultiplier = 1f;
     private GameUI gameUI;
-    private GameStats instance;
+    static private GameStats instance;
 
     public void SaveScore()
     {
@@ -40,6 +40,7 @@ public sealed class GameStats : MonoBehaviour
         Score = 0;
         NewHighScore = false;
         Difficulty = 0;
+        gameUI = FindObjectOfType<GameUI>();
     }
 
     public void IncreaseScore(float amount)
