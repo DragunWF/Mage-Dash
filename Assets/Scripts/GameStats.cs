@@ -24,6 +24,7 @@ public sealed class GameStats : MonoBehaviour
 
     private float scoreMultiplier = 1f;
     private GameUI gameUI;
+    private GameStats instance;
 
     public void SaveScore()
     {
@@ -72,6 +73,7 @@ public sealed class GameStats : MonoBehaviour
         HighestDifficultyReached = 0;
 
         gameUI = FindObjectOfType<GameUI>();
+        ManageSingleton();
     }
 
     private float ComputeScoreMultiplier()
@@ -100,5 +102,19 @@ public sealed class GameStats : MonoBehaviour
         }
 
         return manaRegenTime;
+    }
+
+    private void ManageSingleton()
+    {
+        if (instance != null)
+        {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 }
