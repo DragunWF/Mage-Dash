@@ -46,6 +46,7 @@ public sealed class Enemy : MonoBehaviour
                 speed += 0.05f;
                 damage += 2.5f;
                 health += 5f;
+                scoreGain += 7.5f;
             }
         }
     }
