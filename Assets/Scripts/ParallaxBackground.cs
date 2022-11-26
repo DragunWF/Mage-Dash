@@ -5,15 +5,13 @@ using UnityEngine;
 public sealed class ParallaxBackground : MonoBehaviour
 {
     public float Speed { get; private set; }
-
     private const float initialSpeedValue = 1.5f;
     private const float xResetPoint = 14;
-
     private DifficultyScaling difficulty;
 
-    public void UpdateSpeed(float newValue)
+    public void UpdateSpeed()
     {
-        Speed = newValue;
+        Speed = initialSpeedValue + ((difficulty.DifficultyLevel - 1) * 0.25f);
     }
 
     private void Awake()
