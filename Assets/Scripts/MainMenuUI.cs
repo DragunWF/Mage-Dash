@@ -4,19 +4,27 @@ using UnityEngine;
 
 public sealed class MainMenuUI : MonoBehaviour
 {
+    private bool toggleTutorialUI = false;
     private GameObject mainMenuUI;
     private GameObject tutorialUI;
     private GameObject[] menuBackground;
 
-    public void OpenTutorial()
+    public void ToggleTutorialUI()
     {
-        mainMenuUI.SetActive(false);
-        tutorialUI.SetActive(true);
-    }
+        toggleTutorialUI = toggleTutorialUI ? false : true;
+        bool toggleMainMenuUI = toggleTutorialUI ? false : true;
 
-    public void CloseTutorial()
-    {
-
+        tutorialUI.SetActive(toggleTutorialUI);
+        mainMenuUI.SetActive(toggleMainMenuUI);
+        
+        foreach (GameObject instance in menuBackground)
+        {
+            instance.SetActive(toggleMainMenuUI);
+        }
+        if (toggleTutorialUI)
+        {
+            DeleteBackgroundEntities();
+        }
     }
 
     private void Awake()
@@ -32,5 +40,21 @@ public sealed class MainMenuUI : MonoBehaviour
             GameObject.Find("ObstacleSpawner") as GameObject,
             GameObject.Find("PropSpawner") as GameObject,
         };
+    }
+
+    private void DeleteBackgroundEntities()
+    {
+        Cactus[] props = FindObjectsOfType<Cactus>();
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+
+        foreach (Cactus cactus in props)
+        {
+            Destroy(cactus.gameObject);
+        }
+
+        foreach (Enemy enemy in enemies)
+        {
+            Destroy(enemy.gameObject);
+        }
     }
 }
