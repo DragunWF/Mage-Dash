@@ -22,7 +22,6 @@ public sealed class FadeToBlack : MonoBehaviour
     private void Awake()
     {
         blackScreen = GameObject.Find("ScreenFade").GetComponent<Image>();
-        blackScreen.gameObject.SetActive(false);
     }
 
     private void Update()
