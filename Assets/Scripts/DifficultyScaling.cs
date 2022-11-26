@@ -5,9 +5,12 @@ using UnityEngine;
 public sealed class DifficultyScaling : MonoBehaviour
 {
     public int DifficultyLevel { get; private set; }
+
     private const int maxDifficultyLevel = 10;
     private const float timeToScaleDifficulty = 15f;
+
     private GameUI gameUI;
+    private ParallaxBackground[] backgrounds;
 
     public int GetMaxDifficultyLevel() { return maxDifficultyLevel; }
 
@@ -15,6 +18,7 @@ public sealed class DifficultyScaling : MonoBehaviour
     {
         DifficultyLevel = 1;
         gameUI = FindObjectOfType<GameUI>();
+        backgrounds = FindObjectsOfType<ParallaxBackground>();
     }
 
     private void Start()
@@ -32,6 +36,12 @@ public sealed class DifficultyScaling : MonoBehaviour
             yield return new WaitForSeconds(timeToScaleDifficulty);
             DifficultyLevel++;
             gameUI.UpdateDifficulty(DifficultyLevel);
+
+            foreach (ParallaxBackground instance in backgrounds)
+            {
+                instance.UpdateSpeed();
+            }
+
             if (DifficultyLevel >= maxDifficultyLevel)
             {
                 break;
