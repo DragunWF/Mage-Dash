@@ -12,7 +12,6 @@ public sealed class GameManager : MonoBehaviour
 
     public void LoadGameScene()
     {
-        FindObjectOfType<GameStats>().OnGameReset();
         LoadScene(gameSceneIndex);
     }
 
@@ -30,6 +29,15 @@ public sealed class GameManager : MonoBehaviour
     public void LoadShopMenu()
     {
         LoadScene(shopMenuSceneIndex);
+    }
+
+    private void Start()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        if (currentScene.buildIndex == gameSceneIndex)
+        {
+            FindObjectOfType<GameStats>().OnGameReset();
+        }
     }
 
     private void LoadScene(int sceneIndex)
