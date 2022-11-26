@@ -6,6 +6,7 @@ public sealed class GameStats : MonoBehaviour
 {
     public int Score { get; private set; }
     public int Difficulty { get; private set; }
+    public int Coins { get; private set; } // add future use
 
     public int HighScore { get; private set; }
     public int HighestDifficultyReached { get; private set; }
