@@ -7,6 +7,9 @@ public sealed class MainMenuUI : MonoBehaviour
     private bool toggleTutorialUI = false;
     private GameObject mainMenuUI;
     private GameObject tutorialUI;
+
+    private PropSpawner propSpawner;
+    private ObstacleSpawner obstacleSpawner;
     private GameObject[] menuBackground;
 
     public void ToggleTutorialUI()
@@ -14,17 +17,24 @@ public sealed class MainMenuUI : MonoBehaviour
         toggleTutorialUI = toggleTutorialUI ? false : true;
         bool toggleMainMenuUI = toggleTutorialUI ? false : true;
 
-        tutorialUI.SetActive(toggleTutorialUI);
-        mainMenuUI.SetActive(toggleMainMenuUI);
-        
         foreach (GameObject instance in menuBackground)
         {
             instance.SetActive(toggleMainMenuUI);
         }
+        
         if (toggleTutorialUI)
         {
             DeleteBackgroundEntities();
         }
+        else
+        {
+            propSpawner.RestartSpawning();
+            obstacleSpawner.RestartSpawning();
+        }
+
+        tutorialUI.SetActive(toggleTutorialUI);
+        mainMenuUI.SetActive(toggleMainMenuUI);
+
     }
 
     private void Awake()
@@ -40,6 +50,9 @@ public sealed class MainMenuUI : MonoBehaviour
             GameObject.Find("ObstacleSpawner") as GameObject,
             GameObject.Find("PropSpawner") as GameObject,
         };
+
+        propSpawner = FindObjectOfType<PropSpawner>();
+        obstacleSpawner = FindObjectOfType<ObstacleSpawner>();
     }
 
     private void DeleteBackgroundEntities()
