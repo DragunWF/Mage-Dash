@@ -9,6 +9,7 @@ public sealed class Powerup : MonoBehaviour
 
     private const float speed = 2.5f;
     private const float despawnPointX = -8f;
+    private AudioPlayer audioPlayer;
 
     public string GetPowerupType()
     {
@@ -17,7 +18,7 @@ public sealed class Powerup : MonoBehaviour
 
     private void Awake()
     {
-
+        audioPlayer = FindObjectOfType<AudioPlayer>();
     }
 
     private void Update()
@@ -35,7 +36,8 @@ public sealed class Powerup : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            // add future implementation here
+            // add sound effect
+            Destroy(gameObject);
         }
     }
 }
