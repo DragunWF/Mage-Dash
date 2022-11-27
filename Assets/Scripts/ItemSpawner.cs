@@ -6,7 +6,7 @@ public sealed class ItemSpawner : MonoBehaviour
 {
     private float[] spawnIntervals = { 8.5f, 9f, 9.5f, 10f, 10.5f, 11f };
     private GameObject[] powerups;
-    private Vector2[] spawnPositions;
+    private Transform[] spawnPositions;
 
     private void Awake()
     {
@@ -29,16 +29,10 @@ public sealed class ItemSpawner : MonoBehaviour
         return spawnIntervals[randomIndex];
     }
 
-    private GameObject GetRandomPowerup()
+    private Object GetRandomItem(Object[] array)
     {
-        int randomIndex = GetRandomIndex(powerups.Length);
-        return powerups[randomIndex];
-    }
-
-    private Vector2 GetRandomPosition()
-    {
-        int randomIndex = GetRandomIndex(spawnPositions.Length);
-        return spawnPositions[randomIndex];
+        int randomIndex = GetRandomIndex(array.Length);
+        return array[randomIndex];
     }
 
     private IEnumerator SpawnPowerups()
@@ -50,9 +44,9 @@ public sealed class ItemSpawner : MonoBehaviour
         {
             yield return new WaitForSeconds(GetRandomInterval());
 
-            GameObject powerup = GetRandomPowerup();
-            Vector2 spawnPosition = GetRandomPosition();
-            Instantiate(powerup, spawnPosition, Quaternion.identity);
+            GameObject powerup = GetRandomItem(powerups) as GameObject;
+            Transform spawnTransform = GetRandomItem(spawnPositions) as Transform;
+            Instantiate(powerup, spawnTransform.position, Quaternion.identity);
         }
     }
 }
