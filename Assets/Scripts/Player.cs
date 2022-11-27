@@ -113,10 +113,30 @@ public sealed class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Ground")
+        switch (other.gameObject.tag)
         {
-            onGround = true;
+            case "Ground":
+                onGround = true;
+                break;
+            case "Powerup":
+                GameObject powerupObject = other.gameObject;
+                Powerup powerup = powerupObject.GetComponent<Powerup>();
+                ActivatePowerup(powerup.GetPowerupType());
+                break;
         }
+    }
+
+    private void ActivatePowerup(string powerupType)
+    {
+        switch (powerupType) // add future implementation
+        {
+            case "health":
+                break;
+            case "mana":
+                break;
+            case "score":
+                break;
+        }   
     }
 
     private IEnumerator RegenMana()
