@@ -85,11 +85,6 @@ public sealed class Player : MonoBehaviour
         StartCoroutine(RegenMana());
     }
 
-    private void Update()
-    {
-
-    }
-
     private void OnJump()
     {
         if (onGround)
