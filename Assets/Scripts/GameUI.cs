@@ -9,6 +9,7 @@ public sealed class GameUI : MonoBehaviour
 {
     private TextMeshProUGUI scoreText;
     private TextMeshProUGUI difficultyText;
+
     private Slider healthSlider;
     private Slider manaSlider;
 
@@ -72,8 +73,10 @@ public sealed class GameUI : MonoBehaviour
     {
         scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
         difficultyText = GameObject.Find("DifficultyText").GetComponent<TextMeshProUGUI>();
+        
         healthSlider = GameObject.Find("HealthSlider").GetComponent<Slider>();
         manaSlider = GameObject.Find("ManaSlider").GetComponent<Slider>();
+
         difficulty = FindObjectOfType<DifficultyScaling>();
     }
 
