@@ -43,7 +43,7 @@ public sealed class Enemy : MonoBehaviour
         {
             for (int i = 1; i < difficulty.DifficultyLevel; i++)
             {
-                speed += 0.05f;
+                speed += 0.15f;
                 damage += 2.5f;
                 health += 5f;
                 scoreGain += 7.5f;
