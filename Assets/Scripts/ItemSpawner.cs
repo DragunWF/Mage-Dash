@@ -16,8 +16,8 @@ public sealed class ItemSpawner : MonoBehaviour
             Resources.Load("Prefabs/DoubleScorePowerup") as GameObject
         };
         spawnPositions = new Transform[] {
-            GameObject.Find("PowerupSpawnPoint@1").transform,
-            GameObject.Find("PowerupSpawnPoint@2").transform
+            GameObject.Find("Powerup Ground Point").transform,
+            GameObject.Find("Powerup Upper Point").transform
         };
     }
 
