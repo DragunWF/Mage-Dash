@@ -5,7 +5,7 @@ using UnityEngine;
 public sealed class Powerup : MonoBehaviour
 {
     [Header("Powerup Attributes")]
-    [SerializeField] string powerupType;
+    [SerializeField] string powerupType; // sprite and animator determined by prefab
 
     private const float despawnPointX = -8f;
     private const float baseSpeed = 2.5f;
