@@ -7,8 +7,11 @@ public sealed class Powerup : MonoBehaviour
     [Header("Powerup Attributes")]
     [SerializeField] string powerupType;
 
-    private const float speed = 2.5f;
     private const float despawnPointX = -8f;
+    private const float baseSpeed = 2.5f;
+    private float speed;
+
+    private DifficultyScaling difficulty;
     private AudioPlayer audioPlayer;
 
     public string GetPowerupType()
@@ -19,6 +22,8 @@ public sealed class Powerup : MonoBehaviour
     private void Awake()
     {
         audioPlayer = FindObjectOfType<AudioPlayer>();
+        difficulty = FindObjectOfType<DifficultyScaling>();
+        UpdateSpeed();
     }
 
     private void Update()
@@ -32,12 +37,24 @@ public sealed class Powerup : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.tag == "Player")
         {
             // add sound effect
             Destroy(gameObject);
+        }
+    }
+
+    private void UpdateSpeed()
+    {
+        int level = difficulty.DifficultyLevel;
+        speed = baseSpeed;
+
+        if (level > 1)
+        {
+            const float incrementor = 0.125f;
+            speed += level * incrementor;
         }
     }
 }
