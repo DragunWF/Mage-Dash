@@ -10,6 +10,11 @@ public sealed class Powerup : MonoBehaviour
     private const float speed = 2.5f;
     private const float despawnPointX = -8f;
 
+    public string GetPowerupType()
+    {
+        return powerupType; // use for player collection (future use)
+    }
+
     private void Awake()
     {
 
