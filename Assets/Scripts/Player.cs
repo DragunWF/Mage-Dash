@@ -47,8 +47,15 @@ public sealed class Player : MonoBehaviour
         }
     }
 
-    private void RestoreSpell() { onSpellCooldown = false; }
-    private void RemoveInvincibility() { onDamageCooldown = false; }
+    private void RestoreSpell()
+    {
+        onSpellCooldown = false;
+    }
+
+    private void RemoveInvincibility()
+    {
+        onDamageCooldown = false;
+    }
 
     private void Awake()
     {
@@ -140,7 +147,7 @@ public sealed class Player : MonoBehaviour
                 break;
             case "coins":
                 break;
-        }   
+        }
     }
 
     private IEnumerator RegenMana()
