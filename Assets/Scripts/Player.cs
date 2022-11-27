@@ -28,6 +28,7 @@ public sealed class Player : MonoBehaviour
 
     private FadeToBlack screen;
     private FlashEffect flashEffect;
+    private AudioPlayer audioPlayer;
 
     public void DamageHealth()
     {
@@ -62,6 +63,7 @@ public sealed class Player : MonoBehaviour
 
         flashEffect = GetComponent<FlashEffect>();
         screen = FindObjectOfType<FadeToBlack>();
+        audioPlayer = FindObjectOfType<AudioPlayer>();
     }
 
     private void Start()

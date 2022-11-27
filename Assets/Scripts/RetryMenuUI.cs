@@ -7,6 +7,7 @@ public sealed class RetryMenuUI : MonoBehaviour
 {
     private GameManager gameManager;
     private GameStats gameStats;
+    private AudioPlayer audioPlayer;
 
     private TextMeshProUGUI scoreText;
     private TextMeshProUGUI highScoreText;
@@ -16,6 +17,7 @@ public sealed class RetryMenuUI : MonoBehaviour
     {
         gameManager = FindObjectOfType<GameManager>();
         gameStats = FindObjectOfType<GameStats>();
+        audioPlayer = FindObjectOfType<AudioPlayer>();
 
         scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
         highScoreText = GameObject.Find("HighScoreText").GetComponent<TextMeshProUGUI>();

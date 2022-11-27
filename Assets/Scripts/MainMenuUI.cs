@@ -11,6 +11,7 @@ public sealed class MainMenuUI : MonoBehaviour
     private PropSpawner propSpawner;
     private ObstacleSpawner obstacleSpawner;
     private GameObject[] menuBackground;
+    private AudioPlayer audioPlayer;
 
     public void ToggleTutorialUI()
     {
@@ -52,6 +53,7 @@ public sealed class MainMenuUI : MonoBehaviour
 
         propSpawner = FindObjectOfType<PropSpawner>();
         obstacleSpawner = FindObjectOfType<ObstacleSpawner>();
+        audioPlayer = FindObjectOfType<AudioPlayer>();
     }
 
     private void DeleteBackgroundEntities()

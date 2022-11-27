@@ -23,6 +23,7 @@ public sealed class Enemy : MonoBehaviour
 
     private GameStats gameStats;
     private DifficultyScaling difficulty;
+    private AudioPlayer audioPlayer;
 
     private void Awake()
     {
@@ -33,6 +34,7 @@ public sealed class Enemy : MonoBehaviour
 
         difficulty = FindObjectOfType<DifficultyScaling>();
         gameStats = FindObjectOfType<GameStats>();
+        audioPlayer = FindObjectOfType<AudioPlayer>();
     }
 
     private void Start()
