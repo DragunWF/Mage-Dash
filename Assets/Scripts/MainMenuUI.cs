@@ -34,7 +34,6 @@ public sealed class MainMenuUI : MonoBehaviour
 
         tutorialUI.SetActive(toggleTutorialUI);
         mainMenuUI.SetActive(toggleMainMenuUI);
-
     }
 
     private void Awake()

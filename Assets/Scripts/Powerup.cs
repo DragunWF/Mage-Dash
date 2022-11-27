@@ -54,7 +54,7 @@ public sealed class Powerup : MonoBehaviour
         if (level > 1)
         {
             const float incrementor = 0.125f;
-            speed += level * incrementor;
+            speed += (level - 1) * incrementor;
         }
     }
 }
