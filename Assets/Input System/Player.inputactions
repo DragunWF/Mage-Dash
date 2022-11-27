@@ -38,6 +38,17 @@
                 },
                 {
                     "name": "",
+                    "id": "ecce18d1-8d11-4588-a079-732fb47822c1",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "8e967b5e-1ab3-4b09-9587-a634caf9e3ce",
                     "path": "<Keyboard>/space",
                     "interactions": "",
