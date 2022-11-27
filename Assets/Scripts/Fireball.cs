@@ -11,6 +11,7 @@ public sealed class Fireball : MonoBehaviour
     {
         float deltaTime = speed * Time.deltaTime;
         transform.Translate(deltaTime, 0, 0);
+
         if (transform.position.x >= xLimit)
         {
             Destroy(gameObject);
@@ -19,9 +20,10 @@ public sealed class Fireball : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Obstacle") 
+        if (other.tag == "Obstacle")
         {
             // add sound effect in the future
+            FindObjectOfType<ParticlePlayer>().PlayFireballHit(transform.position);
             Destroy(gameObject);
         }
     }
