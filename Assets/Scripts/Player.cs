@@ -138,6 +138,8 @@ public sealed class Player : MonoBehaviour
                 break;
             case "score":
                 break;
+            case "coins":
+                break;
         }   
     }
 
