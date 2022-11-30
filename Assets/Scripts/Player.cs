@@ -44,6 +44,10 @@ public sealed class Player : MonoBehaviour
             {
                 Death();
             }
+            else
+            {
+                audioPlayer.PlayDamage();
+            }
         }
     }
 
@@ -91,7 +95,7 @@ public sealed class Player : MonoBehaviour
         {
             onGround = false;
             rigidBody.velocity += new Vector2(0, jumpForce);
-            // Add sound effect in the future
+            audioPlayer.PlayJump();
         }
     }
 
@@ -102,6 +106,7 @@ public sealed class Player : MonoBehaviour
             Instantiate(fireball, firePos.position, Quaternion.identity);
             mana--;
             gameUI.UpdateManaBar(mana);
+            audioPlayer.PlayShoot();
             onSpellCooldown = true;
             Invoke("RestoreSpell", spellCooldownTime);
         }

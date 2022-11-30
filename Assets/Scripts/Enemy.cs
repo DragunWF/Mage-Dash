@@ -89,9 +89,11 @@ public sealed class Enemy : MonoBehaviour
     {
         flashEffect.Flash();
         health -= gameStats.PlayerDamage;
+        audioPlayer.PlayDamage();
         if (health <= 0)
         {
             gameStats.IncreaseScore(scoreGain);
+            FindObjectOfType<ParticlePlayer>().PlayDeath(transform.position);
             Destroy(gameObject);
         }
     }
