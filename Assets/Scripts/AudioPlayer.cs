@@ -22,6 +22,9 @@ public sealed class AudioPlayer : MonoBehaviour
     private AudioClip error;
     private const float errorVolume = 0.85f;
 
+    private AudioClip damage;
+    private const float damageVolume = 0.55f;
+
     public void PlayShoot()
     {
         PlayClip(shoot, shootVolume);
@@ -52,6 +55,11 @@ public sealed class AudioPlayer : MonoBehaviour
         PlayClip(error, errorVolume);
     }
 
+    public void PlayDamage()
+    {
+        PlayClip(damage, damageVolume);
+    }
+
     private void Awake()
     {
         shoot = Resources.Load("Audio/Shoot") as AudioClip;
@@ -60,6 +68,7 @@ public sealed class AudioPlayer : MonoBehaviour
         jump = Resources.Load("Audio/Jump") as AudioClip;
         upgrade = Resources.Load("Audio/Upgrade") as AudioClip;
         error = Resources.Load("Audio/Error") as AudioClip;
+        damage = Resources.Load("Audio/Damage") as AudioClip;
     }
 
     private void PlayClip(AudioClip clip, float volume)
