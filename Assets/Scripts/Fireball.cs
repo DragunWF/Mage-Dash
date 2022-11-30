@@ -22,7 +22,7 @@ public sealed class Fireball : MonoBehaviour
     {
         if (other.tag == "Obstacle")
         {
-            FindObjectOfType<ParticlePlayer>().PlayHitEffect(transform.position);
+            FindObjectOfType<ParticlePlayer>().PlayHit(transform.position);
             Destroy(gameObject);
         }
     }

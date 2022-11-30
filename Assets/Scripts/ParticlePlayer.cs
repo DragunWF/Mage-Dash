@@ -12,7 +12,7 @@ public sealed class ParticlePlayer : MonoBehaviour
         SpawnParticle(deathEffect, position);
     }
 
-    public void PlayHitEffect(Vector2 position)
+    public void PlayHit(Vector2 position)
     {
         SpawnParticle(hitEffect, position);
     }
@@ -25,6 +25,8 @@ public sealed class ParticlePlayer : MonoBehaviour
 
     private void SpawnParticle(GameObject effect, Vector2 position)
     {
-        Instantiate(effect, position, Quaternion.identity);
+        const float destroyDelay = 0.5f;
+        GameObject particle = Instantiate(effect, position, Quaternion.identity);
+        Destroy(particle, destroyDelay);
     }
 }
