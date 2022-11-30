@@ -4,30 +4,23 @@ using UnityEngine;
 
 public sealed class ParticlePlayer : MonoBehaviour
 {
-    private GameObject playerDeathEffect;
-    private GameObject obstacleDeathEffect;
-    private GameObject fireballEffect;
+    private GameObject deathEffect;
+    private GameObject hitEffect;
 
     public void PlayDeath(Vector2 position)
     {
-        SpawnParticle(playerDeathEffect, position);
+        SpawnParticle(deathEffect, position);
     }
 
-    public void PlayFireballHit(Vector2 position)
+    public void PlayHitEffect(Vector2 position)
     {
-        SpawnParticle(fireballEffect, position);
-    }
-
-    public void PlayObstacleDeath(Vector2 position)
-    {
-        SpawnParticle(obstacleDeathEffect, position);
+        SpawnParticle(hitEffect, position);
     }
 
     private void Awake()
     {
-        playerDeathEffect = Resources.Load("Prefabs/PlayerDeathEffect") as GameObject;
-        obstacleDeathEffect = Resources.Load("Prefabs/ObstacleDeathEffect") as GameObject;
-        fireballEffect = Resources.Load("Prefabs/FireballEffect") as GameObject;
+        deathEffect = Resources.Load("Prefabs/DeathEffect") as GameObject;
+        hitEffect = Resources.Load("Prefabs/HitEffect") as GameObject;
     }
 
     private void SpawnParticle(GameObject effect, Vector2 position)
