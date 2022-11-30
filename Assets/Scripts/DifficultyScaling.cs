@@ -10,6 +10,7 @@ public sealed class DifficultyScaling : MonoBehaviour
     private const float timeToScaleDifficulty = 15f;
 
     private GameUI gameUI;
+    private ObstacleSpawner spawner;
     private ParallaxBackground[] backgrounds;
 
     public int GetMaxDifficultyLevel() { return maxDifficultyLevel; }
@@ -18,6 +19,7 @@ public sealed class DifficultyScaling : MonoBehaviour
     {
         DifficultyLevel = 1;
         gameUI = FindObjectOfType<GameUI>();
+        spawner = FindObjectOfType<ObstacleSpawner>();
         backgrounds = FindObjectsOfType<ParallaxBackground>();
     }
 
@@ -36,6 +38,7 @@ public sealed class DifficultyScaling : MonoBehaviour
             yield return new WaitForSeconds(timeToScaleDifficulty);
             DifficultyLevel++;
             gameUI.UpdateDifficulty(DifficultyLevel);
+            spawner.ScaleSpawner();
 
             foreach (ParallaxBackground instance in backgrounds)
             {
