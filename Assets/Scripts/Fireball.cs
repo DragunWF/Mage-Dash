@@ -22,8 +22,7 @@ public sealed class Fireball : MonoBehaviour
     {
         if (other.tag == "Obstacle")
         {
-            // add sound effect in the future
-            FindObjectOfType<ParticlePlayer>().PlayFireballHit(transform.position);
+            FindObjectOfType<ParticlePlayer>().PlayHitEffect(transform.position);
             Destroy(gameObject);
         }
     }
