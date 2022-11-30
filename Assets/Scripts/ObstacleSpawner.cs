@@ -20,7 +20,11 @@ public sealed class ObstacleSpawner : MonoBehaviour
 
     public void ScaleSpawner()
     {
-        UpdateSpawnIntervals();
+        const float decreaseValue = 0.05f;
+        for (int i = 0; i < spawnIntervals.Length; i++)
+        {
+            spawnIntervals[i] -= decreaseValue;
+        }
     }
 
     private void Awake()
@@ -39,11 +43,6 @@ public sealed class ObstacleSpawner : MonoBehaviour
     private void Start()
     {
         StartCoroutine(SpawnObstacles());
-    }
-
-    private void UpdateSpawnIntervals()
-    {
-
     }
 
     private float GetRandomSpawnInterval()
