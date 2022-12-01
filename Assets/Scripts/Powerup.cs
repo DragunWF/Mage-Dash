@@ -30,7 +30,7 @@ public sealed class Powerup : MonoBehaviour
     private void Update()
     {
         float deltaSpeed = speed * Time.deltaTime;
-        transform.Translate(deltaSpeed, 0, 0);
+        transform.Translate(-deltaSpeed, 0, 0);
 
         if (transform.position.x <= despawnPointX)
         {
