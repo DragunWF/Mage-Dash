@@ -15,9 +15,14 @@ public sealed class Powerup : MonoBehaviour
     private DifficultyScaling difficulty;
     private AudioPlayer audioPlayer;
 
-    public string GetPowerupType()
+    public string GetPotionType()
     {
-        return powerupType; // use for player collection (future use)
+        return powerupType;
+    }
+
+    public float GetDuration()
+    {
+        return duration;
     }
 
     private void Awake()
