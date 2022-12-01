@@ -70,11 +70,6 @@ public sealed class PowerupSpawner : MonoBehaviour
                         foundDistinct = true;
                     break;
             }
-
-            if (foundDistinct)
-            {
-                break;
-            }
         }
 
         return powerup;
