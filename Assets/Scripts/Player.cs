@@ -63,16 +63,6 @@ public sealed class Player : MonoBehaviour
 
     #endregion
 
-    private void RestoreSpell()
-    {
-        onSpellCooldown = false;
-    }
-
-    private void RemoveInvincibility()
-    {
-        onDamageCooldown = false;
-    }
-
     private void Awake()
     {
         DamageCooldown = 2.25f;
@@ -177,6 +167,16 @@ public sealed class Player : MonoBehaviour
     private void DisableFireratePowerup() { fireratePowerupActive = false; }
 
     #endregion
+
+    private void RestoreSpell()
+    {
+        onSpellCooldown = false;
+    }
+
+    private void RemoveInvincibility()
+    {
+        onDamageCooldown = false;
+    }
 
     private IEnumerator RegenMana()
     {
