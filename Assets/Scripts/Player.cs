@@ -101,6 +101,21 @@ public sealed class Player : MonoBehaviour
         StartCoroutine(RegenMana());
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        switch (other.gameObject.tag)
+        {
+            case "Ground":
+                onGround = true;
+                break;
+            case "Powerup":
+                GameObject powerupObject = other.gameObject;
+                Powerup powerup = powerupObject.GetComponent<Powerup>();
+                ActivatePowerup(powerup.GetPotionType(), powerup.GetDuration());
+                break;
+        }
+    }
+
     private void OnJump()
     {
         if (onGround)
@@ -130,21 +145,6 @@ public sealed class Player : MonoBehaviour
         isAlive = false;
         FindObjectOfType<FadeToBlack>().InitializeFade();
         // Destroy(gameObject);
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        switch (other.gameObject.tag)
-        {
-            case "Ground":
-                onGround = true;
-                break;
-            case "Powerup":
-                GameObject powerupObject = other.gameObject;
-                Powerup powerup = powerupObject.GetComponent<Powerup>();
-                ActivatePowerup(powerup.GetPotionType(), powerup.GetDuration());
-                break;
-        }
     }
 
     private void ActivatePowerup(string powerupType, float powerupDuration)
