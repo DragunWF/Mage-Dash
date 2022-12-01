@@ -92,7 +92,8 @@ public sealed class Enemy : MonoBehaviour
         audioPlayer.PlayDamage();
         if (health <= 0)
         {
-            gameStats.IncreaseScore(scoreGain);
+            bool activeDoubleScore = FindObjectOfType<Player>().GetScorePowerupStatus();
+            gameStats.IncreaseScore(activeDoubleScore ? scoreGain * 2 : scoreGain);
             FindObjectOfType<ParticlePlayer>().PlayDeath(transform.position);
             Destroy(gameObject);
         }
