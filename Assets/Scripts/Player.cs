@@ -55,6 +55,14 @@ public sealed class Player : MonoBehaviour
         }
     }
 
+    #region Powerup Getter Methods
+
+    public bool GetManaPowerupStatus() { return manaPowerupActive; }
+    public bool GetScorePowerupStatus() { return scorePowerupActive; }
+    public bool GetFireratePowerupStatus() { return fireratePowerupActive; }
+
+    #endregion
+
     private void RestoreSpell()
     {
         onSpellCooldown = false;
