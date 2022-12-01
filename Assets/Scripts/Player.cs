@@ -16,6 +16,10 @@ public sealed class Player : MonoBehaviour
     private bool onSpellCooldown = false;
     private bool onDamageCooldown = false;
 
+    private bool manaPowerupActive = false;
+    private bool scorePowerupActive = false;
+    private bool fireratePowerupActive = false;
+
     private const float jumpForce = 13.5f;
     private bool onGround = true;
     private Rigidbody2D rigidBody;
@@ -130,35 +134,52 @@ public sealed class Player : MonoBehaviour
             case "Powerup":
                 GameObject powerupObject = other.gameObject;
                 Powerup powerup = powerupObject.GetComponent<Powerup>();
-                ActivatePowerup(powerup.GetPowerupType());
+                ActivatePowerup(powerup.GetPotionType(), powerup.GetDuration());
                 break;
         }
     }
 
-    private void ActivatePowerup(string powerupType)
+    private void ActivatePowerup(string powerupType, float powerupDuration)
     {
-        switch (powerupType) // add future implementation
+        // add sound effect implementation
+        switch (powerupType)
         {
             case "health":
+                health++;
                 break;
             case "mana":
+                manaPowerupActive = true;
+                Invoke("DisableManaPowerup", powerupDuration);
                 break;
             case "score":
+                scorePowerupActive = true;
+                Invoke("DisableScorePowerup", powerupDuration);
                 break;
-            case "coins":
+            case "firerate":
+                fireratePowerupActive = true;
+                Invoke("DisableFireratePowerup", powerupDuration);
                 break;
         }
     }
+
+    #region Disable Powerup Methods
+
+    private void DisableManaPowerup() { manaPowerupActive = false; }
+    private void DisableScorePowerup() { scorePowerupActive = false; }
+    private void DisableFireratePowerup() { fireratePowerupActive = false; }
+
+    #endregion
 
     private IEnumerator RegenMana()
     {
         const float interval = 1.5f;
+        const float upgradedRegen = manaRegenTime * 0.5f;
 
         while (true)
         {
             if (mana < gameStats.MaxPlayerMana)
             {
-                yield return new WaitForSeconds(manaRegenTime);
+                yield return new WaitForSeconds(manaPowerupActive ? manaRegenTime : upgradedRegen);
                 mana++;
                 gameUI.UpdateManaBar(mana);
             }
@@ -171,8 +192,7 @@ public sealed class Player : MonoBehaviour
 
     private IEnumerator OnAlive()
     {
-        const float baseScoreIncrease = 1.25f;
-        const float triggerDelay = 3f;
+        const float baseScoreIncrease = 1.25f, triggerDelay = 3f;
         yield return new WaitForSeconds(triggerDelay);
 
         float scoreInterval = 1.5f * gameStats.ScoreModifier / 2; // 3 is the base interval
