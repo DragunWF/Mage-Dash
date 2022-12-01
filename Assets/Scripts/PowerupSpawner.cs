@@ -11,10 +11,10 @@ public sealed class ItemSpawner : MonoBehaviour
     private void Awake()
     {
         powerups = new GameObject[4] {
-            Resources.Load("Prefabs/HeartPowerup") as GameObject,
-            Resources.Load("Prefabs/ManaPowerup") as GameObject,
-            Resources.Load("Prefabs/DoubleScorePowerup") as GameObject,
-            Resources.Load("Prefabs/DoubleCoins") as GameObject
+            Resources.Load("Prefabs/HealthPotion") as GameObject,
+            Resources.Load("Prefabs/ManaPotion") as GameObject,
+            Resources.Load("Prefabs/DoubleScorePotion") as GameObject,
+            Resources.Load("Prefabs/FireratePotion") as GameObject
         };
         spawnPositions = new Transform[2] {
             GameObject.Find("Powerup Ground Point").transform,
