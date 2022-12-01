@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class ItemSpawner : MonoBehaviour
+public sealed class PowerupSpawner : MonoBehaviour
 {
     private float[] spawnIntervals = { 8.5f, 9f, 9.5f, 10f, 10.5f, 11f };
     private GameObject[] powerups;
     private Transform[] spawnPositions;
+    private Player player;
 
     private void Awake()
     {
@@ -20,6 +21,7 @@ public sealed class ItemSpawner : MonoBehaviour
             GameObject.Find("Powerup Ground Point").transform,
             GameObject.Find("Powerup Upper Point").transform
         };
+        player = FindObjectOfType<Player>();
     }
 
     private void Start()
@@ -44,6 +46,40 @@ public sealed class ItemSpawner : MonoBehaviour
         return array[randomIndex];
     }
 
+    private GameObject GetDistinctPowerup()
+    {
+        GameObject powerup = null;
+        bool foundDistinct = false;
+
+        while (!foundDistinct)
+        {
+            powerup = GetRandomItem(powerups) as GameObject;
+
+            switch (powerup.GetComponent<Powerup>().GetPotionType())
+            {
+                case "mana":
+                    if (!player.GetManaPowerupStatus())
+                        foundDistinct = true;
+                    break;
+                case "score":
+                    if (!player.GetScorePowerupStatus())
+                        foundDistinct = true;
+                    break;
+                case "firerate":
+                    if (!player.GetFireratePowerupStatus())
+                        foundDistinct = true;
+                    break;
+            }
+
+            if (foundDistinct)
+            {
+                break;
+            }
+        }
+
+        return powerup;
+    }
+
     private IEnumerator SpawnPowerups()
     {
         const float spawnDelayTime = 2.5f;
@@ -53,7 +89,7 @@ public sealed class ItemSpawner : MonoBehaviour
         {
             yield return new WaitForSeconds(GetRandomInterval());
 
-            GameObject powerup = GetRandomItem(powerups) as GameObject;
+            GameObject powerup = GetDistinctPowerup();
             Transform spawnTransform = GetRandomItem(spawnPositions) as Transform;
             Instantiate(powerup, spawnTransform.position, Quaternion.identity);
         }
