@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public sealed class Player : MonoBehaviour
+public sealed class Player : MonoBehaviour // replace firerate powerup with double damage powerup
 {
     public float DamageCooldown { get; private set; }
 
@@ -125,14 +125,14 @@ public sealed class Player : MonoBehaviour
             gameUI.UpdateManaBar(mana);
             audioPlayer.PlayShoot();
             onSpellCooldown = true;
-            Invoke("RestoreSpell", spellCooldownTime);
+            Invoke("RestoreSpell", fireratePowerupActive ? spellCooldownTime : spellCooldownTime * 0.25f); // change firerate to something else
         }
     }
 
     private void Death()
     {
-        Debug.Log("Trigger player death");
         isAlive = false;
+        FindObjectOfType<ParticlePlayer>().PlayDeath(transform.position);
         FindObjectOfType<FadeToBlack>().InitializeFade();
         // Destroy(gameObject);
     }
@@ -153,7 +153,7 @@ public sealed class Player : MonoBehaviour
                 scorePowerupActive = true;
                 Invoke("DisableScorePowerup", powerupDuration);
                 break;
-            case "firerate":
+            case "firerate": // probably replace with double damage
                 fireratePowerupActive = true;
                 Invoke("DisableFireratePowerup", powerupDuration);
                 break;
@@ -181,7 +181,7 @@ public sealed class Player : MonoBehaviour
     private IEnumerator RegenMana()
     {
         const float interval = 1.5f;
-        const float upgradedRegen = manaRegenTime * 0.5f;
+        const float upgradedRegen = manaRegenTime * 0.15f;
 
         while (true)
         {
