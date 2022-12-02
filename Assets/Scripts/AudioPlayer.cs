@@ -4,8 +4,8 @@ using UnityEngine;
 
 public sealed class AudioPlayer : MonoBehaviour
 {
-    private Dictionary<string, AudioClip> clips;
-    private Dictionary<string, float> volumes;
+    private Dictionary<string, AudioClip> clips = new Dictionary<string, AudioClip>();
+    private Dictionary<string, float> volumes = new Dictionary<string, float>();
 
     #region Play Audio File Methods
 
