@@ -2185,7 +2185,7 @@ GameObject:
   - component: {fileID: 1800447528}
   - component: {fileID: 1800447529}
   m_Layer: 0
-  m_Name: FireratePotion
+  m_Name: DamagePotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
