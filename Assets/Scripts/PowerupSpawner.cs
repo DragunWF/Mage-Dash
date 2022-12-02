@@ -66,7 +66,7 @@ public sealed class PowerupSpawner : MonoBehaviour
                         foundDistinct = true;
                     break;
                 case "firerate":
-                    if (!player.GetFireratePowerupStatus())
+                    if (!player.GetDamagePowerupStatus())
                         foundDistinct = true;
                     break;
             }
