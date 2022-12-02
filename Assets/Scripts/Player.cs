@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public sealed class Player : MonoBehaviour // replace firerate powerup with double damage powerup
+public sealed class Player : MonoBehaviour
 {
     public float DamageCooldown { get; private set; }
 
@@ -139,7 +139,7 @@ public sealed class Player : MonoBehaviour // replace firerate powerup with doub
 
     private void ActivatePowerup(string powerupType, float powerupDuration)
     {
-        // add sound effect implementation
+        audioPlayer.PlayPickup();
         switch (powerupType)
         {
             case "health":
@@ -153,9 +153,9 @@ public sealed class Player : MonoBehaviour // replace firerate powerup with doub
                 scorePowerupActive = true;
                 Invoke("DisableScorePowerup", powerupDuration);
                 break;
-            case "firerate": // probably replace with double damage
+            case "damage":
                 damagePowerupActive = true;
-                Invoke("DisableFireratePowerup", powerupDuration);
+                Invoke("DisableDamagePowerup", powerupDuration);
                 break;
         }
     }
