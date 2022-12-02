@@ -4,71 +4,82 @@ using UnityEngine;
 
 public sealed class AudioPlayer : MonoBehaviour
 {
-    private AudioClip shoot;
-    private const float shootVolume = 0.5f;
-
-    private AudioClip death;
-    private const float deathVolume = 0.75f;
-
-    private AudioClip click;
-    private const float clickVolume = 0.65f;
-
-    private AudioClip jump;
-    private const float jumpVolume = 0.35f;
-
-    private AudioClip upgrade;
-    private const float upgradeVolume = 0.85f;
-
-    private AudioClip error;
-    private const float errorVolume = 0.85f;
-
-    private AudioClip damage;
-    private const float damageVolume = 0.55f;
+    private Dictionary<string, AudioClip> clips;
+    private Dictionary<string, float> volumes;
 
     public void PlayShoot()
     {
-        PlayClip(shoot, shootVolume);
+        const string fileName = "Shoot";
+        PlayClip(clips[fileName], volumes[fileName]);
     }
 
     public void PlayDeath()
     {
-        PlayClip(death, deathVolume);
+        const string fileName = "Death";
+        PlayClip(clips[fileName], volumes[fileName]);
     }
 
     public void PlayClick()
     {
-        PlayClip(click, clickVolume);
+        const string fileName = "Click";
+        PlayClip(clips[fileName], volumes[fileName]);
     }
 
     public void PlayJump()
     {
-        PlayClip(jump, jumpVolume);
+        const string fileName = "Jump";
+        PlayClip(clips[fileName], volumes[fileName]);
+    }
+
+    public void PlayPickup()
+    {
+        const string fileName = "Pickup";
+        PlayClip(clips[fileName], volumes[fileName]);
     }
 
     public void PlayUpgrade()
     {
-        PlayClip(upgrade, upgradeVolume);
+        const string fileName = "Upgrade";
+        PlayClip(clips[fileName], volumes[fileName]);
     }
 
     public void PlayError()
     {
-        PlayClip(error, errorVolume);
+        const string fileName = "Error";
+        PlayClip(clips[fileName], volumes[fileName]);
     }
 
     public void PlayDamage()
     {
-        PlayClip(damage, damageVolume);
+        const string fileName = "Damage";
+        PlayClip(clips[fileName], volumes[fileName]);
     }
 
     private void Awake()
     {
-        shoot = Resources.Load("Audio/Shoot") as AudioClip;
-        death = Resources.Load("Audio/Death") as AudioClip;
-        click = Resources.Load("Audio/Click") as AudioClip;
-        jump = Resources.Load("Audio/Jump") as AudioClip;
-        upgrade = Resources.Load("Audio/Upgrade") as AudioClip;
-        error = Resources.Load("Audio/Error") as AudioClip;
-        damage = Resources.Load("Audio/Damage") as AudioClip;
+        clips.Add("Shoot", Resources.Load("Audio/Shoot") as AudioClip);
+        volumes.Add("Shoot", 0.5f);
+
+        clips.Add("Death", Resources.Load("Audio/Shoot") as AudioClip);
+        volumes.Add("Death", 0.75f);
+
+        clips.Add("Click", Resources.Load("Audio/Click") as AudioClip);
+        volumes.Add("Click", 0.85f);
+
+        clips.Add("Jump", Resources.Load("Audio/Jump") as AudioClip);
+        volumes.Add("Jump", 0.35f);
+
+        clips.Add("Upgrade", Resources.Load("Audio/Upgrade") as AudioClip);
+        volumes.Add("Upgrade", 0.85f);
+
+        clips.Add("Pickup", Resources.Load("Audio/Pickup") as AudioClip);
+        volumes.Add("Pickup", 0.75f);
+
+        clips.Add("Error", Resources.Load("Audio/Error") as AudioClip);
+        volumes.Add("Error", 0.85f);
+
+        clips.Add("Damage", Resources.Load("Audio/Damage") as AudioClip);
+        volumes.Add("Damage", 0.55f);
     }
 
     private void PlayClip(AudioClip clip, float volume)
