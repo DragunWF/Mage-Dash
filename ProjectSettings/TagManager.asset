@@ -58,6 +58,9 @@ TagManager:
   - name: Player
     uniqueID: 3107654859
     locked: 0
+  - name: Pickups
+    uniqueID: 1557838517
+    locked: 0
   - name: Particles
     uniqueID: 1377971387
     locked: 0
