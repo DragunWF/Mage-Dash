@@ -15,7 +15,7 @@ public sealed class PowerupSpawner : MonoBehaviour
             Resources.Load("Prefabs/HealthPotion") as GameObject,
             Resources.Load("Prefabs/ManaPotion") as GameObject,
             Resources.Load("Prefabs/DoubleScorePotion") as GameObject,
-            Resources.Load("Prefabs/FireratePotion") as GameObject
+            Resources.Load("Prefabs/DamagePotion") as GameObject
         };
         spawnPositions = new Transform[2] {
             GameObject.Find("Powerup Ground Point").transform,
@@ -65,7 +65,7 @@ public sealed class PowerupSpawner : MonoBehaviour
                     if (!player.GetScorePowerupStatus())
                         foundDistinct = true;
                     break;
-                case "firerate":
+                case "damage":
                     if (!player.GetDamagePowerupStatus())
                         foundDistinct = true;
                     break;
