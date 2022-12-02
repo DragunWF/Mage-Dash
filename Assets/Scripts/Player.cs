@@ -18,7 +18,7 @@ public sealed class Player : MonoBehaviour // replace firerate powerup with doub
 
     private bool manaPowerupActive = false;
     private bool scorePowerupActive = false;
-    private bool fireratePowerupActive = false;
+    private bool damagePowerupActive = false;
 
     private const float jumpForce = 13.5f;
     private bool onGround = true;
@@ -59,7 +59,7 @@ public sealed class Player : MonoBehaviour // replace firerate powerup with doub
 
     public bool GetManaPowerupStatus() { return manaPowerupActive; }
     public bool GetScorePowerupStatus() { return scorePowerupActive; }
-    public bool GetFireratePowerupStatus() { return fireratePowerupActive; }
+    public bool GetDamagePowerupStatus() { return damagePowerupActive; }
 
     #endregion
 
@@ -125,7 +125,7 @@ public sealed class Player : MonoBehaviour // replace firerate powerup with doub
             gameUI.UpdateManaBar(mana);
             audioPlayer.PlayShoot();
             onSpellCooldown = true;
-            Invoke("RestoreSpell", fireratePowerupActive ? spellCooldownTime : spellCooldownTime * 0.25f); // change firerate to something else
+            Invoke("RestoreSpell", spellCooldownTime);
         }
     }
 
@@ -154,7 +154,7 @@ public sealed class Player : MonoBehaviour // replace firerate powerup with doub
                 Invoke("DisableScorePowerup", powerupDuration);
                 break;
             case "firerate": // probably replace with double damage
-                fireratePowerupActive = true;
+                damagePowerupActive = true;
                 Invoke("DisableFireratePowerup", powerupDuration);
                 break;
         }
@@ -164,7 +164,7 @@ public sealed class Player : MonoBehaviour // replace firerate powerup with doub
 
     private void DisableManaPowerup() { manaPowerupActive = false; }
     private void DisableScorePowerup() { scorePowerupActive = false; }
-    private void DisableFireratePowerup() { fireratePowerupActive = false; }
+    private void DisableDamagePowerup() { damagePowerupActive = false; }
 
     #endregion
 

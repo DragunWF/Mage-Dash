@@ -24,6 +24,7 @@ public sealed class Enemy : MonoBehaviour
     private GameStats gameStats;
     private DifficultyScaling difficulty;
     private AudioPlayer audioPlayer;
+    private Player player;
 
     private void Awake()
     {
@@ -35,6 +36,7 @@ public sealed class Enemy : MonoBehaviour
         difficulty = FindObjectOfType<DifficultyScaling>();
         gameStats = FindObjectOfType<GameStats>();
         audioPlayer = FindObjectOfType<AudioPlayer>();
+        player = FindObjectOfType<Player>();
     }
 
     private void Start()
@@ -88,11 +90,13 @@ public sealed class Enemy : MonoBehaviour
     private void DamageHealth()
     {
         flashEffect.Flash();
-        health -= gameStats.PlayerDamage;
+        health -= player.GetDamagePowerupStatus() ?
+            gameStats.PlayerDamage * 2 : gameStats.PlayerDamage;
         audioPlayer.PlayDamage();
+        
         if (health <= 0)
         {
-            bool activeDoubleScore = FindObjectOfType<Player>().GetScorePowerupStatus();
+            bool activeDoubleScore = player.GetScorePowerupStatus();
             gameStats.IncreaseScore(activeDoubleScore ? scoreGain * 2 : scoreGain);
             FindObjectOfType<ParticlePlayer>().PlayDeath(transform.position);
             Destroy(gameObject);
@@ -104,7 +108,7 @@ public sealed class Enemy : MonoBehaviour
         switch (other.tag)
         {
             case "Player":
-                FindObjectOfType<Player>().DamageHealth();
+                player.DamageHealth();
                 break;
             case "Fireball":
                 DamageHealth();
