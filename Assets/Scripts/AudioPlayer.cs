@@ -7,53 +7,18 @@ public sealed class AudioPlayer : MonoBehaviour
     private Dictionary<string, AudioClip> clips;
     private Dictionary<string, float> volumes;
 
-    public void PlayShoot()
-    {
-        const string fileName = "Shoot";
-        PlayClip(clips[fileName], volumes[fileName]);
-    }
+    #region Play Audio File Methods
 
-    public void PlayDeath()
-    {
-        const string fileName = "Death";
-        PlayClip(clips[fileName], volumes[fileName]);
-    }
+    public void PlayShoot() { PlayClip("Shoot"); }
+    public void PlayDeath() { PlayClip("Death"); }
+    public void PlayClick() { PlayClip("Click"); }
+    public void PlayJump() { PlayClip("Jump"); }
+    public void PlayPickup() { PlayClip("Pickup"); }
+    public void PlayUpgrade() { PlayClip("Upgrade"); }
+    public void PlayError() { PlayClip("Error"); }
+    public void PlayDamage() { PlayClip("Damage"); }
 
-    public void PlayClick()
-    {
-        const string fileName = "Click";
-        PlayClip(clips[fileName], volumes[fileName]);
-    }
-
-    public void PlayJump()
-    {
-        const string fileName = "Jump";
-        PlayClip(clips[fileName], volumes[fileName]);
-    }
-
-    public void PlayPickup()
-    {
-        const string fileName = "Pickup";
-        PlayClip(clips[fileName], volumes[fileName]);
-    }
-
-    public void PlayUpgrade()
-    {
-        const string fileName = "Upgrade";
-        PlayClip(clips[fileName], volumes[fileName]);
-    }
-
-    public void PlayError()
-    {
-        const string fileName = "Error";
-        PlayClip(clips[fileName], volumes[fileName]);
-    }
-
-    public void PlayDamage()
-    {
-        const string fileName = "Damage";
-        PlayClip(clips[fileName], volumes[fileName]);
-    }
+    #endregion
 
     private void Awake()
     {
@@ -82,12 +47,12 @@ public sealed class AudioPlayer : MonoBehaviour
         volumes.Add("Damage", 0.55f);
     }
 
-    private void PlayClip(AudioClip clip, float volume)
+    private void PlayClip(string fileName)
     {
-        if (clip != null)
+        if (clips[fileName] != null)
         {
             Vector2 cameraPos = Camera.main.transform.position;
-            AudioSource.PlayClipAtPoint(clip, cameraPos, volume);
+            AudioSource.PlayClipAtPoint(clips[fileName], cameraPos, volumes[fileName]);
         }
     }
 }
