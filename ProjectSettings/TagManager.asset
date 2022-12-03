@@ -9,6 +9,7 @@ TagManager:
   - PlayerHitbox
   - Props
   - Ground
+  - Powerup
   layers:
   - Default
   - TransparentFX
