@@ -11,7 +11,7 @@ public sealed class ParallaxBackground : MonoBehaviour
 
     public void UpdateSpeed()
     {
-        Speed = initialSpeedValue + ((difficulty.DifficultyLevel - 1) * 0.25f);
+        Speed = initialSpeedValue + ((difficulty.DifficultyLevel - 1) * 0.40f);
     }
 
     private void Awake()

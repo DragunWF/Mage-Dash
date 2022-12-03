@@ -47,9 +47,9 @@ public sealed class Enemy : MonoBehaviour
         {
             for (int i = 1; i < difficulty.DifficultyLevel; i++)
             {
-                speed += 0.15f;
+                speed += 0.35f;
                 damage += 2.5f;
-                health += 5f;
+                health += 4.5f;
                 scoreGain += 7.5f;
             }
         }
@@ -93,7 +93,7 @@ public sealed class Enemy : MonoBehaviour
         health -= player.GetDamagePowerupStatus() ?
             gameStats.PlayerDamage * 2 : gameStats.PlayerDamage;
         audioPlayer.PlayDamage();
-        
+
         if (health <= 0)
         {
             bool activeDoubleScore = player.GetScorePowerupStatus();

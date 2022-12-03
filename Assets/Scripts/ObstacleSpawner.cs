@@ -20,7 +20,7 @@ public sealed class ObstacleSpawner : MonoBehaviour
 
     public void ScaleSpawner()
     {
-        const float decreaseValue = 0.05f;
+        const float decreaseValue = 0.125f;
         for (int i = 0; i < spawnIntervals.Length; i++)
         {
             spawnIntervals[i] -= decreaseValue;
