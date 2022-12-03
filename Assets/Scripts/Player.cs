@@ -55,6 +55,35 @@ public sealed class Player : MonoBehaviour
         }
     }
 
+    public void ActivatePowerup(string powerupType, float powerupDuration)
+    {
+        audioPlayer.PlayPickup();
+
+        switch (powerupType)
+        {
+            case "health":
+                health++;
+                break;
+            case "mana":
+                manaPowerupActive = true;
+                Invoke("DisableManaPowerup", powerupDuration);
+                break;
+            case "score":
+                scorePowerupActive = true;
+                Invoke("DisableScorePowerup", powerupDuration);
+                break;
+            case "damage":
+                damagePowerupActive = true;
+                Invoke("DisableDamagePowerup", powerupDuration);
+                break;
+        }
+
+        if (powerupType != "health")
+        {
+            gameUI.ModifyPowerups(powerupType, true);
+        }
+    }
+
     #region Powerup Getter Methods
 
     public bool GetManaPowerupStatus() { return manaPowerupActive; }
@@ -128,35 +157,6 @@ public sealed class Player : MonoBehaviour
         FindObjectOfType<ParticlePlayer>().PlayDeath(transform.position);
         FindObjectOfType<FadeToBlack>().InitializeFade();
         Destroy(gameObject);
-    }
-
-    public void ActivatePowerup(string powerupType, float powerupDuration)
-    {
-        audioPlayer.PlayPickup();
-
-        switch (powerupType)
-        {
-            case "health":
-                health++;
-                break;
-            case "mana":
-                manaPowerupActive = true;
-                Invoke("DisableManaPowerup", powerupDuration);
-                break;
-            case "score":
-                scorePowerupActive = true;
-                Invoke("DisableScorePowerup", powerupDuration);
-                break;
-            case "damage":
-                damagePowerupActive = true;
-                Invoke("DisableDamagePowerup", powerupDuration);
-                break;
-        }
-
-        if (powerupType != "health")
-        {
-            gameUI.ModifyPowerups(powerupType, true);
-        }
     }
 
     #region Disable Methods
