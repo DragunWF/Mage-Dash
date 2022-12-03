@@ -93,16 +93,9 @@ public sealed class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        switch (other.gameObject.tag)
+        if (other.gameObject.tag == "Ground")
         {
-            case "Ground":
-                onGround = true;
-                break;
-            case "Powerup":
-                GameObject powerupObject = other.gameObject;
-                Powerup powerup = powerupObject.GetComponent<Powerup>();
-                ActivatePowerup(powerup.GetPotionType(), powerup.GetDuration());
-                break;
+            onGround = true;
         }
     }
 
@@ -134,12 +127,13 @@ public sealed class Player : MonoBehaviour
         isAlive = false;
         FindObjectOfType<ParticlePlayer>().PlayDeath(transform.position);
         FindObjectOfType<FadeToBlack>().InitializeFade();
-        // Destroy(gameObject);
+        Destroy(gameObject);
     }
 
-    private void ActivatePowerup(string powerupType, float powerupDuration)
+    public void ActivatePowerup(string powerupType, float powerupDuration)
     {
         audioPlayer.PlayPickup();
+
         switch (powerupType)
         {
             case "health":
@@ -158,13 +152,33 @@ public sealed class Player : MonoBehaviour
                 Invoke("DisableDamagePowerup", powerupDuration);
                 break;
         }
+
+        if (powerupType != "health")
+        {
+            gameUI.ModifyPowerups(powerupType, true);
+        }
     }
 
     #region Disable Methods
 
-    private void DisableManaPowerup() { manaPowerupActive = false; }
-    private void DisableScorePowerup() { scorePowerupActive = false; }
-    private void DisableDamagePowerup() { damagePowerupActive = false; }
+    private void DisableManaPowerup()
+    {
+        manaPowerupActive = false;
+        gameUI.ModifyPowerups("mana", false);
+    }
+
+    private void DisableScorePowerup()
+    {
+        scorePowerupActive = false;
+        gameUI.ModifyPowerups("score", false);
+    }
+
+    private void DisableDamagePowerup()
+    {
+        damagePowerupActive = false;
+        gameUI.ModifyPowerups("damage", false);
+    }
+
     private void RestoreSpell() { onSpellCooldown = false; }
     private void RemoveInvincibility() { onDamageCooldown = false; }
 

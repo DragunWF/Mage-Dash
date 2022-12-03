@@ -11,9 +11,7 @@ public sealed class Powerup : MonoBehaviour
     private const float despawnPointX = -8f;
     private const float baseSpeed = 2.5f;
     private float speed;
-
     private DifficultyScaling difficulty;
-    private AudioPlayer audioPlayer;
 
     public string GetPotionType()
     {
@@ -27,7 +25,6 @@ public sealed class Powerup : MonoBehaviour
 
     private void Awake()
     {
-        audioPlayer = FindObjectOfType<AudioPlayer>();
         difficulty = FindObjectOfType<DifficultyScaling>();
         UpdateSpeed();
     }
@@ -47,7 +44,8 @@ public sealed class Powerup : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            // add sound effect
+            FindObjectOfType<AudioPlayer>().PlayPickup();
+            FindObjectOfType<Player>().ActivatePowerup(powerupType, duration);
             Destroy(gameObject);
         }
     }
