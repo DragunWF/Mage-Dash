@@ -160,23 +160,15 @@ public sealed class Player : MonoBehaviour
         }
     }
 
-    #region Disable Powerup Methods
+    #region Disable Methods
 
     private void DisableManaPowerup() { manaPowerupActive = false; }
     private void DisableScorePowerup() { scorePowerupActive = false; }
     private void DisableDamagePowerup() { damagePowerupActive = false; }
+    private void RestoreSpell() { onSpellCooldown = false; }
+    private void RemoveInvincibility() { onDamageCooldown = false; }
 
     #endregion
-
-    private void RestoreSpell()
-    {
-        onSpellCooldown = false;
-    }
-
-    private void RemoveInvincibility()
-    {
-        onDamageCooldown = false;
-    }
 
     private IEnumerator RegenMana()
     {
