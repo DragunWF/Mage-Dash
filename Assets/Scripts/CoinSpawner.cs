@@ -11,6 +11,12 @@ public sealed class CoinSpawner : MonoBehaviour
     private Vector2[] spawnPositions;
     private DifficultyScaling difficulty;
 
+    public void UpdateSpawnSpeed()
+    {
+        float decreaseAmount = (difficulty.DifficultyLevel - 1) * 1.35f;
+        modifiedInterval = baseSpawnInterval - decreaseAmount;
+    }
+
     private void Awake()
     {
         coin = Resources.Load("Prefabs/Coin") as GameObject;
@@ -23,7 +29,13 @@ public sealed class CoinSpawner : MonoBehaviour
 
     private void Start()
     {
+        modifiedInterval = baseSpawnInterval;
         StartCoroutine(SpawnCoins());
+    }
+
+    private Vector2 GetRandomSpawnPosition()
+    {
+        return spawnPositions[Random.Range(0, spawnPositions.Length)];
     }
 
     private IEnumerator SpawnCoins()
@@ -34,7 +46,8 @@ public sealed class CoinSpawner : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(modifiedInterval);
-            // add implementation
+            Vector2 spawnPosition = GetRandomSpawnPosition();
+            Instantiate(coin, spawnPosition, Quaternion.identity);
         }
     }
 }
