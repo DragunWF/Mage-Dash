@@ -15,8 +15,8 @@ public sealed class CoinSpawner : MonoBehaviour
     {
         coin = Resources.Load("Prefabs/Coin") as GameObject;
         spawnPositions = new Vector2[2] {
-            GameObject.Find("Item Point 1").transform.position,
-            GameObject.Find("Item Point 2").transform.position,
+            GameObject.Find("Item Ground Point").transform.position,
+            GameObject.Find("Item Upper Point").transform.position,
         };
         difficulty = FindObjectOfType<DifficultyScaling>();
     }

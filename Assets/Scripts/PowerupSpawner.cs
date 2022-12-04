@@ -18,8 +18,8 @@ public sealed class PowerupSpawner : MonoBehaviour
             Resources.Load("Prefabs/DamagePotion") as GameObject
         };
         spawnPositions = new Transform[2] {
-            GameObject.Find("Powerup Ground Point").transform,
-            GameObject.Find("Powerup Upper Point").transform
+            GameObject.Find("Item Ground Point").transform,
+            GameObject.Find("Item Upper Point").transform
         };
         player = FindObjectOfType<Player>();
     }
@@ -54,7 +54,7 @@ public sealed class PowerupSpawner : MonoBehaviour
         {
             return null;
         }
-        
+
         GameObject powerup = null;
         bool foundDistinct = false;
 
