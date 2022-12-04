@@ -48,15 +48,15 @@ public sealed class PowerupSpawner : MonoBehaviour
 
     private GameObject GetDistinctPowerup()
     {
-        GameObject powerup = null;
-        bool foundDistinct = false;
-
         if (player.GetScorePowerupStatus() &&
             player.GetManaPowerupStatus() &&
             player.GetDamagePowerupStatus())
         {
             return null;
         }
+        
+        GameObject powerup = null;
+        bool foundDistinct = false;
 
         while (!foundDistinct)
         {
