@@ -51,6 +51,13 @@ public sealed class PowerupSpawner : MonoBehaviour
         GameObject powerup = null;
         bool foundDistinct = false;
 
+        if (player.GetScorePowerupStatus() &&
+            player.GetManaPowerupStatus() &&
+            player.GetDamagePowerupStatus())
+        {
+            return null;
+        }
+
         while (!foundDistinct)
         {
             powerup = GetRandomItem(powerups) as GameObject;
@@ -85,8 +92,11 @@ public sealed class PowerupSpawner : MonoBehaviour
             yield return new WaitForSeconds(GetRandomInterval());
 
             GameObject powerup = GetDistinctPowerup();
-            Transform spawnTransform = GetRandomItem(spawnPositions) as Transform;
-            Instantiate(powerup, spawnTransform.position, Quaternion.identity);
+            if (powerup != null)
+            {
+                Transform spawnTransform = GetRandomItem(spawnPositions) as Transform;
+                Instantiate(powerup, spawnTransform.position, Quaternion.identity);
+            }
         }
     }
 }
