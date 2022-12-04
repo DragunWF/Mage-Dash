@@ -44,6 +44,11 @@ public sealed class GameStats : MonoBehaviour
         gameUI = FindObjectOfType<GameUI>();
     }
 
+    public void CollectCoin()
+    {
+        Coins++;
+    }
+
     public void IncreaseScore(float amount)
     {
         Score += (int)Mathf.Round(amount * scoreMultiplier);
@@ -58,6 +63,8 @@ public sealed class GameStats : MonoBehaviour
 
     private void Awake()
     {
+        ManageSingleton();
+        
         PlayerDamage = 15; // default values
         MaxPlayerHealth = 3;
         MaxPlayerMana = 5;
@@ -75,7 +82,6 @@ public sealed class GameStats : MonoBehaviour
         HighestDifficultyReached = 0;
 
         gameUI = FindObjectOfType<GameUI>();
-        ManageSingleton();
     }
 
     private float ComputeScoreMultiplier()
