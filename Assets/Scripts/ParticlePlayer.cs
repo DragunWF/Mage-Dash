@@ -4,29 +4,39 @@ using UnityEngine;
 
 public sealed class ParticlePlayer : MonoBehaviour
 {
-    private GameObject deathEffect;
-    private GameObject hitEffect;
+    private Dictionary<string, GameObject> particles = new Dictionary<string, GameObject>();
+
+    #region Play Particle Methods
 
     public void PlayDeath(Vector2 position)
     {
-        SpawnParticle(deathEffect, position);
+        SpawnParticle("Death", position);
     }
 
     public void PlayHit(Vector2 position)
     {
-        SpawnParticle(hitEffect, position);
+        SpawnParticle("Hit", position);
     }
+
+    public void PlayPickup(Vector2 position)
+    {
+        SpawnParticle("Pickup", position);
+    }
+
+    #endregion
 
     private void Awake()
     {
-        deathEffect = Resources.Load("Prefabs/DeathEffect") as GameObject;
-        hitEffect = Resources.Load("Prefabs/HitEffect") as GameObject;
+        particles.Add("Death", Resources.Load("Prefabs/DeathEffect") as GameObject);
+        particles.Add("Pickup", Resources.Load("Prefabs/PickupEffect") as GameObject);
+        particles.Add("Hit", Resources.Load("Prefabs/HitEffect") as GameObject);
     }
 
-    private void SpawnParticle(GameObject effect, Vector2 position)
+    private void SpawnParticle(string effectName, Vector2 position)
     {
         const float destroyDelay = 0.5f;
-        GameObject particle = Instantiate(effect, position, Quaternion.identity);
+        GameObject particle = Instantiate(particles[effectName], position,
+                                          Quaternion.identity);
         Destroy(particle, destroyDelay);
     }
 }
