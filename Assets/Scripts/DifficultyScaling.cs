@@ -6,8 +6,9 @@ public sealed class DifficultyScaling : MonoBehaviour
 {
     public int DifficultyLevel { get; private set; }
 
+    private Dictionary<int, float> timeIntervals = new Dictionary<int, float>();
     private const int maxDifficultyLevel = 10;
-    private const float timeToScaleDifficulty = 15f;
+    private const float baseTimeInterval = 15f;
 
     private GameUI gameUI;
     private ObstacleSpawner spawner;
@@ -18,14 +19,28 @@ public sealed class DifficultyScaling : MonoBehaviour
     private void Awake()
     {
         DifficultyLevel = 1;
+
         gameUI = FindObjectOfType<GameUI>();
         spawner = FindObjectOfType<ObstacleSpawner>();
         backgrounds = FindObjectsOfType<ParallaxBackground>();
+
+        CalculateScaling();
     }
 
     private void Start()
     {
         StartCoroutine(Scale());
+    }
+
+    private void CalculateScaling()
+    {
+        float modifier = 2.5f;
+
+        for (int i = 1; i <= maxDifficultyLevel; i++)
+        {
+            timeIntervals.Add(i, baseTimeInterval + modifier * i);
+            modifier += i >= 5 ? 2.5f : 0.5f;
+        }
     }
 
     private IEnumerator Scale()
@@ -35,7 +50,7 @@ public sealed class DifficultyScaling : MonoBehaviour
 
         while (true)
         {
-            yield return new WaitForSeconds(timeToScaleDifficulty);
+            yield return new WaitForSeconds(timeIntervals[DifficultyLevel]);
             DifficultyLevel++;
             gameUI.UpdateDifficulty(DifficultyLevel);
             spawner.ScaleSpawner();
