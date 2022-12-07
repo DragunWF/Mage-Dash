@@ -5,7 +5,7 @@ using UnityEngine;
 public sealed class ParticlePlayer : MonoBehaviour
 {
     private Dictionary<string, GameObject> particles = new Dictionary<string, GameObject>();
-    private const float destroyDelay = 0.5f;
+    private const float destroyDelay = 7.5f;
 
     #region Play Particle Methods
 
