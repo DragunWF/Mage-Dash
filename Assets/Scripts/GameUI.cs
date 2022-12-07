@@ -22,9 +22,8 @@ public sealed class GameUI : MonoBehaviour
     public void ModifyPowerups(string type, bool addItem)
     {
         powerupText.text = "Active Powerups:\n";
-        Debug.Log("Inside modify powerups method");
 
-        if (addItem)
+        if (addItem && !activePowerups.Contains(type))
         {
             activePowerups.Add(type);
         }

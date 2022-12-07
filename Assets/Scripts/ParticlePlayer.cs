@@ -5,6 +5,7 @@ using UnityEngine;
 public sealed class ParticlePlayer : MonoBehaviour
 {
     private Dictionary<string, GameObject> particles = new Dictionary<string, GameObject>();
+    private const float destroyDelay = 0.5f;
 
     #region Play Particle Methods
 
@@ -34,7 +35,6 @@ public sealed class ParticlePlayer : MonoBehaviour
 
     private void SpawnParticle(string effectName, Vector2 position)
     {
-        const float destroyDelay = 0.5f;
         GameObject particle = Instantiate(particles[effectName], position,
                                           Quaternion.identity);
         Destroy(particle, destroyDelay);

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public sealed class Coin : MonoBehaviour
 {
-    private const float baseSpeed = 1.5f;
+    private const float baseSpeed = 2.85f;
     private const float despawnPositionX = -8f;
     private float modifiedSpeed;
 
     private void Awake()
     {
         int level = FindObjectOfType<DifficultyScaling>().DifficultyLevel;
-        modifiedSpeed = baseSpeed + 0.05f * level;
+        modifiedSpeed = baseSpeed + 0.075f * level;
     }
 
     private void Update()
@@ -31,6 +31,7 @@ public sealed class Coin : MonoBehaviour
         {
             FindObjectOfType<GameStats>().CollectCoin();
             FindObjectOfType<AudioPlayer>().PlayPickup();
+            FindObjectOfType<ParticlePlayer>().PlayPickup(transform.position);
             Destroy(gameObject);
         }
     }

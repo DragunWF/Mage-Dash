@@ -49,6 +49,7 @@ public sealed class Powerup : MonoBehaviour
         if (other.tag == "Player")
         {
             FindObjectOfType<AudioPlayer>().PlayPickup();
+            FindObjectOfType<ParticlePlayer>().PlayPickup(transform.position);
             FindObjectOfType<Player>().ActivatePowerup(powerupType, duration);
             Destroy(gameObject);
         }

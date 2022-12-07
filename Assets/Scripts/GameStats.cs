@@ -7,6 +7,7 @@ public sealed class GameStats : MonoBehaviour
     public int Score { get; private set; }
     public int Difficulty { get; private set; }
     public int Coins { get; private set; } // add future use
+    public int SessionCoinsCollected { get; private set; }
 
     public int HighScore { get; private set; }
     public int HighestDifficultyReached { get; private set; }
@@ -39,6 +40,7 @@ public sealed class GameStats : MonoBehaviour
     public void OnGameReset()
     {
         Score = 0;
+        SessionCoinsCollected = 0;
         NewHighScore = false;
         Difficulty = 0;
         gameUI = FindObjectOfType<GameUI>();
@@ -47,6 +49,7 @@ public sealed class GameStats : MonoBehaviour
     public void CollectCoin()
     {
         Coins++;
+        SessionCoinsCollected++;
     }
 
     public void IncreaseScore(float amount)
@@ -80,6 +83,9 @@ public sealed class GameStats : MonoBehaviour
 
         Difficulty = 1;
         HighestDifficultyReached = 0;
+
+        Coins = 0;
+        SessionCoinsCollected = 0;
 
         gameUI = FindObjectOfType<GameUI>();
     }
