@@ -13,6 +13,8 @@ public sealed class Powerup : MonoBehaviour
     private float speed;
     private DifficultyScaling difficulty;
 
+    #region Getter Methods
+
     public string GetPotionType()
     {
         return powerupType;
@@ -22,6 +24,8 @@ public sealed class Powerup : MonoBehaviour
     {
         return duration;
     }
+
+    #endregion
 
     private void Awake()
     {
