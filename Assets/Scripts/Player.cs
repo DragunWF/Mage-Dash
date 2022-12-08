@@ -100,7 +100,6 @@ public sealed class Player : MonoBehaviour
         firePos = GameObject.Find("FirePos").transform;
 
         rigidBody = GetComponent<Rigidbody2D>();
-        gameStats = FindObjectOfType<GameStats>();
         gameUI = FindObjectOfType<GameUI>();
 
         flashEffect = GetComponent<FlashEffect>();
@@ -110,6 +109,8 @@ public sealed class Player : MonoBehaviour
 
     private void Start()
     {
+        gameStats = FindObjectOfType<GameStats>();
+
         health = gameStats.MaxPlayerHealth;
         mana = gameStats.MaxPlayerMana;
 
@@ -148,6 +149,10 @@ public sealed class Player : MonoBehaviour
             audioPlayer.PlayShoot();
             onSpellCooldown = true;
             Invoke("RestoreSpell", spellCooldownTime);
+        }
+        else
+        {
+            audioPlayer.PlayError();
         }
     }
 
@@ -209,12 +214,11 @@ public sealed class Player : MonoBehaviour
         const float baseScoreIncrease = 1.25f, triggerDelay = 3f;
         yield return new WaitForSeconds(triggerDelay);
 
-        float scoreInterval = 1.5f * gameStats.ScoreModifier / 2; // 3 is the base interval
+        float scoreInterval = 1.5f * gameStats.ScoreModifier; // 3 is the base interval
         while (isAlive)
         {
             yield return new WaitForSeconds(scoreInterval);
             gameStats.IncreaseScore(baseScoreIncrease);
-            yield return new WaitForSeconds(scoreInterval);
         }
     }
 }
