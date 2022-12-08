@@ -9,8 +9,10 @@ public sealed class RetryMenuUI : MonoBehaviour
     private GameStats gameStats;
     private AudioPlayer audioPlayer;
 
-    private TextMeshProUGUI scoreText;
-    private TextMeshProUGUI highScoreText;
+    private Dictionary<string, TextMeshProUGUI> texts = new Dictionary<string, TextMeshProUGUI>();
+    private Dictionary<string, int> rawValues = new Dictionary<string, int>();
+    private Dictionary<string, string> formattedValues = new Dictionary<string, string>();
+
     private GameObject newHighScoreText;
 
     private void Awake()
@@ -19,18 +21,32 @@ public sealed class RetryMenuUI : MonoBehaviour
         gameStats = FindObjectOfType<GameStats>();
         audioPlayer = FindObjectOfType<AudioPlayer>();
 
-        scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
-        highScoreText = GameObject.Find("HighScoreText").GetComponent<TextMeshProUGUI>();
+        texts.Add("Score", GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>());
+        texts.Add("High Score", GameObject.Find("HighScoreText").GetComponent<TextMeshProUGUI>());
+        texts.Add("Coins", GameObject.Find("CoinsText").GetComponent<TextMeshProUGUI>());
+        texts.Add("Coins Collected", GameObject.Find("CoinsCollectedText").GetComponent<TextMeshProUGUI>());
+
         newHighScoreText = GameObject.Find("NewHighScoreText");
     }
 
     private void Start()
     {
-        string formattedScore = GameUI.FormatScore(gameStats.Score);
-        string formattedHighScore = GameUI.FormatScore(gameStats.HighScore);
+        rawValues.Add("Score", gameStats.Score);
+        rawValues.Add("High Score", gameStats.HighScore);
+        rawValues.Add("Coins", gameStats.Coins);
+        rawValues.Add("Coins Collected", gameStats.SessionCoinsCollected);
 
-        scoreText.text = string.Format("Score: {0}", formattedScore);
-        highScoreText.text = string.Format("High Score: {0}", formattedHighScore);
+        foreach (KeyValuePair<string, int> kvp in rawValues)
+        {
+            string formatted = GameUI.FormatScore(kvp.Value);
+            formattedValues[kvp.Key] = string.Format("{0}: {1}", kvp.Key, formatted);
+        }
+
+        foreach (KeyValuePair<string, TextMeshProUGUI> kvp in texts)
+        {
+            kvp.Value.text = formattedValues[kvp.Key];
+        }
+
         newHighScoreText.SetActive(gameStats.NewHighScore);
     }
 }
