@@ -62,6 +62,7 @@ public sealed class Player : MonoBehaviour
         if (powerupType == "health")
         {
             health++;
+            gameUI.UpdateHealthBar(health);
         }
         else if (powerupType == "mana" && !manaPowerupActive)
         {
