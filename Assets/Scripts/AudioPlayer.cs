@@ -14,6 +14,7 @@ public sealed class AudioPlayer : MonoBehaviour
     public void PlayClick() { PlayClip("Click"); }
     public void PlayJump() { PlayClip("Jump"); }
     public void PlayPickup() { PlayClip("Pickup"); }
+    public void PlayPowerup() { PlayClip("Powerup"); }
     public void PlayUpgrade() { PlayClip("Upgrade"); }
     public void PlayError() { PlayClip("Error"); }
     public void PlayDamage() { PlayClip("Damage"); }
@@ -29,7 +30,7 @@ public sealed class AudioPlayer : MonoBehaviour
         volumes.Add("Death", 0.75f);
 
         clips.Add("Click", Resources.Load("Audio/Click") as AudioClip);
-        volumes.Add("Click", 0.85f);
+        volumes.Add("Click", 0.98f);
 
         clips.Add("Jump", Resources.Load("Audio/Jump") as AudioClip);
         volumes.Add("Jump", 0.35f);
@@ -39,6 +40,9 @@ public sealed class AudioPlayer : MonoBehaviour
 
         clips.Add("Pickup", Resources.Load("Audio/Pickup") as AudioClip);
         volumes.Add("Pickup", 0.75f);
+
+        clips.Add("Powerup", Resources.Load("Audio/Powerup") as AudioClip);
+        volumes.Add("Powerup", 0.95f);
 
         clips.Add("Error", Resources.Load("Audio/Error") as AudioClip);
         volumes.Add("Error", 0.85f);
