@@ -57,7 +57,7 @@ public sealed class Player : MonoBehaviour
 
     public void ActivatePowerup(string powerupType, float powerupDuration)
     {
-        audioPlayer.PlayPickup();
+        audioPlayer.PlayPowerup();
 
         switch (powerupType)
         {
