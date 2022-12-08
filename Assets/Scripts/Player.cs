@@ -59,28 +59,27 @@ public sealed class Player : MonoBehaviour
     {
         audioPlayer.PlayPowerup();
 
-        switch (powerupType)
+        if (powerupType == "health")
         {
-            case "health":
-                health++;
-                break;
-            case "mana":
-                manaPowerupActive = true;
-                Invoke("DisableManaPowerup", powerupDuration);
-                break;
-            case "score":
-                scorePowerupActive = true;
-                Invoke("DisableScorePowerup", powerupDuration);
-                break;
-            case "damage":
-                damagePowerupActive = true;
-                Invoke("DisableDamagePowerup", powerupDuration);
-                break;
+            health++;
         }
-
-        if (powerupType != "health")
+        else if (powerupType == "mana" && !manaPowerupActive)
         {
+            manaPowerupActive = true;
             gameUI.ModifyPowerups(powerupType, true);
+            Invoke("DisableManaPowerup", powerupDuration);
+        }
+        else if (powerupType == "score" && !scorePowerupActive)
+        {
+            manaPowerupActive = true;
+            gameUI.ModifyPowerups(powerupType, true);
+            Invoke("DisableManaPowerup", powerupDuration);
+        }
+        else if (powerupType == "damage" && !damagePowerupActive)
+        {
+            damagePowerupActive = true;
+            gameUI.ModifyPowerups(powerupType, true);
+            Invoke("DisableDamagePowerup", powerupDuration);
         }
     }
 
