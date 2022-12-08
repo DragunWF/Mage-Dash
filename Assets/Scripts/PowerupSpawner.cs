@@ -52,7 +52,7 @@ public sealed class PowerupSpawner : MonoBehaviour
             player.GetManaPowerupStatus() &&
             player.GetDamagePowerupStatus())
         {
-            return null;
+            return powerups[0]; // health powerup
         }
 
         GameObject powerup = null;
@@ -64,6 +64,9 @@ public sealed class PowerupSpawner : MonoBehaviour
 
             switch (powerup.GetComponent<Powerup>().GetPotionType())
             {
+                case "health":
+                    foundDistinct = true;
+                    break;
                 case "mana":
                     if (!player.GetManaPowerupStatus())
                         foundDistinct = true;
