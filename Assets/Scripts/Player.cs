@@ -59,7 +59,7 @@ public sealed class Player : MonoBehaviour
     {
         audioPlayer.PlayPowerup();
 
-        if (powerupType == "health")
+        if (powerupType == "health" && health < gameStats.MaxPlayerHealth)
         {
             health++;
             gameUI.UpdateHealthBar(health);
