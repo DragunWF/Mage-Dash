@@ -9,7 +9,17 @@ public sealed class ShopMenuUI : MonoBehaviour
     private Dictionary<string, int> prices = new Dictionary<string, int>();
     private Dictionary<string, TextMeshProUGUI> shopItems = new Dictionary<string, TextMeshProUGUI>();
     private TextMeshProUGUI coinText;
+
     private GameStats gameStats;
+    private AudioPlayer audioPlayer;
+
+    #region Upgrade Methods
+
+    public void UpgradeMana() { Upgrade("mana"); }
+    public void UpgradeHealth() { Upgrade("health"); }
+    public void UpgradeSpell() { Upgrade("spell"); }
+
+    #endregion
 
     public void UpdateCoinText()
     {
@@ -19,6 +29,7 @@ public sealed class ShopMenuUI : MonoBehaviour
     private void Awake()
     {
         gameStats = FindObjectOfType<GameStats>();
+        audioPlayer = FindObjectOfType<AudioPlayer>();
 
         shopItems.Add("mana", GameObject.Find("ManaText").GetComponent<TextMeshProUGUI>());
         shopItems.Add("health", GameObject.Find("HealthText").GetComponent<TextMeshProUGUI>());
@@ -32,5 +43,11 @@ public sealed class ShopMenuUI : MonoBehaviour
     private void Start()
     {
         UpdateCoinText();
+    }
+
+    private void Upgrade(string stat)
+    {
+        audioPlayer.PlayUpgrade();
+        gameStats.UpgradeStat(stat);
     }
 }
