@@ -18,8 +18,8 @@ public sealed class GameStats : MonoBehaviour
     public int MaxPlayerMana { get; private set; }
 
     public int HealthLevel { get; private set; }
-    public int DamageLevel { get; private set; }
-    public int ManaRegenLevel { get; private set; }
+    public int SpellLevel { get; private set; }
+    public int ManaLevel { get; private set; }
     public int AgilityLevel { get; private set; }
 
     public float ScoreModifier { get; private set; }
@@ -27,6 +27,22 @@ public sealed class GameStats : MonoBehaviour
     private float scoreMultiplier = 1f;
     private GameUI gameUI;
     static private GameStats instance;
+
+    public void UpgradeStat(string type)
+    {
+        switch (type)
+        {
+            case "health":
+                HealthLevel++;
+                break;
+            case "mana":
+                ManaLevel++;
+                break;
+            case "damage":
+                SpellLevel++;
+                break;
+        }
+    }
 
     public void SaveScore()
     {
@@ -67,13 +83,13 @@ public sealed class GameStats : MonoBehaviour
     private void Awake()
     {
         ManageSingleton();
-        
+
         PlayerDamage = 15; // default values
         MaxPlayerHealth = 3;
         MaxPlayerMana = 5;
 
-        DamageLevel = 1;
-        ManaRegenLevel = 1;
+        SpellLevel = 1;
+        ManaLevel = 1;
         AgilityLevel = 1; // increase score multiplier
 
         Score = 0;
@@ -108,7 +124,7 @@ public sealed class GameStats : MonoBehaviour
         const float manaLimit = 0.25f;
         const float decrementor = 0.3f;
         float manaRegenTime = 3.5f;
-        manaRegenTime -= ManaRegenLevel * decrementor;
+        manaRegenTime -= ManaLevel * decrementor;
 
         if (manaRegenTime <= manaLimit)
         {
