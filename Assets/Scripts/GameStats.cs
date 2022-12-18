@@ -28,6 +28,25 @@ public sealed class GameStats : MonoBehaviour
     private GameUI gameUI;
     static private GameStats instance;
 
+    public float ComputeManaRegen()
+    {
+        const float manaLimit = 0.25f, baseRegenTime = 3.5f;
+        const float decrementor = 0.3f;
+        float manaRegenTime = baseRegenTime; // base value
+
+        if (ManaLevel > 1)
+        {
+            float decreasedAmount = (ManaLevel - 1) * decrementor;
+            manaRegenTime = baseRegenTime - decreasedAmount;
+            if (manaRegenTime <= manaLimit)
+            {
+                manaRegenTime = manaLimit;
+            }
+        }
+
+        return manaRegenTime;
+    }
+
     public void UpgradeStat(string type)
     {
         switch (type)
@@ -111,27 +130,6 @@ public sealed class GameStats : MonoBehaviour
         const float baseMultiplier = 1f;
         const float levelIncrease = 0.25f;
         return baseMultiplier + levelIncrease * AgilityLevel;
-    }
-
-    private int ComputeHealth()
-    {
-        const int baseHealth = 3;
-        return HealthLevel == 1 ? baseHealth : baseHealth + HealthLevel - 1;
-    }
-
-    private float ComputeManaRegen()
-    {
-        const float manaLimit = 0.25f;
-        const float decrementor = 0.3f;
-        float manaRegenTime = 3.5f;
-        manaRegenTime -= ManaLevel * decrementor;
-
-        if (manaRegenTime <= manaLimit)
-        {
-            manaRegenTime = manaLimit;
-        }
-
-        return manaRegenTime;
     }
 
     private void ManageSingleton()
