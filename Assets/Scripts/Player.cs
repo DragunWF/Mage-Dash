@@ -12,9 +12,9 @@ public sealed class Player : MonoBehaviour
     private int mana;
 
     private const float spellCooldownTime = 0.125f;
-    private const float manaRegenTime = 3.45f; // change in the future
     private bool onSpellCooldown = false;
     private bool onDamageCooldown = false;
+    private float manaRegenTime; // change in the future
 
     private bool manaPowerupActive = false;
     private bool scorePowerupActive = false;
@@ -113,6 +113,7 @@ public sealed class Player : MonoBehaviour
 
         health = gameStats.MaxPlayerHealth;
         mana = gameStats.MaxPlayerMana;
+        manaRegenTime = gameStats.ComputeManaRegen();
 
         gameUI.UpdateHealthBar(health, true);
         gameUI.UpdateManaBar(mana, true);
@@ -192,7 +193,7 @@ public sealed class Player : MonoBehaviour
     private IEnumerator RegenMana()
     {
         const float interval = 1.5f;
-        const float upgradedRegen = manaRegenTime * 0.15f;
+        float upgradedRegen = manaRegenTime * 0.15f;
 
         while (true)
         {
