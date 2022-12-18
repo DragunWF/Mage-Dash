@@ -10,7 +10,7 @@ public sealed class ShopMenuUI : MonoBehaviour
     private Dictionary<string, int> statLevels = new Dictionary<string, int>();
     private Dictionary<string, TextMeshProUGUI> shopItems = new Dictionary<string, TextMeshProUGUI>();
     private TextMeshProUGUI coinText;
-    private bool initilizedLevels = false;
+    private bool initializedLevels = false;
 
     private GameStats gameStats;
     private AudioPlayer audioPlayer;
@@ -29,7 +29,7 @@ public sealed class ShopMenuUI : MonoBehaviour
         {
             if (type == pair.Key)
             {
-                InitilizeLevels();
+                UpdateLevels();
                 shopItems[type].text = string.Format("{0} {1}", pair.Key, statLevels[type]);
                 break;
             }
@@ -66,14 +66,15 @@ public sealed class ShopMenuUI : MonoBehaviour
         gameStats.UpgradeStat(stat);
     }
 
-    private void InitilizeLevels()
+    private void UpdateLevels()
     {
-        if (!initilizedLevels)
+        if (!initializedLevels)
         {
+            statLevels.Clear();
             statLevels.Add("mana", gameStats.ManaLevel);
             statLevels.Add("health", gameStats.HealthLevel);
             statLevels.Add("damage", gameStats.SpellLevel);
-            initilizedLevels = true;
+            initializedLevels = true;
         }
         else
         {
