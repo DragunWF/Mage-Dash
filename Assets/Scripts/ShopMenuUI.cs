@@ -9,6 +9,7 @@ public sealed class ShopMenuUI : MonoBehaviour
     private Dictionary<string, int> prices = new Dictionary<string, int>();
     private Dictionary<string, int> statLevels = new Dictionary<string, int>();
     private Dictionary<string, TextMeshProUGUI> shopItems = new Dictionary<string, TextMeshProUGUI>();
+
     private TextMeshProUGUI coinText;
     private bool initializedLevels = false;
 
@@ -36,11 +37,6 @@ public sealed class ShopMenuUI : MonoBehaviour
         }
     }
 
-    public void UpdateCoinText()
-    {
-        coinText.text = string.Format("Coin Amount: {0}", gameStats.Coins);
-    }
-
     private void Awake()
     {
         gameStats = FindObjectOfType<GameStats>();
@@ -50,14 +46,21 @@ public sealed class ShopMenuUI : MonoBehaviour
         shopItems.Add("health", GameObject.Find("HealthText").GetComponent<TextMeshProUGUI>());
         shopItems.Add("damage", GameObject.Find("DamageText").GetComponent<TextMeshProUGUI>());
 
-        prices.Add("Mana Upgrade", 15);
-        prices.Add("Health Upgrade", 15);
-        prices.Add("Damage Upgrade", 20);
+        prices.Add("mana", 15);
+        prices.Add("health", 15);
+        prices.Add("spell", 20);
     }
 
     private void Start()
     {
-        UpdateCoinText();
+        coinText.text = string.Format("Coin Amount: {0}", gameStats.Coins);
+
+        foreach (KeyValuePair<string, int> pair in prices)
+        {
+            string formatted = string.Format("{0}Text", Capitalize(pair.Key));
+            TextMeshProUGUI textObj = GameObject.Find(formatted).GetComponent<TextMeshProUGUI>();
+            textObj.text = string.Format("Price: {1}", pair.Value);
+        }
     }
 
     private void Upgrade(string stat)
@@ -94,5 +97,12 @@ public sealed class ShopMenuUI : MonoBehaviour
                 }
             }
         }
+    }
+
+    private string Capitalize(string original)
+    {
+        char firstLetter = (char)((int)original[0] - 32);
+        string remaining = original.Substring(1);
+        return string.Format("{0}{1}", firstLetter, remaining);
     }
 }
