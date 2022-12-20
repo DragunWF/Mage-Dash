@@ -78,7 +78,7 @@ public sealed class ShopMenuUI : MonoBehaviour
 
     private void Start()
     {
-        coinText.text = string.Format("Coins: {0}", gameStats.Coins);
+        UpdateCoinText();
     }
 
     private void Upgrade(string stat)
@@ -86,8 +86,10 @@ public sealed class ShopMenuUI : MonoBehaviour
         if (gameStats.Coins > prices[stat])
         {
             audioPlayer.PlayUpgrade();
-            gameStats.UpgradeStat(stat);
+            gameStats.UpgradeStat(stat, prices[stat]);
+
             lockPromptText = false;
+            UpdateCoinText();
         }
         else
         {
@@ -140,6 +142,11 @@ public sealed class ShopMenuUI : MonoBehaviour
         int price = prices[buttonType];
         string coinWord = price > 1 ? "coins" : "coin";
         promptText.text = string.Format("Upgrade Price: {0} {1}", price, coinWord);
+    }
+
+    private void UpdateCoinText()
+    {
+        coinText.text = string.Format("Coins: {0}", gameStats.Coins);
     }
 
     private string Capitalize(string original)
