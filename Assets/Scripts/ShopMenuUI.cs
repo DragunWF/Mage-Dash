@@ -70,7 +70,7 @@ public sealed class ShopMenuUI : MonoBehaviour
 
     private void Start()
     {
-        coinText.text = string.Format("Coin Amount: {0}", gameStats.Coins);
+        coinText.text = string.Format("Coins: {0}", gameStats.Coins);
         promptText.text = "";
 
         foreach (KeyValuePair<string, int> pair in prices)
@@ -94,7 +94,7 @@ public sealed class ShopMenuUI : MonoBehaviour
             statLevels.Clear();
             statLevels.Add("mana", gameStats.ManaLevel);
             statLevels.Add("health", gameStats.HealthLevel);
-            statLevels.Add("damage", gameStats.SpellLevel);
+            statLevels.Add("spell", gameStats.SpellLevel);
             initializedLevels = true;
         }
         else
@@ -121,7 +121,7 @@ public sealed class ShopMenuUI : MonoBehaviour
     {
         int price = prices[buttonType];
         string coinWord = price > 1 ? "coins" : "coin";
-        promptText.text = string.Format("Price: {0} {1}", price, coinWord);
+        promptText.text = string.Format("Upgrade Price: {0} {1}", price, coinWord);
     }
 
     private string Capitalize(string original)
