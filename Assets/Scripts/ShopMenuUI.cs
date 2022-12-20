@@ -12,7 +12,11 @@ public sealed class ShopMenuUI : MonoBehaviour
 
     private TextMeshProUGUI promptText;
     private TextMeshProUGUI coinText;
+    private Color32 greenTextColor = new Color32(114, 224, 179, 255);
+    private Color32 errorTextColor = new Color32(229, 52, 38, 255);
+
     private bool initializedLevels = false;
+    private bool lockPromptText = false;
 
     private GameStats gameStats;
     private AudioPlayer audioPlayer;
@@ -35,7 +39,11 @@ public sealed class ShopMenuUI : MonoBehaviour
 
     public void OnButtonHoverExit()
     {
-        promptText.text = "";
+        if (!lockPromptText)
+        {
+            promptText.text = "Hover over the upgrade buttons to view price";
+            promptText.color = greenTextColor;
+        }
     }
 
     public void UpdateLevelText(string type)
@@ -63,28 +71,32 @@ public sealed class ShopMenuUI : MonoBehaviour
         shopItems.Add("health", GameObject.Find("HealthText").GetComponent<TextMeshProUGUI>());
         shopItems.Add("spell", GameObject.Find("SpellText").GetComponent<TextMeshProUGUI>());
 
-        prices.Add("mana", 15);
+        prices.Add("mana", 10);
         prices.Add("health", 15);
-        prices.Add("spell", 20);
+        prices.Add("spell", 5);
     }
 
     private void Start()
     {
         coinText.text = string.Format("Coins: {0}", gameStats.Coins);
-        promptText.text = "";
-
-        foreach (KeyValuePair<string, int> pair in prices)
-        {
-            string formatted = string.Format("{0}Text", Capitalize(pair.Key));
-            TextMeshProUGUI textObj = GameObject.Find(formatted).GetComponent<TextMeshProUGUI>();
-            textObj.text = string.Format("Price: {1}", pair.Value);
-        }
     }
 
     private void Upgrade(string stat)
     {
-        audioPlayer.PlayUpgrade();
-        gameStats.UpgradeStat(stat);
+        if (gameStats.Coins > prices[stat])
+        {
+            audioPlayer.PlayUpgrade();
+            gameStats.UpgradeStat(stat);
+            lockPromptText = false;
+        }
+        else
+        {
+            audioPlayer.PlayError();
+            lockPromptText = true;
+
+            promptText.color = errorTextColor;
+            promptText.text = "You don't have enough coins!";
+        }
     }
 
     private void UpdateLevels()
@@ -119,6 +131,12 @@ public sealed class ShopMenuUI : MonoBehaviour
 
     private void OnButtonHover(string buttonType)
     {
+        if (lockPromptText)
+        {
+            promptText.color = greenTextColor;
+            lockPromptText = false;
+        }
+
         int price = prices[buttonType];
         string coinWord = price > 1 ? "coins" : "coin";
         promptText.text = string.Format("Upgrade Price: {0} {1}", price, coinWord);
