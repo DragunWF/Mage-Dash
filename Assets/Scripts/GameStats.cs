@@ -6,7 +6,7 @@ public sealed class GameStats : MonoBehaviour
 {
     public int Score { get; private set; }
     public int Difficulty { get; private set; }
-    public int Coins { get; private set; } // add future use
+    public int Coins { get; private set; }
     public int SessionCoinsCollected { get; private set; }
 
     public int HighScore { get; private set; }
@@ -20,7 +20,6 @@ public sealed class GameStats : MonoBehaviour
     public int HealthLevel { get; private set; }
     public int SpellLevel { get; private set; }
     public int ManaLevel { get; private set; }
-    public int AgilityLevel { get; private set; }
 
     public float ScoreModifier { get; private set; }
 
@@ -47,8 +46,10 @@ public sealed class GameStats : MonoBehaviour
         return manaRegenTime;
     }
 
-    public void UpgradeStat(string type)
+    public void UpgradeStat(string type, int price)
     {
+        Coins -= price;
+
         switch (type)
         {
             case "health":
@@ -109,7 +110,6 @@ public sealed class GameStats : MonoBehaviour
 
         SpellLevel = 1;
         ManaLevel = 1;
-        AgilityLevel = 1; // increase score multiplier
 
         Score = 0;
         HighScore = 0;
@@ -123,13 +123,6 @@ public sealed class GameStats : MonoBehaviour
         SessionCoinsCollected = 0;
 
         gameUI = FindObjectOfType<GameUI>();
-    }
-
-    private float ComputeScoreMultiplier()
-    {
-        const float baseMultiplier = 1f;
-        const float levelIncrease = 0.25f;
-        return baseMultiplier + levelIncrease * AgilityLevel;
     }
 
     private void ManageSingleton()
