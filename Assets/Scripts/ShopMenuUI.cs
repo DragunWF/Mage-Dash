@@ -30,9 +30,13 @@ public sealed class ShopMenuUI : MonoBehaviour
     public void OnSpellButtonHover() { OnButtonHover("spell"); }
     public void OnHealthButtonHover() { OnButtonHover("health"); }
     public void OnManaButtonHover() { OnButtonHover("mana"); }
-    public void OnButtonExit() { promptText.text = ""; }
 
     #endregion
+
+    public void OnButtonHoverExit()
+    {
+        promptText.text = "";
+    }
 
     public void UpdateLevelText(string type)
     {
