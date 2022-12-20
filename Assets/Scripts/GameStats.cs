@@ -57,7 +57,7 @@ public sealed class GameStats : MonoBehaviour
             case "mana":
                 ManaLevel++;
                 break;
-            case "damage":
+            case "spell":
                 SpellLevel++;
                 break;
         }
