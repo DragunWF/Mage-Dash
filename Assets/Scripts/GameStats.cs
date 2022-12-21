@@ -27,6 +27,8 @@ public sealed class GameStats : MonoBehaviour
     private GameUI gameUI;
     static private GameStats instance;
 
+    public void SubtractCoins(int amount) => Coins -= amount;
+
     public float ComputeManaRegen()
     {
         const float manaLimit = 0.25f, baseRegenTime = 3.5f;
@@ -48,7 +50,7 @@ public sealed class GameStats : MonoBehaviour
 
     public void UpgradeStat(string type, int price)
     {
-        Coins -= price;
+        SubtractCoins(price);
 
         switch (type)
         {
