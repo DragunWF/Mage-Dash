@@ -105,10 +105,8 @@ public sealed class ShopMenuUI : MonoBehaviour
         string[] cosmetics = cosmeticManager.GetCosmeticNames();
         for (int i = 0; i < cosmetics.Length; i++)
         {
-            if (cosmetics[i] != "mage")
-            {
-                prices.Add(cosmetics[i], basePrice + ((i + 1) * 5));
-            }
+            prices.Add(cosmetics[i], cosmetics[i] != "mage" ?
+                                     basePrice + ((i + 1) * 5) : 0);
         }
     }
 
@@ -178,15 +176,24 @@ public sealed class ShopMenuUI : MonoBehaviour
 
     private void EquipCosmetic(string cosmetic)
     {
-        if (cosmeticManager.EquippedCosmeticName == cosmetic && cosmeticManager.ownedCosmetics[cosmetic])
+        bool ownsCosmetic = cosmeticManager.ownedCosmetics[cosmetic];
+
+        if (cosmeticManager.EquippedCosmeticName == cosmetic && ownsCosmetic)
         {
             promptText.text = "This cosmetic is already equipped";
             lockPromptText = true;
         }
-        else if (CheckAffordable(prices[cosmetic]))
+        else if (CheckAffordable(prices[cosmetic]) || ownsCosmetic)
         {
             cosmeticManager.ChangeCosmetic(cosmetic);
             UpdateCosmeticButtons();
+
+            if (!ownsCosmetic)
+            {
+                promptText.text = "You now own this cosmetic";
+                gameStats.SubtractCoins(prices[cosmetic]);
+                UpdateCoinText();
+            }
         }
     }
 
