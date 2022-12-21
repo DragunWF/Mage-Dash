@@ -168,6 +168,17 @@ public sealed class ShopMenuUI : MonoBehaviour
         coinText.text = string.Format("Coins: {0}", formattedAmount);
     }
 
+    private void UpdateCosmeticButtons()
+    {
+        string[] cosmeticNames = cosmeticManager.GetCosmeticNames();
+        foreach (string name in cosmeticNames)
+        {
+            string textName = string.Format("{0}ButtonText", Utils.Capitalize(name));
+            TextMeshProUGUI textObj = GameObject.Find(textName).GetComponent<TextMeshProUGUI>();
+            textObj.text = cosmeticManager.EquippedCosmeticName == name ? "Equipped" : "Equip";
+        }
+    }
+
     private void EquipCosmetic(string cosmetic)
     {
         if (cosmeticManager.EquippedCosmeticName == cosmetic && cosmeticManager.ownedCosmetics[cosmetic])
@@ -178,6 +189,7 @@ public sealed class ShopMenuUI : MonoBehaviour
         else if (CheckAffordable(prices[cosmetic]))
         {
             cosmeticManager.ChangeCosmetic(cosmetic);
+            UpdateCosmeticButtons();
         }
     }
 
