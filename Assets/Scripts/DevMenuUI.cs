@@ -8,6 +8,7 @@ public sealed class DevMenuUI : MonoBehaviour
 {
     private const string devCode = "dragunwf";
     private GameStats gameStats;
+    private AudioPlayer audioPlayer;
 
     private TMP_InputField codeField;
     private TextMeshProUGUI coinText;
@@ -21,17 +22,20 @@ public sealed class DevMenuUI : MonoBehaviour
             {
                 promptText.text = "Enjoy your extra 100,000 coins!";
                 promptText.color = Utils.GetGreenColor();
+
+                audioPlayer.PlayUpgrade();
+                gameStats.ClaimCode();
             }
             else
             {
                 promptText.text = "Code already used!";
-                promptText.color = Utils.GetErrorColor();
+                OnError();
             }
         }
         else
         {
             promptText.text = "Invalid code!";
-            promptText.color = Utils.GetErrorColor();
+            OnError();
         }
     }
 
@@ -40,7 +44,9 @@ public sealed class DevMenuUI : MonoBehaviour
         codeField = GameObject.Find("CodeField").GetComponent<TMP_InputField>();
         coinText = GameObject.Find("CoinText").GetComponent<TextMeshProUGUI>();
         promptText = GameObject.Find("PromptText").GetComponent<TextMeshProUGUI>();
+
         gameStats = FindObjectOfType<GameStats>();
+        audioPlayer = FindObjectOfType<AudioPlayer>();
     }
 
     private void Start()
@@ -52,5 +58,11 @@ public sealed class DevMenuUI : MonoBehaviour
     {
         string formattedCoins = Utils.FormatNumber(gameStats.Coins);
         coinText.text = string.Format("Coins: {0}", formattedCoins);
+    }
+
+    private void OnError()
+    {
+        audioPlayer.PlayError();
+        promptText.color = Utils.GetErrorColor();
     }
 }
