@@ -19,6 +19,7 @@ public sealed class ShopMenuUI : MonoBehaviour
     private bool lockPromptText = false;
 
     private GameStats gameStats;
+    private CosmeticManager cosmeticManager;
     private AudioPlayer audioPlayer;
 
     #region Upgrade Methods
@@ -62,18 +63,20 @@ public sealed class ShopMenuUI : MonoBehaviour
     private void Awake()
     {
         gameStats = FindObjectOfType<GameStats>();
+        cosmeticManager = FindObjectOfType<CosmeticManager>();
         audioPlayer = FindObjectOfType<AudioPlayer>();
 
         coinText = GameObject.Find("CoinText").GetComponent<TextMeshProUGUI>();
         promptText = GameObject.Find("PromptText").GetComponent<TextMeshProUGUI>();
 
-        shopItems.Add("mana", GameObject.Find("ManaText").GetComponent<TextMeshProUGUI>());
-        shopItems.Add("health", GameObject.Find("HealthText").GetComponent<TextMeshProUGUI>());
-        shopItems.Add("spell", GameObject.Find("SpellText").GetComponent<TextMeshProUGUI>());
-
-        prices.Add("mana", 10);
-        prices.Add("health", 15);
-        prices.Add("spell", 5);
+        string[] stats = { "health", "mana", "spell" };
+        const int basePrice = 15;
+        for (int i = 0; i < stats.Length; i++)
+        {
+            string textName = string.Format("{0}Text", Utils.Capitalize(stats[i]));
+            shopItems.Add(stats[i], GameObject.Find(textName).GetComponent<TextMeshProUGUI>());
+            prices.Add(stats[i], basePrice - (i * 5)); // Price varies by an interval of 5 each
+        }
     }
 
     private void Start()
