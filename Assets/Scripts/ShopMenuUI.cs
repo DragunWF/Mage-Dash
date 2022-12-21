@@ -12,9 +12,6 @@ public sealed class ShopMenuUI : MonoBehaviour
 
     private TextMeshProUGUI promptText;
     private TextMeshProUGUI coinText;
-    private Color32 greenTextColor = new Color32(114, 224, 179, 255);
-    private Color32 errorTextColor = new Color32(229, 52, 38, 255);
-
     private bool initializedLevels = false;
     private bool lockPromptText = false;
 
@@ -54,7 +51,7 @@ public sealed class ShopMenuUI : MonoBehaviour
         if (!lockPromptText)
         {
             promptText.text = "Hover over the upgrade buttons to view price";
-            promptText.color = greenTextColor;
+            promptText.color = Utils.GetGreenColor();
         }
     }
 
@@ -78,7 +75,7 @@ public sealed class ShopMenuUI : MonoBehaviour
             audioPlayer.PlayError();
             lockPromptText = true;
 
-            promptText.color = errorTextColor;
+            promptText.color = Utils.GetErrorColor();
             promptText.text = "You don't have enough coins!";
 
             return false;
@@ -197,7 +194,7 @@ public sealed class ShopMenuUI : MonoBehaviour
     {
         if (lockPromptText)
         {
-            promptText.color = greenTextColor;
+            promptText.color = Utils.GetGreenColor();
             lockPromptText = false;
         }
 
