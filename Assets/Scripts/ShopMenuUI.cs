@@ -30,11 +30,22 @@ public sealed class ShopMenuUI : MonoBehaviour
 
     #endregion
 
+    #region Cosmetic Methods
+
+    public void EquipMageCosmetic() => EquipCosmetic("mage");
+    public void EquipGhostCosmetic() => EquipCosmetic("ghost");
+    public void EquipArthurCosmetic() => EquipCosmetic("arthur");
+
+    #endregion
+
     #region Hover Methods
 
     public void OnSpellButtonHover() { OnButtonHover("spell"); }
     public void OnHealthButtonHover() { OnButtonHover("health"); }
     public void OnManaButtonHover() { OnButtonHover("mana"); }
+    public void OnMageButtonHover() { OnButtonHover("mage"); }
+    public void OnGhostButtonHover() { OnButtonHover("ghost"); }
+    public void OnArthurButtonHover() { OnButtonHover("arthur"); }
 
     #endregion
 
@@ -60,6 +71,22 @@ public sealed class ShopMenuUI : MonoBehaviour
         }
     }
 
+    public bool CheckAffordable(int price)
+    {
+        if (gameStats.Coins < price)
+        {
+            audioPlayer.PlayError();
+            lockPromptText = true;
+
+            promptText.color = errorTextColor;
+            promptText.text = "You don't have enough coins!";
+
+            return false;
+        }
+
+        return true;
+    }
+
     private void Awake()
     {
         gameStats = FindObjectOfType<GameStats>();
@@ -77,6 +104,15 @@ public sealed class ShopMenuUI : MonoBehaviour
             shopItems.Add(stats[i], GameObject.Find(textName).GetComponent<TextMeshProUGUI>());
             prices.Add(stats[i], basePrice - (i * 5)); // Price varies by an interval of 5 each
         }
+
+        string[] cosmetics = cosmeticManager.GetCosmeticNames();
+        for (int i = 0; i < cosmetics.Length; i++)
+        {
+            if (cosmetics[i] != "mage")
+            {
+                prices.Add(cosmetics[i], basePrice + ((i + 1) * 5));
+            }
+        }
     }
 
     private void Start()
@@ -86,21 +122,13 @@ public sealed class ShopMenuUI : MonoBehaviour
 
     private void Upgrade(string stat)
     {
-        if (gameStats.Coins > prices[stat])
+        if (CheckAffordable(prices[stat]))
         {
             audioPlayer.PlayUpgrade();
             gameStats.UpgradeStat(stat, prices[stat]);
 
             lockPromptText = false;
             UpdateCoinText();
-        }
-        else
-        {
-            audioPlayer.PlayError();
-            lockPromptText = true;
-
-            promptText.color = errorTextColor;
-            promptText.text = "You don't have enough coins!";
         }
     }
 
@@ -134,7 +162,26 @@ public sealed class ShopMenuUI : MonoBehaviour
         }
     }
 
-    private void OnButtonHover(string buttonType)
+    private void UpdateCoinText()
+    {
+        string formattedAmount = Utils.FormatNumber(gameStats.Coins);
+        coinText.text = string.Format("Coins: {0}", formattedAmount);
+    }
+
+    private void EquipCosmetic(string cosmetic)
+    {
+        if (cosmeticManager.EquippedCosmeticName == cosmetic)
+        {
+            promptText.text = "This cosmetic is already equipped";
+            lockPromptText = true;
+        }
+        else if (CheckAffordable(prices[cosmetic]))
+        {
+            cosmeticManager.ChangeCosmetic(cosmetic);
+        }
+    }
+
+    private void OnButtonHover(string type)
     {
         if (lockPromptText)
         {
@@ -142,13 +189,17 @@ public sealed class ShopMenuUI : MonoBehaviour
             lockPromptText = false;
         }
 
-        int price = prices[buttonType];
-        string coinWord = price > 1 ? "coins" : "coin";
-        promptText.text = string.Format("Upgrade Price: {0} {1}", price, coinWord);
-    }
-
-    private void UpdateCoinText()
-    {
-        coinText.text = string.Format("Coins: {0}", gameStats.Coins);
+        bool isCosmetic = cosmeticManager.ownedCosmetics.ContainsKey(type);
+        if (isCosmetic && cosmeticManager.ownedCosmetics[type])
+        {
+            promptText.text = "Click to equip this cosmetic";
+        }
+        else
+        {
+            int price = prices[type];
+            string coinWord = price > 1 ? "coins" : "coin";
+            string itemType = isCosmetic ? "Cosmetic" : "Upgrade";
+            promptText.text = string.Format("{0} Price: {1} {2}", itemType, price, coinWord);
+        }
     }
 }
