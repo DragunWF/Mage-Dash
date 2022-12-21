@@ -12,7 +12,6 @@ public sealed class ShopMenuUI : MonoBehaviour
 
     private TextMeshProUGUI promptText;
     private TextMeshProUGUI coinText;
-    private bool initializedLevels = false;
     private bool lockPromptText = false;
 
     private GameStats gameStats;
@@ -62,7 +61,7 @@ public sealed class ShopMenuUI : MonoBehaviour
             if (type == pair.Key)
             {
                 UpdateLevels();
-                shopItems[type].text = string.Format("{0} {1}", pair.Key, statLevels[type]);
+                shopItems[type].text = string.Format("{0} Level: {1}", pair.Key, statLevels[type]);
                 break;
             }
         }
@@ -106,13 +105,14 @@ public sealed class ShopMenuUI : MonoBehaviour
         for (int i = 0; i < cosmetics.Length; i++)
         {
             prices.Add(cosmetics[i], cosmetics[i] != "mage" ?
-                                     basePrice + ((i + 1) * 5) : 0);
+                                     basePrice + (i + 1) * 5 : 0);
         }
     }
 
     private void Start()
     {
         UpdateCoinText();
+        UpdateLevels();
     }
 
     private void Upgrade(string stat)
@@ -124,37 +124,16 @@ public sealed class ShopMenuUI : MonoBehaviour
 
             lockPromptText = false;
             UpdateCoinText();
+            UpdateLevelText(stat);
         }
     }
 
     private void UpdateLevels()
     {
-        if (!initializedLevels)
-        {
-            statLevels.Clear();
-            statLevels.Add("mana", gameStats.ManaLevel);
-            statLevels.Add("health", gameStats.HealthLevel);
-            statLevels.Add("spell", gameStats.SpellLevel);
-            initializedLevels = true;
-        }
-        else
-        {
-            foreach (KeyValuePair<string, int> pair in statLevels)
-            {
-                switch (pair.Key)
-                {
-                    case "mana":
-                        statLevels[pair.Key] = gameStats.ManaLevel;
-                        break;
-                    case "health":
-                        statLevels[pair.Key] = gameStats.HealthLevel;
-                        break;
-                    case "spell":
-                        statLevels[pair.Key] = gameStats.SpellLevel;
-                        break;
-                }
-            }
-        }
+        statLevels.Clear();
+        statLevels.Add("mana", gameStats.ManaLevel);
+        statLevels.Add("health", gameStats.HealthLevel);
+        statLevels.Add("spell", gameStats.SpellLevel);
     }
 
     private void UpdateCoinText()
