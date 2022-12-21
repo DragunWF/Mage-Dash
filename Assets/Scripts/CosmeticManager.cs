@@ -15,6 +15,7 @@ public sealed class CosmeticManager : MonoBehaviour
     {
         EquippedCosmetic = cosmetics[cosmeticName];
         EquippedCosmeticName = cosmeticName;
+        ownedCosmetics[cosmeticName] = true;
     }
 
     public string[] GetCosmeticNames()
