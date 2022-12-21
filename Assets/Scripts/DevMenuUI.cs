@@ -25,6 +25,7 @@ public sealed class DevMenuUI : MonoBehaviour
 
                 audioPlayer.PlayUpgrade();
                 gameStats.ClaimCode();
+                UpdateCoinText();
             }
             else
             {
