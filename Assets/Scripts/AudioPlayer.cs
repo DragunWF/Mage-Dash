@@ -9,15 +9,15 @@ public sealed class AudioPlayer : MonoBehaviour
 
     #region Play Audio File Methods
 
-    public void PlayShoot() { PlayClip("Shoot"); }
-    public void PlayDeath() { PlayClip("Death"); }
-    public void PlayClick() { PlayClip("Click"); }
-    public void PlayJump() { PlayClip("Jump"); }
-    public void PlayPickup() { PlayClip("Pickup"); }
-    public void PlayPowerup() { PlayClip("Powerup"); }
-    public void PlayUpgrade() { PlayClip("Upgrade"); }
-    public void PlayError() { PlayClip("Error"); }
-    public void PlayDamage() { PlayClip("Damage"); }
+    public void PlayShoot() => PlayClip("Shoot");
+    public void PlayDeath() => PlayClip("Death");
+    public void PlayClick() => PlayClip("Click");
+    public void PlayJump() => PlayClip("Jump");
+    public void PlayPickup() => PlayClip("Pickup");
+    public void PlayPowerup() => PlayClip("Powerup");
+    public void PlayUpgrade() => PlayClip("Upgrade");
+    public void PlayError() => PlayClip("Error");
+    public void PlayDamage() => PlayClip("Damage");
 
     #endregion
 

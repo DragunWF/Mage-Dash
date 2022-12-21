@@ -24,9 +24,9 @@ public sealed class ShopMenuUI : MonoBehaviour
 
     #region Upgrade Methods
 
-    public void UpgradeMana() { Upgrade("mana"); }
-    public void UpgradeHealth() { Upgrade("health"); }
-    public void UpgradeSpell() { Upgrade("spell"); }
+    public void UpgradeMana() => Upgrade("mana"); 
+    public void UpgradeHealth() => Upgrade("health");
+    public void UpgradeSpell() => Upgrade("spell"); 
 
     #endregion
 
@@ -40,12 +40,12 @@ public sealed class ShopMenuUI : MonoBehaviour
 
     #region Hover Methods
 
-    public void OnSpellButtonHover() { OnButtonHover("spell"); }
-    public void OnHealthButtonHover() { OnButtonHover("health"); }
-    public void OnManaButtonHover() { OnButtonHover("mana"); }
-    public void OnMageButtonHover() { OnButtonHover("mage"); }
-    public void OnGhostButtonHover() { OnButtonHover("ghost"); }
-    public void OnArthurButtonHover() { OnButtonHover("arthur"); }
+    public void OnSpellButtonHover() => OnButtonHover("spell"); 
+    public void OnHealthButtonHover() => OnButtonHover("health"); 
+    public void OnManaButtonHover() => OnButtonHover("mana"); 
+    public void OnMageButtonHover() => OnButtonHover("mage"); 
+    public void OnGhostButtonHover() => OnButtonHover("ghost"); 
+    public void OnArthurButtonHover() => OnButtonHover("arthur"); 
 
     #endregion
 
