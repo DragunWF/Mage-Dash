@@ -5,6 +5,12 @@ using UnityEngine;
 
 public sealed class Utils : MonoBehaviour
 {
+    private static Color32 greenColor = new Color32(114, 224, 179, 255);
+    private static Color32 errorColor = new Color32(229, 52, 38, 255);
+
+    public static Color32 GetGreenColor() => GetColor("green");
+    public static Color32 GetErrorColor() => GetColor("error");
+
     public static string FormatNumber(int points)
     {
         if (points < 1000)
@@ -33,5 +39,18 @@ public sealed class Utils : MonoBehaviour
         char firstLetter = (char)((int)original[0] - 32);
         string remaining = original.Substring(1);
         return string.Format("{0}{1}", firstLetter, remaining);
+    }
+
+    private static Color32 GetColor(string name)
+    {
+        switch (name)
+        {
+            case "green":
+                return Utils.greenColor;
+            case "error":
+                return Utils.errorColor;
+        }
+
+        return new Color32(0, 0, 0, 255); // default
     }
 }
