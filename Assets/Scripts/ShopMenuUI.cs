@@ -24,9 +24,9 @@ public sealed class ShopMenuUI : MonoBehaviour
 
     #region Upgrade Methods
 
-    public void UpgradeMana() => Upgrade("mana"); 
+    public void UpgradeMana() => Upgrade("mana");
     public void UpgradeHealth() => Upgrade("health");
-    public void UpgradeSpell() => Upgrade("spell"); 
+    public void UpgradeSpell() => Upgrade("spell");
 
     #endregion
 
@@ -40,12 +40,12 @@ public sealed class ShopMenuUI : MonoBehaviour
 
     #region Hover Methods
 
-    public void OnSpellButtonHover() => OnButtonHover("spell"); 
-    public void OnHealthButtonHover() => OnButtonHover("health"); 
-    public void OnManaButtonHover() => OnButtonHover("mana"); 
-    public void OnMageButtonHover() => OnButtonHover("mage"); 
-    public void OnGhostButtonHover() => OnButtonHover("ghost"); 
-    public void OnArthurButtonHover() => OnButtonHover("arthur"); 
+    public void OnSpellButtonHover() => OnButtonHover("spell");
+    public void OnHealthButtonHover() => OnButtonHover("health");
+    public void OnManaButtonHover() => OnButtonHover("mana");
+    public void OnMageButtonHover() => OnButtonHover("mage");
+    public void OnGhostButtonHover() => OnButtonHover("ghost");
+    public void OnArthurButtonHover() => OnButtonHover("arthur");
 
     #endregion
 
@@ -170,7 +170,7 @@ public sealed class ShopMenuUI : MonoBehaviour
 
     private void EquipCosmetic(string cosmetic)
     {
-        if (cosmeticManager.EquippedCosmeticName == cosmetic)
+        if (cosmeticManager.EquippedCosmeticName == cosmetic && cosmeticManager.ownedCosmetics[cosmetic])
         {
             promptText.text = "This cosmetic is already equipped";
             lockPromptText = true;
@@ -192,7 +192,8 @@ public sealed class ShopMenuUI : MonoBehaviour
         bool isCosmetic = cosmeticManager.ownedCosmetics.ContainsKey(type);
         if (isCosmetic && cosmeticManager.ownedCosmetics[type])
         {
-            promptText.text = "Click to equip this cosmetic";
+            promptText.text = cosmeticManager.EquippedCosmeticName == type ?
+                              "You already have this cosmetic equipped" : "Click to equip this cosmetic";
         }
         else
         {
