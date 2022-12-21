@@ -4,6 +4,7 @@ using UnityEngine;
 
 public sealed class CosmeticManager : MonoBehaviour
 {
+    public string EquippedCosmeticName { get; private set; }
     public RuntimeAnimatorController EquippedCosmetic { get; private set; }
     public Dictionary<string, bool> ownedCosmetics = new Dictionary<string, bool>();
 
@@ -13,6 +14,7 @@ public sealed class CosmeticManager : MonoBehaviour
     public void ChangeCosmetic(string cosmeticName)
     {
         EquippedCosmetic = cosmetics[cosmeticName];
+        EquippedCosmeticName = cosmeticName;
     }
 
     public string[] GetCosmeticNames()
@@ -43,6 +45,7 @@ public sealed class CosmeticManager : MonoBehaviour
     private void Start()
     {
         EquippedCosmetic = cosmetics["mage"]; // default cosmetic
+        EquippedCosmeticName = "mage";
     }
 
     private void ManageSingleton()
