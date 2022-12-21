@@ -38,7 +38,7 @@ public sealed class RetryMenuUI : MonoBehaviour
 
         foreach (KeyValuePair<string, int> kvp in rawValues)
         {
-            string formatted = GameUI.FormatScore(kvp.Value);
+            string formatted = Utils.FormatNumber(kvp.Value);
             formattedValues[kvp.Key] = string.Format("{0}: {1}", kvp.Key, formatted);
         }
 

@@ -148,11 +148,4 @@ public sealed class ShopMenuUI : MonoBehaviour
     {
         coinText.text = string.Format("Coins: {0}", gameStats.Coins);
     }
-
-    private string Capitalize(string original)
-    {
-        char firstLetter = (char)((int)original[0] - 32);
-        string remaining = original.Substring(1);
-        return string.Format("{0}{1}", firstLetter, remaining);
-    }
 }

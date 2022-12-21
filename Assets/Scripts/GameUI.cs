@@ -19,29 +19,6 @@ public sealed class GameUI : MonoBehaviour
     private Dictionary<string, string> potionDescriptions = new Dictionary<string, string>();
     private List<string> activePowerups = new List<string>();
 
-    public static string FormatScore(int points)
-    {
-        if (points < 1000)
-        {
-            return points.ToString();
-        }
-
-        string formatted = "", str = points.ToString();
-        for (int i = 1, n = str.Length; i <= n; i++)
-        {
-            formatted += str[str.Length - i];
-            if (i + 1 <= n && i % 3 == 0)
-            {
-                formatted += ",";
-            }
-        }
-
-        char[] charArr = formatted.ToCharArray();
-        Array.Reverse(charArr);
-
-        return new string(charArr);
-    }
-
     public void ModifyPowerups(string type, bool addItem)
     {
         powerupText.text = "Active Powerups:\n";
@@ -88,7 +65,7 @@ public sealed class GameUI : MonoBehaviour
 
     public void UpdateScore(int newScore)
     {
-        string formattedScore = FormatScore(newScore);
+        string formattedScore = Utils.FormatNumber(newScore);
         scoreText.text = string.Format("Score: {0}", formattedScore);
     }
 
