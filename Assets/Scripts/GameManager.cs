@@ -9,27 +9,17 @@ public sealed class GameManager : MonoBehaviour
     private const int gameSceneIndex = 1;
     private const int retryMenuSceneIndex = 2;
     private const int shopMenuSceneIndex = 3;
+    private const int devMenuSceneIndex = 4;
 
-    public void LoadGameScene()
-    {
-        LoadScene(gameSceneIndex);
-    }
+    #region Load Scene Methods
 
-    public void LoadRetryMenu()
-    {
-        FindObjectOfType<GameStats>().SaveScore();
-        LoadScene(retryMenuSceneIndex);
-    }
+    public void LoadGameScene() => LoadScene(gameSceneIndex);
+    public void LoadRetryMenu() => LoadScene(retryMenuSceneIndex);
+    public void LoadMainMenu() => LoadScene(mainMenuSceneIndex);
+    public void LoadShopMenu() => LoadScene(shopMenuSceneIndex);
+    public void LoadDevMenu() => LoadScene(devMenuSceneIndex);
 
-    public void LoadMainMenu()
-    {
-        LoadScene(mainMenuSceneIndex);
-    }
-
-    public void LoadShopMenu()
-    {
-        LoadScene(shopMenuSceneIndex);
-    }
+    #endregion
 
     private void Start()
     {
@@ -42,6 +32,10 @@ public sealed class GameManager : MonoBehaviour
 
     private void LoadScene(int sceneIndex)
     {
+        if (sceneIndex == retryMenuSceneIndex)
+        {
+            FindObjectOfType<GameStats>().SaveScore();
+        }
         SceneManager.LoadScene(sceneIndex);
     }
 }
