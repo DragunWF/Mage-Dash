@@ -251,7 +251,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1194734100}
           m_TargetAssemblyTypeName: ShopMenuUI, Assembly-CSharp
-          m_MethodName: OnHealthButtonHover
+          m_MethodName: OnGhostButtonHover
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1963,7 +1963,7 @@ GameObject:
   - component: {fileID: 988547426}
   - component: {fileID: 988547425}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: MageButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2368,7 +2368,7 @@ GameObject:
   - component: {fileID: 1133181289}
   - component: {fileID: 1133181288}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: ArthurButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3132,7 +3132,7 @@ GameObject:
   - component: {fileID: 1262670825}
   - component: {fileID: 1262670824}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: GhostButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3357,7 +3357,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1194734100}
           m_TargetAssemblyTypeName: ShopMenuUI, Assembly-CSharp
-          m_MethodName: OnHealthButtonHover
+          m_MethodName: OnMageButtonHover
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -3537,7 +3537,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1194734100}
           m_TargetAssemblyTypeName: ShopMenuUI, Assembly-CSharp
-          m_MethodName: OnHealthButtonHover
+          m_MethodName: OnArthurButtonHover
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
