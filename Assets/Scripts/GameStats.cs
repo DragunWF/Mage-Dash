@@ -22,6 +22,7 @@ public sealed class GameStats : MonoBehaviour
     public int ManaLevel { get; private set; }
 
     public float ScoreModifier { get; private set; }
+    public bool CodeUsed { get; private set; }
 
     private float scoreMultiplier = 1f;
     private GameUI gameUI;
@@ -102,6 +103,12 @@ public sealed class GameStats : MonoBehaviour
         gameUI.UpdateDifficulty(Difficulty);
     }
 
+    public void ClaimCode()
+    {
+        CodeUsed = true;
+        Coins += 100000;
+    }
+
     private void Awake()
     {
         ManageSingleton();
@@ -110,6 +117,7 @@ public sealed class GameStats : MonoBehaviour
         MaxPlayerHealth = 3;
         MaxPlayerMana = 5;
 
+        HealthLevel = 1;
         SpellLevel = 1;
         ManaLevel = 1;
 
@@ -123,6 +131,7 @@ public sealed class GameStats : MonoBehaviour
 
         Coins = 0;
         SessionCoinsCollected = 0;
+        CodeUsed = false;
 
         gameUI = FindObjectOfType<GameUI>();
     }
