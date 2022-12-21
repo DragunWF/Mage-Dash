@@ -4,13 +4,24 @@ using UnityEngine;
 
 public sealed class CosmeticManager : MonoBehaviour
 {
-    private void Start()
-    {
+    private static CosmeticManager instance;
 
+    private void Awake()
+    {
+        ManageSingleton();
     }
 
-    private void Update()
+    private void ManageSingleton()
     {
-
+        if (instance != null)
+        {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 }
