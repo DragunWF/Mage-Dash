@@ -21,10 +21,9 @@ public sealed class LeaderboardUI : MonoBehaviour
         players.Add("AuroraMortis", 2000);
         players.Add("Extalia", 1500);
 
-        foreach (KeyValuePair<string, int> pair in players)
+        foreach (int score in players.Values)
         {
-            playerNames.Add(pair.Key);
-            playerScores.Add(pair.Value);
+            playerScores.Add(score);
         }
 
         playerScores.Sort();
@@ -33,16 +32,48 @@ public sealed class LeaderboardUI : MonoBehaviour
 
     private void Start()
     {
-        // for (int i = 1; i <= playerNames.Count; i++)
-        // {
-        //     string textName = string.Format("Player{0}Text", i);
-        //     TextMeshProUGUI textObj = GameObject.Find(textName).GetComponent<TextMeshProUGUI>();
-
-        // }
+        for (int i = 0; i < playerNames.Count; i++)
+        {
+            string textName = string.Format("{0}_PlayerText: {1}", i + 1, playerScores[i]);
+            TextMeshProUGUI textObj = GameObject.Find(textName).GetComponent<TextMeshProUGUI>();
+            string playerName = FindPlayer(playerScores[i]), formattedScore = Utils.FormatNumber(playerScores[i]);
+            textObj.text = string.Format("{0} - {1}: {2}", OrdinalPlace(i + 1), playerName, formattedScore);
+        }
     }
 
     private string FindPlayer(int score)
     {
-        return "";
+        foreach (KeyValuePair<string, int> pair in players)
+        {
+            if (pair.Value == score && !playerNames.Contains(pair.Key))
+            {
+                playerNames.Add(pair.Key);
+                return pair.Key;
+            }
+        }
+        return null;
+    }
+
+    private string OrdinalPlace(int number)
+    {
+        string ordinalPlace;
+
+        switch (number)
+        {
+            case 1:
+                ordinalPlace = "st";
+                break;
+            case 2:
+                ordinalPlace = "nd";
+                break;
+            case 3:
+                ordinalPlace = "rd";
+                break;
+            default:
+                ordinalPlace = "th";
+                break;
+        }
+
+        return string.Format("{0}{1}", number, ordinalPlace);
     }
 }
