@@ -10,6 +10,7 @@ public sealed class GameManager : MonoBehaviour
     private const int retryMenuSceneIndex = 2;
     private const int shopMenuSceneIndex = 3;
     private const int devMenuSceneIndex = 4;
+    private const int leaderboardSceneIndex = 5;
 
     #region Load Scene Methods
 
@@ -18,6 +19,7 @@ public sealed class GameManager : MonoBehaviour
     public void LoadMainMenu() => LoadScene(mainMenuSceneIndex);
     public void LoadShopMenu() => LoadScene(shopMenuSceneIndex);
     public void LoadDevMenu() => LoadScene(devMenuSceneIndex);
+    public void LoadLeaderboard() => LoadScene(leaderboardSceneIndex);
 
     #endregion
 
