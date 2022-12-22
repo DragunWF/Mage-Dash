@@ -41,10 +41,7 @@ public sealed class CosmeticManager : MonoBehaviour
             string formattedPath = string.Format("Animations/Player{0}", Utils.Capitalize(name));
             cosmetics.Add(name, Resources.Load(formattedPath) as RuntimeAnimatorController);
         }
-    }
 
-    private void Start()
-    {
         EquippedCosmetic = cosmetics["mage"]; // default cosmetic
         EquippedCosmeticName = "mage";
     }

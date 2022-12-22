@@ -105,13 +105,12 @@ public sealed class Player : MonoBehaviour
         flashEffect = GetComponent<FlashEffect>();
         screen = FindObjectOfType<FadeToBlack>();
         audioPlayer = FindObjectOfType<AudioPlayer>();
-
-        Animator animator = GetComponent<Animator>();
-        animator.runtimeAnimatorController = FindObjectOfType<CosmeticManager>().EquippedCosmetic;
     }
 
     private void Start()
     {
+        Animator animator = GetComponent<Animator>();
+        animator.runtimeAnimatorController = FindObjectOfType<CosmeticManager>().EquippedCosmetic;
         gameStats = FindObjectOfType<GameStats>();
 
         health = gameStats.MaxPlayerHealth;
