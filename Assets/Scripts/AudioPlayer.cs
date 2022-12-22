@@ -15,7 +15,7 @@ public sealed class AudioPlayer : MonoBehaviour
     public void PlayJump() => PlayClip("Jump");
     public void PlayPickup() => PlayClip("Pickup");
     public void PlayPowerup() => PlayClip("Powerup");
-    public void PlayUpgrade() => PlayClip("Upgrade");
+    public void PlaySuccess() => PlayClip("Success");
     public void PlayError() => PlayClip("Error");
     public void PlayDamage() => PlayClip("Damage");
 
@@ -35,8 +35,8 @@ public sealed class AudioPlayer : MonoBehaviour
         clips.Add("Jump", Resources.Load("Audio/Jump") as AudioClip);
         volumes.Add("Jump", 0.35f);
 
-        clips.Add("Upgrade", Resources.Load("Audio/Upgrade") as AudioClip);
-        volumes.Add("Upgrade", 0.85f);
+        clips.Add("Success", Resources.Load("Audio/Success") as AudioClip);
+        volumes.Add("Success", 0.85f);
 
         clips.Add("Pickup", Resources.Load("Audio/Pickup") as AudioClip);
         volumes.Add("Pickup", 0.75f);

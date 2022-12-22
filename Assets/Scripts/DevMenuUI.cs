@@ -23,7 +23,7 @@ public sealed class DevMenuUI : MonoBehaviour
                 promptText.text = "Enjoy your extra 100,000 coins!";
                 promptText.color = Utils.GetGreenColor();
 
-                audioPlayer.PlayUpgrade();
+                audioPlayer.PlaySuccess();
                 gameStats.ClaimCode();
                 UpdateCoinText();
             }

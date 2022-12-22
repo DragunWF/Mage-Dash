@@ -119,7 +119,7 @@ public sealed class ShopMenuUI : MonoBehaviour
     {
         if (CheckAffordable(prices[stat]))
         {
-            audioPlayer.PlayUpgrade();
+            audioPlayer.PlaySuccess();
             gameStats.UpgradeStat(stat, prices[stat]);
 
             lockPromptText = false;
