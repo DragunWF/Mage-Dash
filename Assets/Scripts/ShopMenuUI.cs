@@ -159,11 +159,13 @@ public sealed class ShopMenuUI : MonoBehaviour
 
         if (cosmeticManager.EquippedCosmeticName == cosmetic && ownsCosmetic)
         {
+            audioPlayer.PlayError();
             promptText.text = "This cosmetic is already equipped";
             lockPromptText = true;
         }
         else if (CheckAffordable(prices[cosmetic]) || ownsCosmetic)
         {
+            audioPlayer.PlaySuccess();
             cosmeticManager.ChangeCosmetic(cosmetic);
             UpdateCosmeticButtons();
 
