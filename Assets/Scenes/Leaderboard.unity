@@ -526,7 +526,7 @@ GameObject:
   - component: {fileID: 608137707}
   - component: {fileID: 608137706}
   m_Layer: 5
-  m_Name: Button
+  m_Name: BackButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -575,7 +575,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.7490196, g: 0.74509805, b: 0.74509805, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -1414,7 +1414,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 250}
-  m_SizeDelta: {x: 492.9118, y: 69.6915}
+  m_SizeDelta: {x: 800, y: 69.6915}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1768664172
 MonoBehaviour:
@@ -1436,7 +1436,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Leaderboard
+  m_text: Highscore Leaderboard
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c03832afc71869743bc681b9938ae63f, type: 2}
   m_sharedMaterial: {fileID: 1408446748560729898, guid: c03832afc71869743bc681b9938ae63f, type: 2}
