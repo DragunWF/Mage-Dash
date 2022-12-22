@@ -16,7 +16,7 @@ public sealed class LeaderboardUI : MonoBehaviour
 
         players.Add("You", gameStats.HighScore);
         players.Add("Warcook", 3000);
-        players.Add("CPTInvincible36", 2500);
+        players.Add("CPTInvincible", 2500);
         players.Add("AuroraMortis", 2000);
         players.Add("Extalia", 1500);
 
@@ -31,9 +31,9 @@ public sealed class LeaderboardUI : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < playerNames.Count; i++)
+        for (int i = 0; i < playerScores.Count; i++)
         {
-            string textName = string.Format("{0}_PlayerText: {1}", i + 1, playerScores[i]);
+            string textName = string.Format("{0}_PlayerText", i + 1);
             TextMeshProUGUI textObj = GameObject.Find(textName).GetComponent<TextMeshProUGUI>();
             string playerName = FindPlayer(playerScores[i]), formattedScore = Utils.FormatNumber(playerScores[i]);
             textObj.text = string.Format("{0} - {1}: {2}", OrdinalPlace(i + 1), playerName, formattedScore);
