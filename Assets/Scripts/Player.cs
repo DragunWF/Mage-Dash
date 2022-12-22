@@ -187,8 +187,8 @@ public sealed class Player : MonoBehaviour
         gameUI.ModifyPowerups("damage", false);
     }
 
-    private void RestoreSpell() { onSpellCooldown = false; }
-    private void RemoveInvincibility() { onDamageCooldown = false; }
+    private void RestoreSpell() => onSpellCooldown = false;
+    private void RemoveInvincibility() => onDamageCooldown = false;
 
     #endregion
 
