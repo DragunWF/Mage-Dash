@@ -30,13 +30,13 @@ public sealed class AudioPlayer : MonoBehaviour
         volumes.Add("Death", 0.75f);
 
         clips.Add("Click", Resources.Load("Audio/Click") as AudioClip);
-        volumes.Add("Click", 0.98f);
+        volumes.Add("Click", 1.5f);
 
         clips.Add("Jump", Resources.Load("Audio/Jump") as AudioClip);
         volumes.Add("Jump", 0.35f);
 
         clips.Add("Success", Resources.Load("Audio/Success") as AudioClip);
-        volumes.Add("Success", 0.85f);
+        volumes.Add("Success", 1.25f);
 
         clips.Add("Pickup", Resources.Load("Audio/Pickup") as AudioClip);
         volumes.Add("Pickup", 0.75f);
@@ -45,7 +45,7 @@ public sealed class AudioPlayer : MonoBehaviour
         volumes.Add("Powerup", 0.95f);
 
         clips.Add("Error", Resources.Load("Audio/Error") as AudioClip);
-        volumes.Add("Error", 0.85f);
+        volumes.Add("Error", 1.5f);
 
         clips.Add("Damage", Resources.Load("Audio/Damage") as AudioClip);
         volumes.Add("Damage", 0.55f);
