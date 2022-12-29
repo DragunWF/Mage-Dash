@@ -92,7 +92,7 @@ public sealed class ShopMenuUI : MonoBehaviour
         coinText = GameObject.Find("CoinText").GetComponent<TextMeshProUGUI>();
         promptText = GameObject.Find("PromptText").GetComponent<TextMeshProUGUI>();
 
-        string[] stats = { "health", "mana", "spell" };
+        string[] stats = { "spell", "mana", "health" };
         const int basePrice = 1;
         for (int i = 0; i < stats.Length; i++)
         {
