@@ -98,7 +98,7 @@ public sealed class ShopMenuUI : MonoBehaviour
         {
             string textName = string.Format("{0}Text", Utils.Capitalize(stats[i]));
             shopItems.Add(stats[i], GameObject.Find(textName).GetComponent<TextMeshProUGUI>());
-            prices.Add(stats[i], basePrice - (i * 5)); // Price varies by an interval of 5 each
+            prices.Add(stats[i], basePrice - i * 5); // Price varies by an interval of 5 each
         }
 
         string[] cosmetics = cosmeticManager.GetCosmeticNames();
@@ -117,7 +117,7 @@ public sealed class ShopMenuUI : MonoBehaviour
 
     private void Upgrade(string stat)
     {
-        if (CheckAffordable(prices[stat]))
+        if (statLevels[stat] < gameStats.GetMaxLevel() && CheckAffordable(prices[stat]))
         {
             audioPlayer.PlaySuccess();
             gameStats.UpgradeStat(stat, prices[stat]);
@@ -125,6 +125,13 @@ public sealed class ShopMenuUI : MonoBehaviour
             lockPromptText = false;
             UpdateCoinText();
             UpdateLevelText(stat);
+        }
+        else if (statLevels[stat] >= gameStats.GetMaxLevel())
+        {
+            audioPlayer.PlayError();
+            lockPromptText = true;
+            promptText.text = "It has already reached its maximum level!";
+            promptText.color = Utils.GetErrorColor();
         }
     }
 
@@ -191,6 +198,10 @@ public sealed class ShopMenuUI : MonoBehaviour
         {
             promptText.text = cosmeticManager.EquippedCosmeticName == type ?
                               "You already have this cosmetic equipped" : "Click to equip this cosmetic";
+        }
+        else if (!isCosmetic && statLevels[type] >= gameStats.GetMaxLevel())
+        {
+            promptText.text = "This stat is already at max level!";
         }
         else
         {
