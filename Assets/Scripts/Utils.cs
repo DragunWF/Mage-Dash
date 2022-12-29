@@ -8,8 +8,12 @@ public sealed class Utils : MonoBehaviour
     private static Color32 greenColor = new Color32(114, 224, 179, 255);
     private static Color32 errorColor = new Color32(229, 52, 38, 255);
 
+    #region Getter Methods
+
     public static Color32 GetGreenColor() => GetColor("green");
     public static Color32 GetErrorColor() => GetColor("error");
+
+    #endregion
 
     public static string FormatNumber(int points)
     {
@@ -50,7 +54,6 @@ public sealed class Utils : MonoBehaviour
             case "error":
                 return Utils.errorColor;
         }
-
         return new Color32(0, 0, 0, 255); // default
     }
 }
