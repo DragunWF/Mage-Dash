@@ -13,7 +13,6 @@ public sealed class GameStats : MonoBehaviour
     public int HighestDifficultyReached { get; private set; }
     public bool NewHighScore { get; private set; }
 
-    public int PlayerDamage { get; private set; }
     public int MaxPlayerHealth { get; private set; }
     public int MaxPlayerMana { get; private set; }
 
@@ -36,6 +35,8 @@ public sealed class GameStats : MonoBehaviour
 
     #endregion
 
+    #region Compute Methods
+
     public float ComputeManaRegen()
     {
         const float manaLimit = 0.25f, baseRegenTime = 3.5f;
@@ -54,6 +55,38 @@ public sealed class GameStats : MonoBehaviour
 
         return manaRegenTime;
     }
+
+    public int ComputeManaCapacity()
+    {
+        const int baseManaCapacity = 5;
+        if (ManaLevel > 1)
+        {
+            const int manaChange = 3;
+            return (ManaLevel - 1) / manaChange + baseManaCapacity;
+        }
+        return baseManaCapacity;
+    }
+
+    public int ComputeHealth()
+    {
+        const int baseHealth = 2;
+        return HealthLevel > 1 ? HealthLevel - 1 + baseHealth : baseHealth;
+    }
+
+    public int ComputeDamage()
+    {
+        const int baseDamage = 15;
+        int damage = baseDamage;
+
+        if (SpellLevel > 1)
+        {
+            damage += (SpellLevel - 1) * 4;
+        }
+
+        return damage;
+    }
+
+    #endregion
 
     public void UpgradeStat(string type, int price)
     {
@@ -119,9 +152,8 @@ public sealed class GameStats : MonoBehaviour
     {
         ManageSingleton();
 
-        PlayerDamage = 15; // default values
-        MaxPlayerHealth = 3;
-        MaxPlayerMana = 5;
+        MaxPlayerHealth = ComputeHealth();
+        MaxPlayerMana = ComputeManaCapacity();
 
         HealthLevel = 1;
         SpellLevel = 1;
