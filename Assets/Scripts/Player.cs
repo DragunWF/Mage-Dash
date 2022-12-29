@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public sealed class Player : MonoBehaviour
 {
     public float DamageCooldown { get; private set; }
+    public int SpellDamage { get; private set; }
 
     private bool isAlive = true;
     private int health;
@@ -113,9 +114,10 @@ public sealed class Player : MonoBehaviour
         animator.runtimeAnimatorController = FindObjectOfType<CosmeticManager>().EquippedCosmetic;
         gameStats = FindObjectOfType<GameStats>();
 
-        health = gameStats.MaxPlayerHealth;
-        mana = gameStats.MaxPlayerMana;
+        health = gameStats.ComputeHealth();
+        mana = gameStats.ComputeManaCapacity();
         manaRegenTime = gameStats.ComputeManaRegen();
+        SpellDamage = gameStats.ComputeDamage();
 
         gameUI.UpdateHealthBar(health, true);
         gameUI.UpdateManaBar(mana, true);

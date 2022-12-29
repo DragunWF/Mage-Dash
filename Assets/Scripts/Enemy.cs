@@ -91,7 +91,7 @@ public sealed class Enemy : MonoBehaviour
     {
         flashEffect.Flash();
         health -= player.GetDamagePowerupStatus() ?
-            gameStats.PlayerDamage * 2 : gameStats.PlayerDamage;
+            player.SpellDamage * 2 : player.SpellDamage;
         audioPlayer.PlayDamage();
 
         if (health <= 0)
