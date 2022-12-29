@@ -93,19 +93,19 @@ public sealed class ShopMenuUI : MonoBehaviour
         promptText = GameObject.Find("PromptText").GetComponent<TextMeshProUGUI>();
 
         string[] stats = { "health", "mana", "spell" };
-        const int basePrice = 15;
+        const int basePrice = 1;
         for (int i = 0; i < stats.Length; i++)
         {
             string textName = string.Format("{0}Text", Utils.Capitalize(stats[i]));
             shopItems.Add(stats[i], GameObject.Find(textName).GetComponent<TextMeshProUGUI>());
-            prices.Add(stats[i], basePrice - i * 5); // Price varies by an interval of 5 each
+            prices.Add(stats[i], (int)Mathf.Ceil(basePrice + (i + 1) * 1.25f)); // Price variation
         }
 
         string[] cosmetics = cosmeticManager.GetCosmeticNames();
         for (int i = 0; i < cosmetics.Length; i++)
         {
             prices.Add(cosmetics[i], cosmetics[i] != "mage" ?
-                                     basePrice + (i + 1) * 5 : 0);
+                                     (basePrice + 1) + (i + 1) * 4 : 0);
         }
     }
 
