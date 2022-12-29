@@ -4,7 +4,7 @@ using UnityEngine;
 
 public sealed class CoinSpawner : MonoBehaviour
 {
-    private const float baseSpawnInterval = 17.5f;
+    private const float baseSpawnInterval = 8.5f;
     private float modifiedInterval;
 
     private GameObject coin;
