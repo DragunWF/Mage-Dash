@@ -25,10 +25,16 @@ public sealed class GameStats : MonoBehaviour
     public bool CodeUsed { get; private set; }
 
     private float scoreMultiplier = 1f;
+    private const int maxLevel = 10;
     private GameUI gameUI;
-    static private GameStats instance;
+    private static GameStats instance;
 
+    #region Single Line Methods
+
+    public int GetMaxLevel() => maxLevel;
     public void SubtractCoins(int amount) => Coins -= amount;
+
+    #endregion
 
     public float ComputeManaRegen()
     {
