@@ -4,7 +4,7 @@ using UnityEngine;
 
 public sealed class PowerupSpawner : MonoBehaviour
 {
-    private float[] spawnIntervals = { 8.5f, 9f, 9.5f, 10f, 10.5f, 11f };
+    private float[] spawnIntervals;
     private GameObject[] powerups;
     private Transform[] spawnPositions;
     private Player player;
@@ -26,6 +26,14 @@ public sealed class PowerupSpawner : MonoBehaviour
 
     private void Start()
     {
+        const int intervalLength = 5;
+        spawnIntervals = new float[intervalLength];
+        spawnIntervals[0] = 9.0f;
+        for (int i = 1; i < intervalLength; i++)
+        {
+            spawnIntervals[i] = spawnIntervals[i - 1] + 0.5f;
+        }
+
         StartCoroutine(SpawnPowerups());
     }
 
