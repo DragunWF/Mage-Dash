@@ -25,12 +25,15 @@ public sealed class GameStats : MonoBehaviour
 
     private float scoreMultiplier = 1f;
     private const int maxLevel = 10;
+    private const int healthMaxLevel = 5; // Specific to health stat for balancing
+
     private GameUI gameUI;
     private static GameStats instance;
 
     #region Single Line Methods
 
     public int GetMaxLevel() => maxLevel;
+    public int GetHealthMaxLevel() => healthMaxLevel;
     public void SubtractCoins(int amount) => Coins -= amount;
 
     #endregion
