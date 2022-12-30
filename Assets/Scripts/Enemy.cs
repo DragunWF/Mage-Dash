@@ -6,7 +6,6 @@ public sealed class Enemy : MonoBehaviour
 {
     [Header("Obstacle Stats")]
     [SerializeField] float health = 25f;
-    [SerializeField] float damage = 10f;
     [SerializeField] float speed = 5f;
 
     [Header("Obstacle Type")]
@@ -48,7 +47,6 @@ public sealed class Enemy : MonoBehaviour
             for (int i = 1; i < difficulty.DifficultyLevel; i++)
             {
                 speed += 0.35f;
-                damage += 2.5f;
                 health += 4.5f;
                 scoreGain += 7.5f;
             }
