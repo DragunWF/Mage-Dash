@@ -75,7 +75,7 @@ public sealed class Player : MonoBehaviour
         {
             manaPowerupActive = true;
             gameUI.ModifyPowerups(powerupType, true);
-            Invoke("DisableManaPowerup", powerupDuration);
+            Invoke("DisableScorePowerup", powerupDuration);
         }
         else if (powerupType == "damage" && !damagePowerupActive)
         {
