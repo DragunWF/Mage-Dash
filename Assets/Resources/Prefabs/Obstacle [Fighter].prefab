@@ -49,10 +49,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e767dfef2a35f046b12e386a6288b77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 25
-  damage: 10
-  speed: 5
+  health: 20
+  speed: 5.5
   isFlying: 0
+  scoreGain: 25
 --- !u!114 &1315802265675050359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,7 +105,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1909231171
-  m_SortingLayer: -2
+  m_SortingLayer: -4
   m_SortingOrder: 0
   m_Sprite: {fileID: -1629871654, guid: 239c6c7561819ce4bbef886f6b06628b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
