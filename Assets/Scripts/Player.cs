@@ -15,7 +15,7 @@ public sealed class Player : MonoBehaviour
     private const float spellCooldownTime = 0.125f;
     private bool onSpellCooldown = false;
     private bool onDamageCooldown = false;
-    private float manaRegenTime; // change in the future
+    private float manaRegenTime;
 
     private bool manaPowerupActive = false;
     private bool scorePowerupActive = false;
@@ -188,6 +188,10 @@ public sealed class Player : MonoBehaviour
         damagePowerupActive = false;
         gameUI.ModifyPowerups("damage", false);
     }
+
+    #endregion
+
+    #region Misc Boolean Setters
 
     private void RestoreSpell() => onSpellCooldown = false;
     private void RemoveInvincibility() => onDamageCooldown = false;
