@@ -15,7 +15,7 @@ public sealed class DifficultyScaling : MonoBehaviour
     private CoinSpawner coinSpawner;
     private ParallaxBackground[] backgrounds;
 
-    public int GetMaxDifficultyLevel() { return maxDifficultyLevel; }
+    public int GetMaxDifficultyLevel() => maxDifficultyLevel;
 
     private void Awake()
     {
