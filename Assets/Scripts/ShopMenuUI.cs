@@ -105,7 +105,7 @@ public sealed class ShopMenuUI : MonoBehaviour
         for (int i = 0; i < cosmetics.Length; i++)
         {
             prices.Add(cosmetics[i], cosmetics[i] != "mage" ?
-                                     (basePrice + 1) + (i + 1) * 4 : 0);
+                                     (basePrice + 1) + (i + 1) * 4 : 0); // Cosmetic price variation
         }
     }
 
@@ -113,6 +113,7 @@ public sealed class ShopMenuUI : MonoBehaviour
     {
         UpdateCoinText();
         UpdateLevels();
+        UpdateAllLevelsText();
     }
 
     private void Upgrade(string stat)
@@ -134,6 +135,16 @@ public sealed class ShopMenuUI : MonoBehaviour
             UpdateCoinText();
             UpdateLevelText(stat);
         }
+    }
+
+    private void UpdateAllLevelsText()
+    {
+        foreach (KeyValuePair<string, TextMeshProUGUI> pair in shopItems)
+        {
+            shopItems[pair.Key].text = string.Format("{0} Level: {1}",
+                                                     pair.Key, statLevels[pair.Key]);
+        }
+        UpdateLevels();
     }
 
     private void UpdateLevels()
