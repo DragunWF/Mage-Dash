@@ -35,6 +35,14 @@ public sealed class Player : MonoBehaviour
     private FlashEffect flashEffect;
     private AudioPlayer audioPlayer;
 
+    #region Powerup Getter Methods
+
+    public bool GetManaPowerupStatus() => manaPowerupActive;
+    public bool GetScorePowerupStatus() => scorePowerupActive;
+    public bool GetDamagePowerupStatus() => damagePowerupActive;
+
+    #endregion
+
     public void DamageHealth()
     {
         if (!onDamageCooldown)
@@ -69,6 +77,7 @@ public sealed class Player : MonoBehaviour
         {
             manaPowerupActive = true;
             gameUI.ModifyPowerups(powerupType, true);
+            gameUI.UpdateManaBar(gameStats.MaxPlayerMana * 2, true);
             Invoke("DisableManaPowerup", powerupDuration);
         }
         else if (powerupType == "score" && !scorePowerupActive)
@@ -84,14 +93,6 @@ public sealed class Player : MonoBehaviour
             Invoke("DisableDamagePowerup", powerupDuration);
         }
     }
-
-    #region Powerup Getter Methods
-
-    public bool GetManaPowerupStatus() { return manaPowerupActive; }
-    public bool GetScorePowerupStatus() { return scorePowerupActive; }
-    public bool GetDamagePowerupStatus() { return damagePowerupActive; }
-
-    #endregion
 
     private void Awake()
     {
@@ -114,8 +115,11 @@ public sealed class Player : MonoBehaviour
         animator.runtimeAnimatorController = FindObjectOfType<CosmeticManager>().EquippedCosmetic;
         gameStats = FindObjectOfType<GameStats>();
 
-        health = gameStats.ComputeHealth();
-        mana = gameStats.ComputeManaCapacity();
+        gameStats.MaxPlayerHealth = gameStats.ComputeHealth();
+        gameStats.MaxPlayerMana = gameStats.ComputeManaCapacity();
+
+        health = gameStats.MaxPlayerHealth;
+        mana = gameStats.MaxPlayerMana;
         manaRegenTime = gameStats.ComputeManaRegen();
         SpellDamage = gameStats.ComputeDamage();
 
@@ -173,6 +177,12 @@ public sealed class Player : MonoBehaviour
 
     private void DisableManaPowerup()
     {
+        if (mana > gameStats.MaxPlayerMana)
+        {
+            mana = gameStats.MaxPlayerMana;
+        }
+        gameUI.UpdateManaBar(gameStats.MaxPlayerMana, true);
+
         manaPowerupActive = false;
         gameUI.ModifyPowerups("mana", false);
     }
@@ -205,7 +215,7 @@ public sealed class Player : MonoBehaviour
 
         while (true)
         {
-            if (mana < gameStats.MaxPlayerMana)
+            if (mana < (manaPowerupActive ? gameStats.MaxPlayerMana * 2 : gameStats.MaxPlayerMana))
             {
                 yield return new WaitForSeconds(manaPowerupActive ? manaRegenTime : upgradedRegen);
                 mana++;

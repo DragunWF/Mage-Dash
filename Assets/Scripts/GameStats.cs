@@ -13,8 +13,8 @@ public sealed class GameStats : MonoBehaviour
     public int HighestDifficultyReached { get; private set; }
     public bool NewHighScore { get; private set; }
 
-    public int MaxPlayerHealth { get; private set; }
-    public int MaxPlayerMana { get; private set; }
+    public int MaxPlayerHealth { get; set; } // Updated at Start() of Player.cs
+    public int MaxPlayerMana { get; set; } // Updated at Start() of Player.cs
 
     public int HealthLevel { get; private set; }
     public int SpellLevel { get; private set; }
@@ -64,7 +64,7 @@ public sealed class GameStats : MonoBehaviour
         const int baseManaCapacity = 5;
         if (ManaLevel > 1)
         {
-            const int manaChange = 3;
+            const int manaChange = 2;
             return (ManaLevel - 1) / manaChange + baseManaCapacity;
         }
         return baseManaCapacity;
