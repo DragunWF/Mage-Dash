@@ -1,5 +1,9 @@
 # Mage Dash
 
+![GitHub top language](https://img.shields.io/github/languages/top/DragunWF/Mage-Dash)
+![Lines of code](https://img.shields.io/tokei/lines/github/DragunWF/Mage-Dash)
+![GitHub repo size](https://img.shields.io/github/repo-size/DragunWF/Mage-Dash)
+
 ## Description
 
 Play as a mage hurling fire spells through a dangerous desert full of monsters.
